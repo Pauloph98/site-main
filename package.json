@@ -1,0 +1,26 @@
+{
+  "name": "seguranca-digital-idosos",
+  "version": "1.0.0",
+  "description": "Plataforma educativa de segurança digital para idosos",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd backend && python -m uvicorn server:app --host 0.0.0.0 --port 8001 --reload\" \"cd frontend && yarn start\"",
+    "start:frontend": "cd frontend && yarn start",
+    "start:backend": "cd backend && python -m uvicorn server:app --host 0.0.0.0 --port 8001 --reload",
+    "install:all": "cd frontend && yarn install && cd ../backend && pip install -r requirements.txt",
+    "build": "cd frontend && yarn build"
+  },
+  "keywords": [
+    "segurança digital",
+    "idosos",
+    "educação",
+    "react",
+    "fastapi",
+    "mongodb"
+  ],
+  "author": "Seu Nome",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
