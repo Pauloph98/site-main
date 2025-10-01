@@ -18,7 +18,6 @@ const PreQuiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userAnswers, setUserAnswers] = useState(Array(quizQuestions.length).fill(null));
   const [quizCompleted, setQuizCompleted] = useState(false);
-  
   const [quizStarted, setQuizStarted] = useState(false);
   const [userName, setUserName] = useState('');
   const [userAgeRange, setUserAgeRange] = useState('');
@@ -33,17 +32,12 @@ const PreQuiz = () => {
 
   const handleSelectAndNext = (answer) => {
     const newUserAnswers = [...userAnswers];
-    newUserAnswers[currentQuestion] = {
-      questionId: quizQuestions[currentQuestion].id,
-      selectedOption: answer.id,
-      isCorrect: answer.isCorrect,
-    };
+    newUserAnswers[currentQuestion] = { questionId: quizQuestions[currentQuestion].id, selectedOption: answer.id, isCorrect: answer.isCorrect };
     setUserAnswers(newUserAnswers);
     
     if (currentQuestion < quizQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      // Assim que a última pergunta é respondida, marcamos como completo.
       setQuizCompleted(true);
       sendResultsToBackend(newUserAnswers);
     }
@@ -51,37 +45,18 @@ const PreQuiz = () => {
 
   const sendResultsToBackend = async (finalAnswers) => {
     const finalScore = finalAnswers.filter(a => a?.isCorrect).length;
-
-    // --- MUDANÇA IMPORTANTE ---
-    // Guarda o progresso no navegador ANTES de tentar enviar para o servidor.
-    // Isto garante que a navegação funcionará sempre.
     localStorage.setItem('preTestScore', finalScore);
     localStorage.setItem('preTestCompleted', 'true');
-
     try {
-      await axios.post(`${BACKEND_URL}/api/quiz-results`, {
-        user_name: userName,
-        user_age_range: userAgeRange,
-        score: finalScore,
-        total_questions: quizQuestions.length,
-        answers: finalAnswers.filter(a => a !== null),
-        test_type: "pre-teste"
-      });
-      console.log("Resultados do pré-teste enviados com sucesso!");
-    } catch (error) {
-      console.error("Erro ao enviar resultados do pré-teste:", error);
-    }
+      await axios.post(`${BACKEND_URL}/api/quiz-results`, { user_name: userName, user_age_range: userAgeRange, score: finalScore, total_questions: quizQuestions.length, answers: finalAnswers.filter(a => a !== null), test_type: "pre-teste" });
+    } catch (error) { console.error("Erro ao enviar resultados do pré-teste:", error); }
   };
 
-  // O resto do ficheiro (formulário, tela de resultados, etc.) continua igual.
   if (!quizStarted) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
         <Card className="max-w-md w-full">
-          <CardHeader>
-            <CardTitle className="text-center text-3xl font-bold text-gray-900">Avaliação Inicial</CardTitle>
-            <p className="mt-2 text-center text-sm text-gray-600">Por favor, preencha para começar.</p>
-          </CardHeader>
+          <CardHeader><CardTitle className="text-center text-3xl font-bold text-gray-900">Avaliação Inicial</CardTitle><p className="mt-2 text-center text-sm text-gray-600">Por favor, preencha para começar.</p></CardHeader>
           <CardContent>
             <form onSubmit={handleStartQuiz} className="space-y-6">
               <div className="space-y-2"><Label htmlFor="name">Seu Nome (ou apelido)</Label><Input id="name" type="text" value={userName} onChange={(e) => setUserName(e.target.value)} required /></div>
@@ -99,18 +74,12 @@ const PreQuiz = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
         <Card className="max-w-lg w-full text-center">
-          <CardHeader>
-            <Award className="mx-auto h-12 w-12 text-yellow-500" />
-            <CardTitle className="text-3xl font-bold">Pré-Teste Concluído!</CardTitle>
-          </CardHeader>
+          <CardHeader><Award className="mx-auto h-12 w-12 text-yellow-500" /><CardTitle className="text-3xl font-bold">Pré-Teste Concluído!</CardTitle></CardHeader>
           <CardContent className="space-y-6">
             <p className="text-lg">Obrigado, {userName}! Você acertou:</p>
             <p className="text-6xl font-bold text-blue-600">{score} <span className="text-3xl text-gray-600">de {quizQuestions.length}</span></p>
-            <p className="text-md text-gray-800 bg-green-100 p-4 rounded-lg">Agora, o próximo passo é explorar o nosso conteúdo educativo para aprender mais e se proteger. Depois, você poderá fazer o quiz final para ver o quanto evoluiu!</p>
-            <Button size="lg" onClick={() => navigate('/conteudo')}>
-              Ir para o Conteúdo Educativo
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <p className="text-md text-gray-800 bg-green-100 p-4 rounded-lg">Agora, o próximo passo é explorar o nosso conteúdo educativo. Depois, faça o quiz final para ver o quanto evoluiu!</p>
+            <Button size="lg" onClick={() => navigate('/conteudo')}>Ir para o Conteúdo Educativo<ArrowRight className="ml-2 h-5 w-5" /></Button>
           </CardContent>
         </Card>
       </div>
@@ -125,11 +94,7 @@ const PreQuiz = () => {
         <Card>
           <CardHeader><CardTitle className="text-xl text-left">{currentQuestion + 1}. {question.question}</CardTitle></CardHeader>
           <CardContent className="space-y-3">
-            {question.options.map((option) => (
-              <Button key={option.id} variant="outline" className="w-full justify-start p-4 h-auto text-left" onClick={() => handleSelectAndNext(option)}>
-                {option.text}
-              </Button>
-            ))}
+            {question.options.map((option) => (<Button key={option.id} variant="outline" className="w-full justify-start p-4 h-auto text-left" onClick={() => handleSelectAndNext(option)}>{option.text}</Button>))}
           </CardContent>
         </Card>
       </div>

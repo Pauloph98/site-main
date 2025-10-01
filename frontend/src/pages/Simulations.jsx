@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { AlertTriangle, Shield, Users, Play, CheckCircle, XCircle, ArrowRight, ArrowLeft } from 'lucide-react';
+import { AlertTriangle, Shield, Users, Play, CheckCircle, XCircle, ArrowRight, ArrowLeft, BookOpen } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Progress } from '../components/ui/progress';
+import { useNavigate } from 'react-router-dom';
 
 export const Simulations = () => {
+  const navigate = useNavigate();
   const [currentSimulation, setCurrentSimulation] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [userChoices, setUserChoices] = useState([]);
@@ -278,95 +280,40 @@ export const Simulations = () => {
     return (
       <div className="min-h-screen bg-gray-50 py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
-              <Button 
-                variant="outline" 
-                onClick={handleRestart}
-                className="flex items-center space-x-2"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span>Voltar</span>
-              </Button>
+              <Button variant="outline" onClick={handleRestart} className="flex items-center space-x-2"><ArrowLeft className="h-4 w-4" /><span>Voltar</span></Button>
               <Badge variant="secondary">{currentSimulation.difficulty}</Badge>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              {currentSimulation.title}
-            </h1>
-            <Progress 
-              value={((currentStep + 1) / currentSimulation.steps.length) * 100} 
-              className="w-full"
-            />
-            <p className="text-sm text-gray-600 mt-2">
-              Passo {currentStep + 1} de {currentSimulation.steps.length}
-            </p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{currentSimulation.title}</h1>
+            <Progress value={((currentStep + 1) / currentSimulation.steps.length) * 100} className="w-full" />
+            <p className="text-sm text-gray-600 mt-2">Passo {currentStep + 1} de {currentSimulation.steps.length}</p>
           </div>
-
-          {/* Simulation Content */}
           <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>{step.question}</CardTitle>
-            </CardHeader>
+            <CardHeader><CardTitle>{step.question}</CardTitle></CardHeader>
             <CardContent>
               {step.scenario && (
                 <div className="mb-6 p-4 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-                  {step.scenario.from && (
-                    <div className="mb-2">
-                      <strong>De:</strong> {step.scenario.from}
-                    </div>
-                  )}
-                  {step.scenario.subject && (
-                    <div className="mb-2">
-                      <strong>Assunto:</strong> {step.scenario.subject}
-                    </div>
-                  )}
-                  {step.scenario.body && (
-                    <div className="mb-2">
-                      <strong>Mensagem:</strong>
-                      <div className="mt-2 p-3 bg-white rounded border">
-                        {step.scenario.body}
-                      </div>
-                    </div>
-                  )}
-                  {step.scenario.description && (
-                    <p className="text-gray-700">{step.scenario.description}</p>
-                  )}
+                  {step.scenario.from && <div className="mb-2"><strong>De:</strong> {step.scenario.from}</div>}
+                  {step.scenario.subject && <div className="mb-2"><strong>Assunto:</strong> {step.scenario.subject}</div>}
+                  {step.scenario.body && <div className="mb-2"><strong>Mensagem:</strong><div className="mt-2 p-3 bg-white rounded border">{step.scenario.body}</div></div>}
+                  {step.scenario.description && <p className="text-gray-700">{step.scenario.description}</p>}
                 </div>
               )}
-
               <div className="space-y-3">
                 {step.options.map((option) => {
                   const isSelected = userChoices[currentStep]?.id === option.id;
                   const showFeedback = isSelected;
-                  
                   return (
-                    <Button
-                      key={option.id}
-                      variant={isSelected ? (option.isCorrect ? "default" : "destructive") : "outline"}
-                      className={`w-full justify-start p-4 h-auto text-left ${
-                        showFeedback 
-                          ? option.isCorrect 
-                            ? "bg-green-50 border-green-500 text-green-800 hover:bg-green-50" 
-                            : "bg-red-50 border-red-500 text-red-800 hover:bg-red-50"
-                          : ""
-                      }`}
-                      onClick={() => !userChoices[currentStep] && handleChoiceSelect(option)}
-                      disabled={!!userChoices[currentStep]}
-                    >
+                    <Button key={option.id} variant={isSelected ? (option.isCorrect ? "default" : "destructive") : "outline"} className={`w-full justify-start p-4 h-auto text-left ${showFeedback ? (option.isCorrect ? "bg-green-50 border-green-500 text-green-800 hover:bg-green-50" : "bg-red-50 border-red-500 text-red-800 hover:bg-red-50") : ""}`} onClick={() => !userChoices[currentStep] && handleChoiceSelect(option)} disabled={!!userChoices[currentStep]}>
                       <div className="flex items-center space-x-3">
-                        {showFeedback && (
-                          option.isCorrect ? 
-                            <CheckCircle className="h-5 w-5 text-green-600" /> : 
-                            <XCircle className="h-5 w-5 text-red-600" />
-                        )}
+                        {showFeedback && (option.isCorrect ? <CheckCircle className="h-5 w-5 text-green-600" /> : <XCircle className="h-5 w-5 text-red-600" />)}
                         <span>{option.text}</span>
                       </div>
                     </Button>
                   );
                 })}
               </div>
-
               {userChoices[currentStep] && (
                 <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                   <h4 className="font-semibold text-blue-800 mb-2">Explicação:</h4>
@@ -386,29 +333,17 @@ export const Simulations = () => {
       <div className="min-h-screen bg-gray-50 py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="text-center">
-            <CardHeader>
-              <CardTitle className="text-3xl">Simulação Concluída!</CardTitle>
-            </CardHeader>
+            <CardHeader><CardTitle className="text-3xl">Simulação Concluída!</CardTitle></CardHeader>
             <CardContent className="space-y-6">
-              <div className="text-6xl font-bold text-blue-600">
-                {score}%
-              </div>
+              <div className="text-6xl font-bold text-blue-600">{score}%</div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">
-                  {score >= 80 ? 'Excelente!' : score >= 60 ? 'Bom trabalho!' : 'Continue praticando!'}
-                </h3>
-                <p className="text-gray-600">
-                  {score >= 80 
-                    ? 'Você demonstrou excelente conhecimento sobre segurança digital!'
-                    : score >= 60 
-                    ? 'Você está no caminho certo. Continue estudando para melhorar ainda mais.'
-                    : 'Não desanime! A prática leva à perfeição. Tente novamente ou explore mais conteúdo.'
-                  }
-                </p>
+                <h3 className="text-xl font-semibold mb-2">{score >= 80 ? 'Excelente!' : score >= 60 ? 'Bom trabalho!' : 'Continue praticando!'}</h3>
+                <p className="text-gray-600">{score >= 80 ? 'Você demonstrou excelente conhecimento!' : score >= 60 ? 'Você está no caminho certo. Continue a praticar.' : 'Não desanime! A prática leva à perfeição.'}</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button onClick={handleRestart} size="lg">
-                  Tentar Novamente
+                <Button onClick={() => navigate('/conteudo')} size="lg" className="bg-blue-600 hover:bg-blue-700">
+                  <BookOpen className="mr-2 h-5 w-5" />
+                  Voltar para o Conteúdo
                 </Button>
                 <Button variant="outline" size="lg" onClick={handleRestart}>
                   Escolher Outra Simulação
@@ -424,26 +359,17 @@ export const Simulations = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Simulações Interativas
-          </h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Simulações Interativas</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Pratique com cenários reais de phishing, malware e engenharia social 
-            em um ambiente seguro e educativo.
+            Aprender fazendo é a melhor forma de se proteger. Aqui, você pode praticar em cenários de golpes comuns, como e-mails falsos e mensagens suspeitas, num ambiente <strong>totalmente seguro e educativo</strong>. Nada aqui é real, é apenas um treino!
           </p>
         </div>
-
-        {/* Simulations Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {simulations.map((simulation) => {
             const IconComponent = simulation.icon;
             return (
-              <Card 
-                key={simulation.id}
-                className={`${simulation.bgColor} hover:shadow-lg transition-all duration-200 hover:scale-105 border-2`}
-              >
+              <Card key={simulation.id} className={`${simulation.bgColor} hover:shadow-lg transition-all duration-200 hover:scale-105 border-2`}>
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <IconComponent className={`h-8 w-8 ${simulation.color}`} />
@@ -457,50 +383,18 @@ export const Simulations = () => {
                     <span>Duração: {simulation.duration}</span>
                     <span>{simulation.steps.length} passos</span>
                   </div>
-                  <Button 
-                    onClick={() => handleStartSimulation(simulation)}
-                    className="w-full"
-                  >
-                    <Play className="mr-2 h-4 w-4" />
-                    Iniciar Simulação
-                  </Button>
+                  <Button onClick={() => handleStartSimulation(simulation)} className="w-full"><Play className="mr-2 h-4 w-4" />Iniciar Simulação</Button>
                 </CardContent>
               </Card>
             );
           })}
         </div>
-
-        {/* Info Section */}
         <div className="mt-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-8 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Como Funcionam as Simulações</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div className="space-y-2">
-              <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto">
-                <Play className="h-6 w-6" />
-              </div>
-              <h3 className="font-semibold">Cenários Reais</h3>
-              <p className="text-blue-100 text-sm">
-                Baseados em golpes reais que afetam idosos no Brasil
-              </p>
-            </div>
-            <div className="space-y-2">
-              <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle className="h-6 w-6" />
-              </div>
-              <h3 className="font-semibold">Feedback Imediato</h3>
-              <p className="text-blue-100 text-sm">
-                Explicações detalhadas para cada resposta
-              </p>
-            </div>
-            <div className="space-y-2">
-              <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto">
-                <ArrowRight className="h-6 w-6" />
-              </div>
-              <h3 className="font-semibold">Progresso Gradual</h3>
-              <p className="text-blue-100 text-sm">
-                Dificuldade crescente para melhor aprendizado
-              </p>
-            </div>
+            <div className="space-y-2"><div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto"><Play className="h-6 w-6" /></div><h3 className="font-semibold">Cenários Reais</h3><p className="text-blue-100 text-sm">Baseados em golpes reais que afetam idosos no Brasil</p></div>
+            <div className="space-y-2"><div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto"><CheckCircle className="h-6 w-6" /></div><h3 className="font-semibold">Feedback Imediato</h3><p className="text-blue-100 text-sm">Explicações detalhadas para cada resposta</p></div>
+            <div className="space-y-2"><div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto"><ArrowRight className="h-6 w-6" /></div><h3 className="font-semibold">Progresso Gradual</h3><p className="text-blue-100 text-sm">Dificuldade crescente para melhor aprendizado</p></div>
           </div>
         </div>
       </div>

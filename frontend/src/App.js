@@ -7,8 +7,7 @@ import Home from "./pages/Home";
 import Content from "./pages/Content";
 import Simulations from "./pages/Simulations";
 import Survey from "./pages/Survey";
-import QuizGate from "./pages/QuizGate"; // Importa o nosso novo porteiro
-import Tutorials from "./pages/Tutorials";
+import QuizGate from "./pages/QuizGate";
 import { Toaster } from "./components/ui/sonner";
 
 function App() {
@@ -21,11 +20,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/conteudo" element={<Content />} />
             <Route path="/simulacoes" element={<Simulations />} />
-            
-            {/* ROTA CORRIGIDA: /quiz agora é gerido pelo QuizGate */}
             <Route path="/quiz" element={<QuizGate />} />
-
-            <Route path="/tutoriais" element={<Tutorials />} />
             <Route path="/pesquisas" element={<Survey />} />
             <Route path="/contato" element={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><h1 className="text-2xl text-gray-600">Contato - Em Desenvolvimento</h1></div>} />
           </Routes>
