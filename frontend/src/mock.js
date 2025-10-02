@@ -1,74 +1,411 @@
-// Mock data for Digital Security Platform for Elderly
+import { Lock, Shield, Globe, Smartphone, Eye, Wifi } from 'lucide-react';
+
+// Centralizando os ícones para referência
+export const iconMap = {
+  Lock,
+  Shield,
+  Globe,
+  Smartphone,
+  Eye,
+  Wifi,
+};
+
+// Dados completos dos tutoriais
+export const tutorials = [
+  // CATEGORIA: SENHAS E SEGURANÇA
+  {
+    id: 1,
+    category: 'passwords',
+    title: 'Como Criar uma Senha Super Segura',
+    difficulty: 'Fácil',
+    duration: '5 min',
+    description: 'Aprenda o passo a passo para criar senhas que ninguém consegue descobrir',
+    icon: 'Lock',
+    steps: [
+        {
+          title: 'Entenda o que torna uma senha segura',
+          content: 'Uma senha segura deve ter pelo menos 12 caracteres e combinar diferentes tipos de caracteres.',
+          details: ['✅ Pelo menos 12 caracteres (quanto mais, melhor)', '✅ Letras maiúsculas (A, B, C, D...)', '✅ Letras minúsculas (a, b, c, d...)', '✅ Números (1, 2, 3, 4...)', '✅ Símbolos especiais (!, @, #, $, %, &, *)', '❌ Não use seu nome, data de nascimento', '❌ Não use palavras do dicionário', '❌ Não use sequências como 123456'],
+          tip: '💡 Dica: Uma boa senha é como uma receita secreta - deve ter vários ingredientes!'
+        },
+        {
+          title: 'Método da Frase Pessoal',
+          content: 'Vamos criar uma senha usando uma frase que só você conhece.',
+          details: ['1. Pense em uma frase pessoal. Exemplo: "Minha neta Laura tem 8 anos e adora sorvete"', '2. Pegue a primeira letra de cada palavra: "MnLt8aeaS"', '3. Adicione alguns símbolos: "MnLt8aeaS!"', '4. Adicione o ano atual: "MnLt8aeaS!2024"', '5. Pronto! Sua senha segura: "MnLt8aeaS!2024"'],
+          tip: '💡 Dica: Use frases que sejam especiais para você, mas que outros não saibam!'
+        },
+        {
+          title: 'Teste sua senha',
+          content: 'Vamos verificar se sua senha está realmente segura.',
+          details: ['✓ Tem pelo menos 12 caracteres?', '✓ Tem letras maiúsculas e minúsculas?', '✓ Tem pelo menos um número?', '✓ Tem pelo menos um símbolo?', '✓ Não tem informações pessoais óbvias?', '✓ É diferente de outras senhas que você usa?'],
+          tip: '💡 Dica: Se respondeu SIM para tudo, parabéns! Sua senha está segura!'
+        },
+        {
+          title: 'Onde anotar sua senha com segurança',
+          content: 'Aprenda onde guardar suas senhas de forma segura.',
+          details: ['✅ SEGURO: Gerenciador de senhas (Google Password Manager)', '✅ SEGURO: Caderno físico guardado em local seguro', '✅ SEGURO: Aplicativo de notas protegido por senha', '❌ PERIGOSO: Papel grudado no monitor', '❌ PERIGOSO: Arquivo no desktop chamado "senhas"', '❌ PERIGOSO: WhatsApp ou e-mail'],
+          tip: '💡 Dica: O gerenciador de senhas do Google é gratuito e muito seguro!'
+        }
+    ]
+  },
+  {
+      id: 2,
+      category: 'passwords',
+      title: 'Configurar Autenticação em 2 Etapas (2FA)',
+      difficulty: 'Médio',
+      duration: '10 min',
+      description: 'Adicione uma camada extra de segurança às suas contas',
+      icon: 'Shield',
+      steps: [
+          {
+            title: 'O que é Autenticação em 2 Etapas?',
+            content: 'É como ter duas chaves para sua casa - mesmo que alguém descubra sua senha, ainda precisará do seu celular.',
+            details: ['🔑 Primeira etapa: Sua senha (o que você sabe)', '📱 Segunda etapa: Código no celular (o que você tem)', '✅ Muito mais seguro que só senha', '✅ Gratuito na maioria dos serviços', '✅ Funciona mesmo sem internet (com app)'],
+            tip: '💡 Dica: É como ter um porteiro que sempre pergunta sua identidade!'
+          },
+          {
+            title: 'Ativando no Google (Gmail)',
+            content: 'Vamos ativar a verificação em 2 etapas na sua conta Google.',
+            details: ['1. Abra www.google.com e clique no seu ícone (canto superior direito)', '2. Clique em "Gerenciar sua Conta do Google"', '3. No menu lateral, clique em "Segurança"', '4. Procure por "Verificação em duas etapas" e clique', '5. Clique no botão "Começar"', '6. Digite sua senha quando solicitado', '7. Adicione seu número de telefone', '8. Escolha receber SMS ou ligação', '9. Digite o código que receber', '10. Clique em "Ativar"'],
+            tip: '⚠️ Importante: Guarde os códigos de backup em local seguro!'
+          },
+          {
+            title: 'Ativando no WhatsApp',
+            content: 'Proteja seu WhatsApp com verificação em duas etapas.',
+            details: ['1. Abra o WhatsApp', '2. Toque nos três pontinhos (⋮) no canto superior direito', '3. Vá em "Configurações"', '4. Toque em "Conta"', '5. Toque em "Verificação em duas etapas"', '6. Toque em "Ativar"', '7. Crie um PIN de 6 dígitos (que você lembre bem)', '8. Confirme o PIN digitando novamente', '9. Adicione um e-mail de recuperação (opcional)', '10. Toque em "Salvar"'],
+            tip: '💡 Dica: Escolha um PIN que seja fácil para você, mas difícil para outros!'
+          },
+          {
+            title: 'Testando a segurança',
+            content: 'Vamos verificar se tudo está funcionando corretamente.',
+            details: ['1. Faça logout da sua conta', '2. Tente fazer login novamente', '3. Digite sua senha normalmente', '4. Aguarde o código chegar no seu celular', '5. Digite o código quando solicitado', '6. Se conseguir entrar, está funcionando!', '7. Se tiver problemas, use os códigos de backup'],
+            tip: '🎉 Parabéns! Agora sua conta está muito mais segura!'
+          }
+      ]
+  },
+  {
+    id: 3,
+    category: 'backup',
+    title: 'Fazendo Backup no Google Drive',
+    difficulty: 'Fácil',
+    duration: '8 min',
+    description: 'Proteja suas fotos e documentos importantes na nuvem',
+    icon: 'Shield',
+    steps: [
+        {
+          title: 'Criando sua conta no Google Drive',
+          content: 'Se você já tem Gmail, já tem Google Drive! Vamos acessar.',
+          details: ['1. Abra seu navegador (Chrome, Firefox, etc.)', '2. Digite: drive.google.com', '3. Faça login com sua conta do Gmail', '4. Se não tem Gmail, clique em "Criar conta"', '5. Você ganha 15GB grátis para usar!', '6. Explore a interface - é bem simples!'],
+          tip: '💡 Dica: 15GB é espaço para milhares de fotos e documentos!'
+        },
+        {
+          title: 'Fazendo upload de fotos importantes',
+          content: 'Vamos salvar suas fotos mais preciosas na nuvem.',
+          details: ['1. No Google Drive, clique no botão "+ Novo"', '2. Escolha "Upload de arquivos" ou "Upload de pasta"', '3. Navegue até onde estão suas fotos no computador', '4. Selecione as fotos que quer fazer backup', '5. Clique em "Abrir" - o upload começará automaticamente', '6. Aguarde a barra de progresso completar', '7. Suas fotos agora estão seguras na nuvem!'],
+          tip: '📸 Dica: Comece pelas fotos mais importantes - família, documentos!'
+        },
+        {
+          title: 'Organizando seus arquivos',
+          content: 'Vamos criar pastas para organizar tudo direitinho.',
+          details: ['1. Clique em "+ Novo" e escolha "Pasta"', '2. Dê um nome, como "Fotos da Família"', '3. Repita para criar pastas como:', '   • "Documentos Importantes"', '   • "Fotos de Viagem"', '   • "Receitas Favoritas"', '4. Arraste arquivos para as pastas certas', '5. Clique e arraste para mover arquivos'],
+          tip: '📁 Dica: Organizar facilita encontrar depois!'
+        },
+        {
+          title: 'Configurando backup automático',
+          content: 'Configure o backup automático para não esquecer nunca mais.',
+          details: ['1. Baixe o aplicativo "Backup e Sincronização" do Google', '2. Instale no seu computador', '3. Faça login com sua conta Google', '4. Escolha quais pastas quer fazer backup automático', '5. Marque "Fotos", "Documentos", "Área de Trabalho"', '6. Clique em "Iniciar"', '7. Agora tudo é salvo automaticamente!'],
+          tip: '🔄 Dica: Com backup automático, você nunca mais perde nada!'
+        }
+    ]
+  },
+  {
+      id: 4,
+      category: 'backup',
+      title: 'Backup do Celular (Android/iPhone)',
+      difficulty: 'Fácil',
+      duration: '6 min',
+      description: 'Proteja contatos, fotos e aplicativos do seu celular',
+      icon: 'Smartphone',
+      steps: [
+          {
+            title: 'Backup no Android (Google)',
+            content: 'Vamos configurar o backup automático do seu Android.',
+            details: ['1. Abra "Configurações" no seu celular', '2. Procure por "Sistema" ou "Backup"', '3. Toque em "Backup" ou "Backup do Google"', '4. Ative "Fazer backup dos meus dados"', '5. Verifique se sua conta Google está selecionada', '6. Toque em "Fazer backup agora"', '7. Aguarde o processo terminar', '8. Pronto! Seu celular está protegido'],
+            tip: '🤖 Android salva: apps, contatos, SMS, fotos, configurações!'
+          },
+          {
+            title: 'Backup no iPhone (iCloud)',
+            content: 'Configure o backup automático do seu iPhone.',
+            details: ['1. Abra "Ajustes" no seu iPhone', '2. Toque no seu nome (parte superior)', '3. Toque em "iCloud"', '4. Toque em "Backup do iCloud"', '5. Ative "Backup do iCloud"', '6. Toque em "Fazer backup agora"', '7. Mantenha conectado no Wi-Fi', '8. Aguarde o backup completar'],
+            tip: '🍎 iPhone salva: apps, fotos, mensagens, configurações!'
+          },
+          {
+            title: 'Verificando se o backup funcionou',
+            content: 'Vamos confirmar que tudo foi salvo corretamente.',
+            details: ['No Android:', '1. Vá em Configurações > Sistema > Backup', '2. Veja a data do último backup', '3. Deve ser hoje ou ontem', '', 'No iPhone:', '1. Vá em Ajustes > Seu Nome > iCloud', '2. Toque em "Backup do iCloud"', '3. Veja quando foi o último backup'],
+            tip: '✅ Se a data estiver recente, está tudo certo!'
+          },
+          {
+            title: 'Backup manual das fotos importantes',
+            content: 'Para fotos especiais, faça um backup extra.',
+            details: ['WhatsApp para Google Fotos:', '1. Abra o Google Fotos no celular', '2. Toque no seu perfil (canto superior direito)', '3. Vá em "Configurações do Google Fotos"', '4. Toque em "Backup e sincronização"', '5. Ative o backup', '6. Suas fotos do WhatsApp serão salvas também!'],
+            tip: '📷 Dica: Google Fotos guarda fotos ilimitadas em qualidade otimizada!'
+          }
+      ]
+  },
+  {
+      id: 5,
+      category: 'navigation',
+      title: 'Identificando Sites Seguros',
+      difficulty: 'Fácil',
+      duration: '7 min',
+      description: 'Aprenda a reconhecer sites confiáveis antes de inserir dados',
+      icon: 'Globe',
+      steps: [
+          {
+            title: 'O que procurar na barra de endereço',
+            content: 'A barra de endereço é como o RG do site - vamos aprender a ler.',
+            details: ['🔒 SEGURO: Site começa com "https://" (com S no final)', '🔒 SEGURO: Aparece um cadeado fechado antes do endereço', '🔒 SEGURO: Endereço oficial da empresa (ex: santander.com.br)', '⚠️ SUSPEITO: Site começa só com "http://" (sem S)', '❌ PERIGOSO: Cadeado aberto ou com aviso', '❌ PERIGOSO: Endereços estranhos (ex: santander-security.tk)'],
+            tip: '💡 Lembre-se: HTTPS = Seguro, HTTP = Perigoso!'
+          },
+          {
+            title: 'Verificando a identidade do site',
+            content: 'Vamos aprender a confirmar se o site é mesmo oficial.',
+            details: ['1. Clique no cadeado ao lado do endereço', '2. Clique em "Certificado" ou "Conexão segura"', '3. Verifique se o nome da empresa está correto', '4. Procure por erros de português na página', '5. Sites oficiais têm design profissional', '6. Desconfie de pop-ups excessivos', '7. Se suspeitar, feche e acesse pelo Google'],
+            tip: '🔍 Dica: Quando na dúvida, sempre pesquise no Google o site oficial!'
+          },
+          {
+            title: 'Testando com sites conhecidos',
+            content: 'Vamos praticar com sites que você conhece.',
+            details: ['Vamos testar juntos:', '1. Abra www.google.com - veja o cadeado verde', '2. Abra seu banco pelo Google (não por link)', '3. Observe o https:// e o cadeado', '4. Clique no cadeado - veja as informações', '5. Agora você sabe identificar sites seguros!'],
+            tip: '✅ Pratique sempre! Logo vira automático!'
+          }
+      ]
+  },
+  {
+      id: 6,
+      category: 'navigation',
+      title: 'Configurando Privacidade no Facebook',
+      difficulty: 'Médio',
+      duration: '10 min',
+      description: 'Proteja suas informações pessoais nas redes sociais',
+      icon: 'Eye',
+      steps: [
+          {
+            title: 'Acessando as configurações de privacidade',
+            content: 'Vamos encontrar onde estão as configurações importantes.',
+            details: ['1. Entre no Facebook pelo computador ou celular', '2. No computador: clique na setinha ▼ (canto superior direito)', '3. No celular: toque nas três linhas ≡ (canto inferior direito)', '4. Procure por "Configurações e Privacidade"', '5. Toque em "Configurações"', '6. Procure por "Privacidade" no menu lateral'],
+            tip: '🔧 Dica: As configurações podem mudar de lugar, mas sempre existem!'
+          },
+          {
+            title: 'Controlando quem vê suas publicações',
+            content: 'Decida quem pode ver o que você posta.',
+            details: ['1. Na seção Privacidade, procure "Suas publicações"', '2. Em "Quem pode ver suas publicações futuras?"', '3. Escolha "Amigos" (recomendado) ao invés de "Público"', '4. Em "Revisar publicações em que você foi marcado"', '5. Ative "Ativar" para aprovar antes de aparecer', '6. Em "Quem pode ver sua lista de amigos?"', '7. Escolha "Somente eu" ou "Amigos"'],
+            tip: '👥 Dica: "Amigos" é mais seguro que "Público" para tudo!'
+          },
+          {
+            title: 'Protegendo informações pessoais',
+            content: 'Esconda informações que podem ser usadas por golpistas.',
+            details: ['1. Vá em "Configurações" > "Privacidade"', '2. Procure por "Como as pessoas encontram você"', '3. Em "Quem pode procurar você usando email/telefone?"', '4. Escolha "Amigos" ao invés de "Todos"', '5. Vá no seu perfil e clique em "Sobre"', '6. Para cada informação (telefone, email, nascimento):', '7. Clique no ícone de privacidade ao lado', '8. Escolha "Somente eu" ou "Amigos"'],
+            tip: '🔒 Importante: Data de nascimento e telefone só para você!'
+          },
+          {
+            title: 'Bloqueando contatos indesejados',
+            content: 'Aprenda a se proteger de pessoas inconvenientes.',
+            details: ['Para bloquear alguém:', '1. Vá no perfil da pessoa', '2. Clique nos três pontinhos (...)', '3. Escolha "Bloquear"', '4. Confirme clicando em "Bloquear" novamente', '', 'Para gerenciar bloqueios:', '1. Configurações > Bloqueio', '2. Veja lista de pessoas bloqueadas', '3. Pode desbloquear se quiser'],
+            tip: '🚫 Não tenha receio de bloquear pessoas inconvenientes!'
+          }
+      ]
+  },
+  {
+      id: 7,
+      category: 'devices',
+      title: 'Configurando Wi-Fi Doméstico Seguro',
+      difficulty: 'Médio',
+      duration: '12 min',
+      description: 'Proteja sua rede Wi-Fi contra invasores',
+      icon: 'Wifi',
+      steps: [
+          {
+            title: 'Acessando as configurações do roteador',
+            content: 'Vamos entrar no painel de controle do seu roteador.',
+            details: ['1. Conecte-se ao Wi-Fi da sua casa', '2. Abra o navegador (Chrome, Firefox)', '3. Digite um destes endereços na barra:', '   • 192.168.1.1', '   • 192.168.0.1', '   • 10.0.0.1', '4. Procure no roteador a senha padrão (geralmente embaixo)', '5. Usuário comum: admin, Senha: admin ou 123456', '6. Se não conseguir, chame seu provedor de internet'],
+            tip: '🔧 Dica: A senha padrão geralmente está grudada no roteador!'
+          },
+          {
+            title: 'Alterando a senha do Wi-Fi',
+            content: 'Vamos trocar aquela senha padrão por uma forte.',
+            details: ['1. Procure por "Configurações de Wi-Fi" ou "Wireless"', '2. Encontre "Nome da Rede" (SSID) e "Senha" (Password)', '3. Mude o nome para algo como "Casa_da_Maria"', '4. Troque a senha por uma forte com 12+ caracteres', '5. Use letras, números e símbolos', '6. Exemplo: "MinhaC@sa2024!"', '7. Anote a nova senha em local seguro', '8. Clique em "Salvar" ou "Aplicar"'],
+            tip: '📝 Importante: Anote a nova senha antes de salvar!'
+          },
+          {
+            title: 'Configurando a segurança WPA3',
+            content: 'Vamos ativar a criptografia mais segura disponível.',
+            details: ['1. Procure por "Segurança" ou "Security"', '2. Em "Tipo de Segurança" ou "Security Mode"', '3. Escolha WPA3 (se disponível) ou WPA2', '4. NUNCA escolha WEP (muito fraco) ou "Aberta"', '5. Em "Criptografia" escolha AES', '6. Salve as configurações', '7. O roteador vai reiniciar automaticamente'],
+            tip: '🛡️ WPA3 > WPA2 > WEP. Nunca use rede aberta!'
+          },
+          {
+            title: 'Verificando dispositivos conectados',
+            content: 'Vamos ver quem está usando seu Wi-Fi.',
+            details: ['1. Procure por "Dispositivos Conectados" ou "DHCP"', '2. Veja a lista de aparelhos conectados', '3. Você deve reconhecer todos:', '   • Seu celular', '   • Seu computador', '   • Smart TV, etc.', '4. Se vir nomes estranhos, pode ser invasor', '5. Bloqueie dispositivos desconhecidos', '6. Troque a senha do Wi-Fi imediatamente'],
+            tip: '👀 Verifique mensalmente quem está conectado!'
+          }
+      ]
+  },
+  {
+      id: 8,
+      category: 'devices',
+      title: 'Instalando e Configurando Antivírus',
+      difficulty: 'Fácil',
+      duration: '15 min',
+      description: 'Proteja seu computador com antivírus confiável',
+      icon: 'Shield',
+      steps: [
+          {
+            title: 'Escolhendo um antivírus confiável',
+            content: 'Vamos escolher uma proteção adequada para você.',
+            details: ['Antivírus GRATUITOS recomendados:', '✅ Windows Defender (já vem no Windows 10/11)', '✅ Avast Free Antivirus', '✅ AVG Antivirus Free', '', 'Antivírus PAGOS (mais recursos):', '✅ Norton 360', '✅ Kaspersky Total Security', '✅ Bitdefender Total Security'],
+            tip: '💡 Para começar, o Windows Defender gratuito já é muito bom!'
+          },
+          {
+            title: 'Verificando o Windows Defender',
+            content: 'Vamos ver se sua proteção já está funcionando.',
+            details: ['1. Clique no botão Iniciar do Windows', '2. Digite "Segurança do Windows"', '3. Clique no resultado que aparecer', '4. Veja se há algum ícone vermelho ou amarelo', '5. Se tudo estiver verde ✅, está protegido!', '6. Se há avisos, clique para resolver', '7. Ative "Proteção em tempo real" se não estiver'],
+            tip: '🟢 Verde = Protegido, 🟡 Amarelo = Atenção, 🔴 Vermelho = Problema!'
+          },
+          {
+            title: 'Fazendo sua primeira verificação',
+            content: 'Vamos fazer uma verificação completa do computador.',
+            details: ['1. Na Segurança do Windows, clique em "Proteção contra vírus"', '2. Clique em "Opções de verificação"', '3. Escolha "Verificação completa"', '4. Clique em "Verificar agora"', '5. A verificação pode demorar 1-2 horas', '6. Deixe o computador ligado até terminar', '7. Se encontrar algo, siga as recomendações'],
+            tip: '⏰ Faça verificação completa pelo menos uma vez por mês!'
+          },
+          {
+            title: 'Configurando verificações automáticas',
+            content: 'Configure para verificar automaticamente sem você lembrar.',
+            details: ['1. Na Segurança do Windows, vá em "Proteção contra vírus"', '2. Clique em "Gerenciar configurações" (em Proteção em tempo real)', '3. Certifique-se que tudo está "Ativado"', '4. Volte e clique em "Opções de verificação"', '5. Role para baixo até "Histórico de proteção"', '6. Configure verificação semanal automática', '7. Escolha um horário que não use o computador'],
+            tip: '🔄 Com verificação automática, você fica sempre protegido!'
+          }
+      ]
+  }
+];
 
 export const mockData = {
-  // Navigation items - A PÁGINA DE TUTORIAIS FOI REMOVIDA DA NAVEGAÇÃO
   navigation: [
     { id: 'inicio', name: 'Início', path: '/' },
     { id: 'conteudo', name: 'Conteúdo', path: '/conteudo' },
     { id: 'simulacoes', name: 'Simulações', path: '/simulacoes' },
     { id: 'quiz', name: 'Quiz', path: '/quiz' },
+    // A página de tutoriais foi removida da navegação
     { id: 'pesquisas', name: 'Pesquisas', path: '/pesquisas' },
     { id: 'contato', name: 'Contato', path: '/contato' }
   ],
-
-  // CONTEÚDO DA PÁGINA INICIAL RESTAURADO
   hero: {
     title: 'Segurança Digital para Idosos',
-    subtitle: 'Navegue com tranquilidade e confiança na internet.',
+    subtitle: 'Aprenda a se proteger na internet com tutoriais práticos e didáticos',
     buttonText: 'Começar Aprendizado'
   },
   features: [
-    { id: 1, title: 'Aprenda sobre segurança digital', description: 'Conheça os principais riscos e como se proteger online com o nosso conteúdo educativo.', icon: 'BookOpen', color: 'bg-blue-50 border-blue-200', iconColor: 'text-blue-600' },
-    { id: 2, title: 'Pratique com simulações interativas', description: 'Enfrente cenários de golpes reais, como e-mails falsos e links suspeitos, num ambiente 100% seguro para treinar.', icon: 'Play', color: 'bg-green-50 border-green-200', iconColor: 'text-green-600' },
-    { id: 3, title: 'Tutoriais passo-a-passo', description: 'Aprenda com guias detalhados e fáceis de seguir para configurar suas contas e dispositivos com segurança.', icon: 'CheckSquare', color: 'bg-orange-50 border-orange-200', iconColor: 'text-orange-600' },
-    { id: 4, title: 'Teste seus conhecimentos', description: 'Faça nossa avaliação para medir seu aprendizado e ver sua evolução de forma clara e motivadora.', icon: 'Award', color: 'bg-purple-50 border-purple-200', iconColor: 'text-purple-600' }
+    {
+      id: 1,
+      title: 'Conteúdo Educativo',
+      description: 'Tutoriais passo a passo sobre segurança digital, senhas e proteção online',
+      icon: 'BookOpen',
+      color: 'bg-blue-50 border-blue-200',
+      iconColor: 'text-blue-600'
+    },
+    {
+      id: 2,
+      title: 'Simulações Práticas',
+      description: 'Pratique em ambiente seguro antes de aplicar no mundo real',
+      icon: 'Play',
+      color: 'bg-green-50 border-green-200',
+      iconColor: 'text-green-600'
+    },
+    {
+      id: 3,
+      title: 'Testes de Conhecimento',
+      description: 'Avalie seu aprendizado com quizzes interativos',
+      icon: 'CheckSquare',
+      color: 'bg-purple-50 border-purple-200',
+      iconColor: 'text-purple-600'
+    },
+    {
+      id: 4,
+      title: 'Certificação',
+      description: 'Receba certificados ao completar os módulos de aprendizagem',
+      icon: 'Award',
+      color: 'bg-orange-50 border-orange-200',
+      iconColor: 'text-orange-600'
+    }
   ],
-  
-  // QUIZ COMPLETO COM 30 PERGUNTAS
   quizQuestions: [
-    { id: 1, category: 'Conceitos Básicos', question: 'O que significa "HTTPS" no início de um endereço de site?', options: [{ id: 'a', text: 'Que o site é de alta velocidade.', isCorrect: false },{ id: 'b', text: 'Que o site é seguro para inserir informações.', isCorrect: true },{ id: 'c', text: 'Que o site tem muitas fotos.', isCorrect: false },{ id: 'd', text: 'Que é um site de compras.', isCorrect: false }], explanation: 'HTTPS significa que a conexão com o site é criptografada e segura.', wrongExplanation: 'O "S" em HTTPS significa "Seguro". Procure sempre por ele em sites que pedem dados.' },
-    { id: 2, category: 'Privacidade', question: 'Qual informação é MAIS perigosa para compartilhar publicamente online?', options: [{ id: 'a', text: 'Sua comida favorita.', isCorrect: false },{ id: 'b', text: 'O nome do seu animal de estimação.', isCorrect: false },{ id: 'c', text: 'Seu endereço de casa e número de telefone.', isCorrect: true },{ id: 'd', text: 'O time para o qual você torce.', isCorrect: false }], explanation: 'Correto! Endereço e telefone são dados sensíveis.', wrongExplanation: 'Endereço e telefone são informações muito pessoais. Evite compartilhá-las publicamente.' },
-    { id: 3, category: 'Wi-Fi Público', question: 'É seguro usar o Wi-Fi de um café para aceder à sua conta bancária?', options: [{ id: 'a', text: 'Sim, se a rede tiver senha.', isCorrect: false },{ id: 'b', text: 'Sim, se a conexão for rápida.', isCorrect: false },{ id: 'c', text: 'Não, redes públicas não são seguras para isso.', isCorrect: true },{ id: 'd', text: 'Sim, se ninguém estiver a olhar.', isCorrect: false }], explanation: 'Redes públicas podem ser facilmente interceptadas. Use sempre seus dados móveis para transações sensíveis.', wrongExplanation: 'Redes públicas não são seguras para informações sensíveis. Prefira usar seus dados móveis.' },
-    { id: 4, category: 'Atualizações', question: 'Por que é importante manter seu computador e celular sempre atualizados?', options: [{ id: 'a', text: 'Para ter as funcionalidades mais recentes.', isCorrect: false },{ id: 'b', text: 'Para corrigir falhas de segurança.', isCorrect: true },{ id: 'c', text: 'Para deixar o aparelho mais rápido.', isCorrect: false },{ id: 'd', text: 'Não é importante, só ocupa espaço.', isCorrect: false }], explanation: 'As atualizações corrigem vulnerabilidades que os criminosos usam para atacar.', wrongExplanation: 'As atualizações são cruciais para corrigir falhas de segurança.' },
-    { id: 5, category: 'Antivírus', question: 'Qual a principal função de um programa antivírus?', options: [{ id: 'a', text: 'Limpar ficheiros desnecessários.', isCorrect: false },{ id: 'b', text: 'Deixar a internet mais rápida.', isCorrect: false },{ id: 'c', text: 'Apenas remover pop-ups de propaganda.', isCorrect: false },{ id: 'd', text: 'Proteger contra softwares maliciosos.', isCorrect: true }], explanation: 'O antivírus detecta e remove programas maliciosos que podem roubar seus dados.', wrongExplanation: 'A função principal do antivírus é proteger seu dispositivo contra softwares maliciosos.' },
-    { id: 6, category: 'Backup', question: 'O que é um "backup"?', options: [{ id: 'a', text: 'Uma cópia de segurança dos seus ficheiros.', isCorrect: true },{ id: 'b', text: 'Um programa de limpeza.', isCorrect: false },{ id: 'c', text: 'Uma atualização do sistema.', isCorrect: false },{ id: 'd', text: 'Um tipo de vírus.', isCorrect: false }], explanation: 'Backup é uma cópia de segurança que protege seus dados em caso de perda ou roubo.', wrongExplanation: 'Backup é uma cópia de segurança dos seus ficheiros importantes.' },
-    { id: 7, category: 'Phishing', question: 'Você recebe um e-mail do "seu banco" a dizer que sua conta será bloqueada se não clicar num link. O que você faz?', options: [{ id: 'a', text: 'Clico no link para resolver logo.', isCorrect: false },{ id: 'b', text: 'Apago o e-mail e ligo para o meu gerente.', isCorrect: true },{ id: 'c', text: 'Respondo ao e-mail com meus dados.', isCorrect: false },{ id: 'd', text: 'Encaminho para um amigo para perguntar.', isCorrect: false }], explanation: 'Perfeito! Bancos nunca pedem dados por e-mail. A melhor ação é contatar o banco por canais oficiais.', wrongExplanation: 'Isto é um golpe clássico de phishing. Bancos nunca pedem dados por e-mail. Contate o banco por um canal oficial.' },
-    { id: 8, category: 'Phishing', question: 'Qual destes remetentes de e-mail parece MAIS suspeito?', options: [{ id: 'a', text: 'contato@bancobrasil.com.br', isCorrect: false },{ id: 'b', text: 'seguranca@itau.com.br', isCorrect: false },{ id: 'c', text: 'nao-responda@caixa.gov.br', isCorrect: false },{ id: 'd', text: 'premio-bradesco@oferta-especial.com', isCorrect: true }], explanation: 'O domínio "oferta-especial.com" não tem relação com o Bradesco. É um sinal claro de fraude.', wrongExplanation: 'O domínio do e-mail (a parte depois do @) deve ser o oficial da empresa. "oferta-especial.com" é suspeito.' },
-    { id: 9, category: 'Phishing', question: 'Uma mensagem de SMS oferece um prémio incrível se você aceder a um link. O que isso provavelmente é?', options: [{ id: 'a', text: 'Uma promoção real.', isCorrect: false },{ id: 'b', text: 'Um erro de envio.', isCorrect: false },{ id: 'c', text: 'Uma tentativa de golpe (Smishing).', isCorrect: true },{ id: 'd', text: 'Um aviso do seu plano de celular.', isCorrect: false }], explanation: 'Correto. Golpes por SMS são chamados de Smishing e usam promessas falsas para roubar dados.', wrongExplanation: 'Desconfie sempre de ofertas muito boas para serem verdade. É uma tática comum de golpe por SMS (Smishing).' },
-    { id: 10, category: 'Phishing', question: 'O cadeado fechado e "HTTPS" no navegador garantem que o site é legítimo?', options: [{ id: 'a', text: 'Sim, sempre.', isCorrect: false },{ id: 'b', text: 'Não, apenas que a conexão é segura (criptografada).', isCorrect: true },{ id: 'c', text: 'Sim, mas só para sites de compras.', isCorrect: false },{ id: 'd', text: 'Não sei o que isso significa.', isCorrect: false }], explanation: 'Exato. Muitos sites falsos usam HTTPS para parecerem legítimos. É um fator importante, mas não o único.', wrongExplanation: 'HTTPS apenas garante que a conexão é segura. Criminosos também usam HTTPS em sites falsos para enganar. Verifique também o endereço do site.' },
-    { id: 11, category: 'Phishing', question: 'Você recebe uma ligação a dizer que ganhou um sorteio e precisa de pagar uma "taxa" para receber. O que fazer?', options: [{ id: 'a', text: 'Pagar a taxa, é um valor baixo.', isCorrect: false },{ id: 'b', text: 'Pedir os dados para depósito.', isCorrect: false },{ id: 'c', text: 'Desligar, pois é um golpe.', isCorrect: true },{ id: 'd', text: 'Partilhar a novidade com a família primeiro.', isCorrect: false }], explanation: 'Sorteios e prémios legítimos nunca pedem pagamento de taxas antecipadas. Isso é um golpe de Vishing (phishing por voz).', wrongExplanation: 'Sorteios verdadeiros não cobram taxas para a entrega do prémio. É um golpe.' },
-    { id: 12, category: 'Phishing', question: 'Um e-mail pede para você descarregar um anexo para ver uma "notificação judicial". Qual o risco?', options: [{ id: 'a', text: 'O anexo pode conter um vírus (malware).', isCorrect: true },{ id: 'b', text: 'O anexo pode ser muito pesado.', isCorrect: false },{ id: 'c', text: 'O anexo pode não ser compatível.', isCorrect: false },{ id: 'd', text: 'Não há risco, notificações judiciais são assim.', isCorrect: false }], explanation: 'Correto. Anexos inesperados, especialmente com temas urgentes, são a principal forma de infecção por malware.', wrongExplanation: 'Criminosos usam temas como "notificação judicial" para assustar e fazer com que você descarregue um vírus. Nunca abra anexos suspeitos.' },
-    { id: 13, category: 'Malware', question: 'O que é um "Ransomware"?', options: [{ id: 'a', text: 'Um antivírus gratuito.', isCorrect: false },{ id: 'b', text: 'Um tipo de vírus que "sequestra" seus ficheiros e pede resgate.', isCorrect: true },{ id: 'c', text: 'Um programa que deixa o PC mais rápido.', isCorrect: false },{ id: 'd', text: 'Uma propaganda que aparece na tela.', isCorrect: false }], explanation: 'Exato! Ransomware bloqueia o acesso aos seus ficheiros e exige um pagamento para liberá-los.', wrongExplanation: 'Ransomware é um tipo perigoso de vírus que "sequestra" seus ficheiros. A melhor defesa é ter um bom backup.' },
-    { id: 14, category: 'Malware', question: 'Qual a forma mais segura de descarregar um programa para o computador?', options: [{ id: 'a', text: 'De links em vídeos do YouTube.', isCorrect: false },{ id: 'b', text: 'Do site oficial do desenvolvedor.', isCorrect: true },{ id: 'c', text: 'De programas que partilham ficheiros (torrents).', isCorrect: false },{ id: 'd', text: 'De banners de propaganda.', isCorrect: false }], explanation: 'Sempre descarregue do site oficial para garantir que você está a obter a versão legítima e sem vírus.', wrongExplanation: 'A forma mais segura é sempre ir diretamente ao site oficial do programa que você deseja descarregar.' },
-    { id: 15, category: 'Malware', question: 'O que é um "Cavalo de Troia" (Trojan)?', options: [{ id: 'a', text: 'Um presente que se ganha online.', isCorrect: false },{ id: 'b', text: 'Um programa que parece útil, mas esconde um vírus.', isCorrect: true },{ id: 'c', text: 'Um jogo de cartas online.', isCorrect: false },{ id: 'd', text: 'Um antivírus antigo.', isCorrect: false }], explanation: 'Isso mesmo. Ele se disfarça de algo bom (como um jogo ou ferramenta) para enganá-lo e instalar um malware.', wrongExplanation: 'Assim como na história, o Cavalo de Troia é um programa que parece um presente, mas esconde uma ameaça dentro dele.' },
-    { id: 16, category: 'Malware', question: 'O que é "Adware"?', options: [{ id: 'a', text: 'Um programa que mostra propagandas excessivas.', isCorrect: true },{ id: 'b', text: 'Um software de edição de fotos.', isCorrect: false },{ id: 'c', text: 'Um bloqueador de anúncios.', isCorrect: false },{ id: 'd', text: 'Um tipo de hardware.', isCorrect: false }], explanation: 'Adware é um software que exibe anúncios indesejados e pode deixar seu computador lento.', wrongExplanation: 'Adware vem de "advertisement" (propaganda). É um programa que inunda seu dispositivo com anúncios.' },
-    { id: 17, category: 'Malware', question: 'O que fazer se você suspeita que seu computador foi infetado com um vírus?', options: [{ id: 'a', text: 'Continuar a usar normalmente.', isCorrect: false },{ id: 'b', text: 'Desligar da internet e rodar o antivírus.', isCorrect: true },{ id: 'c', text: 'Aceder ao site do banco para ver se está tudo bem.', isCorrect: false },{ id: 'd', text: 'Pedir ajuda num fórum online.', isCorrect: false }], explanation: 'Desconectar da internet impede que o vírus se espalhe ou envie seus dados. Em seguida, o antivírus deve ser executado.', wrongExplanation: 'A primeira ação é desconectar da internet. Depois, execute uma verificação completa com seu antivírus.' },
-    { id: 18, category: 'Malware', question: 'Pen drives de desconhecidos são seguros para usar no seu computador?', options: [{ id: 'a', text: 'Sim, se a pessoa for simpática.', isCorrect: false },{ id: 'b', text: 'Sim, o computador avisa se tiver vírus.', isCorrect: false },{ id: 'c', text: 'Não, eles podem infetar o computador automaticamente.', isCorrect: true },{ id: 'd', text: 'Sim, se eu só for ver as fotos.', isCorrect: false }], explanation: 'Pen drives podem conter vírus que se executam automaticamente ao serem conectados. Nunca use um pen drive de origem desconhecida.', wrongExplanation: 'Nunca conecte um pen drive desconhecido ao seu computador. Ele pode conter vírus que se instalam sozinhos.' },
-    { id: 19, category: 'Senhas', question: 'Qual destas senhas é a MAIS segura?', options: [{ id: 'a', text: '12345678', isCorrect: false },{ id: 'b', text: 'senhaforte', isCorrect: false },{ id: 'c', text: 'JoaoSilva1960', isCorrect: false },{ id: 'd', text: 'MeuC@chorroLat1uF0rte!', isCorrect: true }], explanation: 'Uma senha forte combina letras maiúsculas, minúsculas, números e símbolos, e é longa.', wrongExplanation: 'Senhas seguras são longas e misturam maiúsculas, minúsculas, números e símbolos.' },
-    { id: 20, category: 'Senhas', question: 'É uma boa ideia usar a mesma senha para vários sites?', options: [{ id: 'a', text: 'Sim, facilita a memorização.', isCorrect: false },{ id: 'b', text: 'Sim, se a senha for muito forte.', isCorrect: false },{ id: 'c', text: 'Não, se um site for invadido, todas as suas contas ficam vulneráveis.', isCorrect: true },{ id: 'd', text: 'Não, mas só para sites de banco.', isCorrect: false }], explanation: 'Correto! Se um site fraco for invadido, os criminosos tentarão usar sua senha em todos os outros sites importantes.', wrongExplanation: 'Se você usa a mesma senha em todo o lado e um site é invadido, todas as suas contas ficam em risco. Use senhas diferentes.' },
-    { id: 21, category: 'Senhas', question: 'O que é "Autenticação de Dois Fatores" (2FA)?', options: [{ id: 'a', text: 'Ter duas senhas para a mesma conta.', isCorrect: false },{ id: 'b', text: 'Uma camada extra de segurança, como um código no celular.', isCorrect: true },{ id: 'c', text: 'Um tipo de antivírus.', isCorrect: false },{ id: 'd', text: 'Uma verificação de impressão digital.', isCorrect: false }], explanation: 'Exato! Além da senha, você precisa de algo que só você tem, como seu celular, para provar que é você.', wrongExplanation: 'É uma segurança extra. Além da senha, você precisa de um código que chega no seu celular.' },
-    { id: 22, category: 'Senhas', question: 'Onde é mais seguro guardar suas senhas?', options: [{ id: 'a', text: 'Num papel colado no monitor.', isCorrect: false },{ id: 'b', text: 'Num ficheiro de texto no computador chamado "senhas.txt".', isCorrect: false },{ id: 'c', text: 'Num gerenciador de senhas seguro.', isCorrect: true },{ id: 'd', text: 'Na memória, sem anotar em lugar nenhum.', isCorrect: false }], explanation: 'Gerenciadores de senhas são como cofres digitais que guardam suas senhas de forma criptografada.', wrongExplanation: 'Gerenciadores de senhas são a forma mais segura. Eles guardam tudo de forma criptografada e você só precisa de lembrar de uma senha mestra.' },
-    { id: 23, category: 'Senhas', question: 'Com que frequência você deve trocar suas senhas importantes?', options: [{ id: 'a', text: 'Todos os dias.', isCorrect: false },{ id: 'b', text: 'A cada 6 meses a 1 ano, ou se suspeitar de algo.', isCorrect: true },{ id: 'c', text: 'Nunca, se ela for forte.', isCorrect: false },{ id: 'd', text: 'Apenas quando o site obriga.', isCorrect: false }], explanation: 'Trocar periodicamente suas senhas mais importantes (e-mail, banco) é uma boa prática de segurança.', wrongExplanation: 'É uma boa prática trocar senhas importantes, como a do seu e-mail principal, a cada 6 meses ou 1 ano.' },
-    { id: 24, category: 'Senhas', question: 'O que fazer se você suspeita que a senha de uma de suas contas foi roubada?', options: [{ id: 'a', text: 'Esperar para ver o que acontece.', isCorrect: false },{ id: 'b', text: 'Mudar a senha imediatamente naquela conta e em outras onde a usava.', isCorrect: true },{ id: 'c', text: 'Apagar a conta.', isCorrect: false },{ id: 'd', text: 'Ligar para a polícia.', isCorrect: false }], explanation: 'A primeira ação é trocar a senha imediatamente para bloquear o acesso do invasor. Depois, troque em todos os outros sites onde usava a mesma senha.', wrongExplanation: 'Aja rápido! Troque a senha da conta afetada e de todas as outras onde você usava uma senha igual ou parecida.' },
-    { id: 25, category: 'Eng. Social', question: 'Um suposto "sobrinho" entra em contato por WhatsApp com um número novo a pedir dinheiro urgentemente. O que você faz?', options: [{ id: 'a', text: 'Transfiro o dinheiro, é uma emergência.', isCorrect: false },{ id: 'b', text: 'Ligo para o número antigo do meu sobrinho para confirmar.', isCorrect: true },{ id: 'c', text: 'Peço para ele me ligar para confirmar a voz.', isCorrect: true },{ id: 'd', text: 'As opções B e C estão corretas.', isCorrect: true }], explanation: 'Perfeito! Sempre confirme a identidade da pessoa por um meio diferente (ligação) antes de transferir dinheiro.', wrongExplanation: 'Este é o "Golpe do Novo Número". Sempre ligue para a pessoa (no número antigo ou peça para a pessoa ligar para você) para confirmar antes de enviar dinheiro.' },
-    { id: 26, category: 'Eng. Social', question: 'Você vê um quiz no Facebook "Descubra qual celebridade você se parece!". Qual o risco?', options: [{ id: 'a', text: 'Nenhum, é só uma brincadeira.', isCorrect: false },{ id: 'b', text: 'Pode ser usado para coletar suas informações pessoais.', isCorrect: true },{ id: 'c', text: 'Pode deixar o Facebook mais lento.', isCorrect: false },{ id: 'd', text: 'Pode partilhar seu resultado com amigos.', isCorrect: false }], explanation: 'Muitos desses quizzes são criados para roubar dados, fazendo perguntas como "Qual o nome do seu primeiro animal de estimação?", que são respostas de perguntas de segurança.', wrongExplanation: 'Esses quizzes muitas vezes são iscas para coletar informações pessoais que podem ser usadas para redefinir suas senhas.' },
-    { id: 27, category: 'Eng. Social', question: 'O que é o "Golpe do Amor" (Romance Scam)?', options: [{ id: 'a', text: 'Uma agência de casamentos.', isCorrect: false },{ id: 'b', text: 'Criminosos que criam perfis falsos para fingir um relacionamento e depois pedir dinheiro.', isCorrect: true },{ id: 'c', text: 'Um aplicativo de namoro seguro.', isCorrect: false },{ id: 'd', text: 'Um programa de TV.', isCorrect: false }], explanation: 'Exato. Os golpistas manipulam as emoções da vítima por meses antes de inventar uma emergência e pedir dinheiro.', wrongExplanation: 'É um golpe onde criminosos criam perfis falsos, fingem um relacionamento e, depois de ganhar a confiança da vítima, pedem dinheiro.' },
-    { id: 28, category: 'Eng. Social', question: 'Um técnico da sua operadora de internet liga a pedir acesso remoto ao seu computador para "uma verificação". Você deve permitir?', options: [{ id: 'a', text: 'Sim, eles sabem o que estão a fazer.', isCorrect: false },{ id: 'b', text: 'Não, a menos que VOCÊ tenha ligado para eles a pedir ajuda primeiro.', isCorrect: true },{ id: 'c', text: 'Sim, se ele souber o meu nome completo.', isCorrect: false },{ id: 'd', text: 'Sim, mas só por 5 minutos.', isCorrect: false }], explanation: 'Empresas legítimas raramente ligam para oferecer suporte não solicitado. Desligue e ligue você mesmo para o número oficial da empresa para confirmar.', wrongExplanation: 'Nunca dê acesso remoto ao seu computador a alguém que ligou para você de surpresa. Se tiver um problema, VOCÊ deve ligar para a empresa.' },
-    { id: 29, category: 'Eng. Social', question: 'Qual a melhor forma de se proteger contra a engenharia social?', options: [{ id: 'a', text: 'Ser desconfiado e verificar tudo antes de agir.', isCorrect: true },{ id: 'b', text: 'Não usar a internet.', isCorrect: false },{ id: 'c', text: 'Ter o melhor antivírus.', isCorrect: false },{ id: 'd', text: 'Acreditar na boa fé das pessoas.', isCorrect: false }], explanation: 'A principal defesa é a desconfiança saudável. Sempre pare, pense e verifique antes de clicar, partilhar ou pagar.', wrongExplanation: 'A melhor defesa é a sua desconfiança. Sempre que algo parecer urgente ou bom demais para ser verdade, pare e verifique.' },
-    { id: 30, category: 'Eng. Social', question: 'Você recebe uma oferta de emprego incrível por mensagem, mas precisa de pagar por um "curso" primeiro. O que é isso?', options: [{ id: 'a', text: 'Uma ótima oportunidade.', isCorrect: false },{ id: 'b', text: 'Um procedimento padrão.', isCorrect: false },{ id: 'c', text: 'Um golpe para roubar seu dinheiro.', isCorrect: true },{ id: 'd', text: 'Um investimento na sua carreira.', isCorrect: false }], explanation: 'Empresas sérias nunca cobram para contratar alguém. Ofertas que pedem pagamento adiantado são sempre golpes.', wrongExplanation: 'Empresas legítimas não cobram para contratar você. Se pedem dinheiro adiantado, é um golpe.' }
+    {
+      id: 1,
+      category: 'Senhas',
+      question: 'Qual é a melhor forma de criar uma senha segura?',
+      options: [
+        { id: 'a', text: 'Usar meu nome e data de nascimento', isCorrect: false },
+        { id: 'b', text: 'Usar pelo menos 12 caracteres com letras, números e símbolos', isCorrect: true },
+        { id: 'c', text: 'Usar uma palavra do dicionário', isCorrect: false },
+        { id: 'd', text: 'Usar 123456 porque é fácil de lembrar', isCorrect: false }
+      ],
+      explanation: 'Uma senha segura deve ter pelo menos 12 caracteres e combinar letras maiúsculas, minúsculas, números e símbolos especiais.',
+      wrongExplanation: 'Senhas baseadas em informações pessoais, palavras do dicionário ou sequências simples são facilmente descobertas por criminosos.'
+    },
+    {
+      id: 2,
+      category: 'Phishing',
+      question: 'Como identificar um email de phishing (golpe)?',
+      options: [
+        { id: 'a', text: 'Verificar se tem erros de português e links suspeitos', isCorrect: true },
+        { id: 'b', text: 'Se veio do banco, sempre é verdadeiro', isCorrect: false },
+        { id: 'c', text: 'Se pede urgência, devo responder rapidamente', isCorrect: false },
+        { id: 'd', text: 'Se tem logo do banco, é confiável', isCorrect: false }
+      ],
+      explanation: 'Emails de phishing geralmente contêm erros de gramática, links suspeitos, pedidos de urgência e solicitam dados pessoais.',
+      wrongExplanation: 'Criminosos podem copiar logos e se passar por bancos. Sempre desconfie de emails urgentes pedindo dados pessoais.'
+    },
+    {
+      id: 3,
+      category: 'Wi-Fi',
+      question: 'É seguro usar Wi-Fi público para acessar o banco?',
+      options: [
+        { id: 'a', text: 'Sim, se a conexão tem senha', isCorrect: false },
+        { id: 'b', text: 'Não, nunca devo acessar dados sensíveis em Wi-Fi público', isCorrect: true },
+        { id: 'c', text: 'Sim, se for de uma loja conhecida', isCorrect: false },
+        { id: 'd', text: 'Só se ninguém estiver olhando', isCorrect: false }
+      ],
+      explanation: 'Wi-Fi público não é seguro para dados sensíveis. Criminosos podem interceptar informações mesmo com senha.',
+      wrongExplanation: 'Mesmo com senha ou em locais conhecidos, Wi-Fi público pode ser monitorado por criminosos para roubar dados bancários.'
+    },
+    {
+      id: 4,
+      category: 'Links',
+      question: 'Recebi um link por WhatsApp dizendo que ganhei um prêmio. O que devo fazer?',
+      options: [
+        { id: 'a', text: 'Clicar rapidamente antes que expire', isCorrect: false },
+        { id: 'b', text: 'Compartilhar com a família para eles ganharem também', isCorrect: false },
+        { id: 'c', text: 'Desconfiar e não clicar em links suspeitos', isCorrect: true },
+        { id: 'd', text: 'Clicar só para ver o que é', isCorrect: false }
+      ],
+      explanation: 'Links de prêmios inesperados são quase sempre golpes. Nunca clique em links suspeitos recebidos por mensagem.',
+      wrongExplanation: 'Golpistas usam a pressa e a curiosidade para nos enganar. Sempre desconfie de prêmios inesperados.'
+    },
+    {
+      id: 5,
+      category: 'Aplicativos',
+      question: 'Onde é seguro baixar aplicativos para o celular?',
+      options: [
+        { id: 'a', text: 'De qualquer site que aparecer no Google', isCorrect: false },
+        { id: 'b', text: 'Apenas da Google Play Store (Android) ou App Store (iPhone)', isCorrect: true },
+        { id: 'c', text: 'De links recebidos por WhatsApp', isCorrect: false },
+        { id: 'd', text: 'De sites que oferecem apps "grátis"', isCorrect: false }
+      ],
+      explanation: 'As lojas oficiais (Google Play e App Store) verificam os aplicativos antes de disponibilizá-los, oferecendo mais segurança.',
+      wrongExplanation: 'Sites não oficiais podem conter aplicativos maliciosos que roubam dados ou infectam seu celular.'
+    }
   ],
-  
-  // TUTORIAIS COM CONTEÚDO COMPLETO RESTAURADO A PARTIR DO SEU FICHEIRO
-  tutorials: [
-    { id: 1, category: 'passwords', title: 'Como Criar uma Senha Super Segura', steps: [ { title: 'Entenda o que torna uma senha segura', content: 'Uma senha segura deve ter pelo menos 12 caracteres e combinar diferentes tipos de caracteres.', details: ['✅ Pelo menos 12 caracteres (quanto mais, melhor)','✅ Letras maiúsculas (A, B, C, D...)','✅ Letras minúsculas (a, b, c, d...)','✅ Números (1, 2, 3, 4...)','✅ Símbolos especiais (!, @, #, $, %, &, *)','❌ Não use seu nome, data de nascimento','❌ Não use palavras do dicionário','❌ Não use sequências como 123456'], tip: '💡 Dica: Uma boa senha é como uma receita secreta - deve ter vários ingredientes!' }, { title: 'Método da Frase Pessoal', content: 'Vamos criar uma senha usando uma frase que só você conhece.', details: ['1. Pense em uma frase pessoal. Exemplo: "Minha neta Laura tem 8 anos e adora sorvete"','2. Pegue a primeira letra de cada palavra: "MnLt8aeaS"','3. Adicione alguns símbolos: "MnLt8aeaS!"','4. Adicione o ano atual: "MnLt8aeaS!2024"','5. Pronto! Sua senha segura: "MnLt8aeaS!2024"'], tip: '💡 Dica: Use frases que sejam especiais para você, mas que outros não saibam!' } ] },
-    { id: 2, category: 'passwords', title: 'Configurar Autenticação em 2 Etapas (2FA)', steps: [ { title: 'O que é Autenticação em 2 Etapas?', content: 'É como ter duas chaves para sua casa - mesmo que alguém descubra sua senha, ainda precisará do seu celular.', details: ['🔑 Primeira etapa: Sua senha (o que você sabe)','📱 Segunda etapa: Código no celular (o que você tem)','✅ Muito mais seguro que só senha'], tip: '💡 Dica: É como ter um porteiro que sempre pergunta sua identidade!' }, { title: 'Ativando no Google (Gmail)', content: 'Vamos ativar a verificação em 2 etapas na sua conta Google.', details: ['1. Abra myaccount.google.com', '2. Clique em "Segurança"', '3. Em "Como você faz login no Google", clique em "Verificação em duas etapas".', '4. Siga os passos para adicionar o seu número de telemóvel.'], tip: '⚠️ Importante: Guarde os códigos de backup em local seguro!' } ] },
-    { id: 3, category: 'backup', title: 'Fazendo Backup no Google Drive', steps: [ { title: 'Acesse o Google Drive', content: 'Se você tem Gmail, já tem Google Drive! Acesse drive.google.com.', details: ['1. Abra drive.google.com','2. Faça login com sua conta Google','3. Você tem 15GB grátis para usar!'], tip: 'É como um cofre online para seus ficheiros.' }, { title: 'Envie suas fotos e documentos', content: 'Vamos salvar seus ficheiros mais preciosos na nuvem.', details: ['1. No Google Drive, clique no botão "+ Novo"','2. Escolha "Upload de arquivos"','3. Selecione os ficheiros do seu computador e clique em "Abrir".'], tip: '📸 Comece pelas fotos e documentos mais importantes!' } ] },
-    { id: 4, category: 'backup', title: 'Backup do Celular (Android/iPhone)', steps: [ { title: 'Backup no Android (Google)', content: 'Vamos configurar o backup automático do seu Android.', details: ['1. Abra "Configurações" no seu celular', '2. Procure por "Sistema" ou "Backup"', '3. Toque em "Backup" e ative "Fazer backup dos meus dados"', '4. Verifique se sua conta Google está selecionada e toque em "Fazer backup agora"'], tip: '🤖 Salva contatos, fotos, apps e configurações!' }, { title: 'Backup no iPhone (iCloud)', content: 'Configure o backup automático do seu iPhone.', details: ['1. Abra "Ajustes" no seu iPhone', '2. Toque no seu nome (parte superior) > "iCloud"', '3. Toque em "Backup do iCloud" e ative', '4. Toque em "Fazer Backup Agora"'], tip: '🍎 Salva contatos, fotos, mensagens e configurações!' } ] },
-    { id: 5, category: 'navigation', title: 'Identificando Sites Seguros', steps: [ { title: 'Olhe para a Barra de Endereço', content: 'O endereço de um site diz muito sobre ele.', details: ['✅ Procure por "https://"', '✅ Veja se há um ícone de cadeado fechado 🔒', '❌ Cuidado com "http://" (sem o S)'], tip: 'O "S" em HTTPS significa "Seguro".' } ] },
-    { id: 6, category: 'navigation', title: 'Configurando Privacidade no Facebook', steps: [ { title: 'Acesse as Configurações de Privacidade', content: 'Vamos proteger suas informações no Facebook.', details: ['1. Clique na seta ▼ no canto superior direito', '2. Vá em "Configurações e Privacidade" > "Verificação de Privacidade"', '3. Siga os passos para revisar quem vê suas publicações.'], tip: 'Faça esta verificação a cada 6 meses.' } ] },
-    { id: 7, category: 'devices', title: 'Configurando Wi-Fi Doméstico Seguro', steps: [ { title: 'Troque a Senha Padrão do Roteador', content: 'A senha que vem no seu roteador não é segura.', details: ['1. Aceda às configurações do seu roteador (geralmente digitando 192.168.0.1 no navegador)', '2. Procure a secção "Wireless" ou "Wi-Fi"', '3. Crie uma nova senha forte para a sua rede.'], tip: 'A senha do roteador é diferente da senha do Wi-Fi.' } ] },
-    { id: 8, category: 'devices', title: 'Instalando e Configurando Antivírus', steps: [ { title: 'Use o Antivírus que já vem no Windows', content: 'O Windows já vem com uma ótima proteção gratuita chamada Windows Defender.', details: ['1. Clique no menu Iniciar', '2. Digite "Segurança do Windows"', '3. Verifique se a "Proteção contra vírus e ameaças" está com um ícone verde.'], tip: 'Mantenha sempre o ícone de escudo verde!' } ] }
-  ]
+  tutorials: tutorials
 };
 
 export default mockData;
