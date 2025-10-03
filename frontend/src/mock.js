@@ -405,6 +405,269 @@ export const mockData = {
       wrongExplanation: 'Sites não oficiais podem conter aplicativos maliciosos que roubam dados ou infectam seu celular.'
     }
   ],
+  simulations: [
+    {
+      id: 1,
+      title: 'E-mail Falso do Banco',
+      description: 'Identifique características de um e-mail de phishing bancário',
+      difficulty: 'Fácil',
+      category: 'phishing',
+      duration: '3-5 min',
+      steps: [
+        {
+          question: 'Você recebeu este e-mail. O que chama sua atenção primeiro?',
+          scenario: {
+            from: 'banco.santander@email-security.com',
+            subject: 'URGENTE: Sua conta será bloqueada em 24h',
+            body: 'Prezado cliente, detectamos atividade suspeita em sua conta. Clique AQUI para confirmar seus dados e evitar o bloqueio.'
+          },
+          options: [
+            { id: 1, text: 'O remetente parece oficial', isCorrect: false },
+            { id: 2, text: 'O domínio do e-mail não é oficial do banco', isCorrect: true },
+            { id: 3, text: 'A mensagem parece normal', isCorrect: false },
+            { id: 4, text: 'Não vejo nada suspeito', isCorrect: false }
+          ],
+          explanation: 'O domínio correto do Santander seria @santander.com.br, não @email-security.com. Bancos sempre usam seus domínios oficiais.'
+        },
+        {
+          question: 'Que outros sinais de alerta você identifica?',
+          scenario: {
+            body: 'ATENÇÃO! Sua conta será BLOQUEADA em 24 horas por atividade suspeita. Clique no link abaixo IMEDIATAMENTE para confirmar sua identidade e evitar o bloqueio: http://santander-verificacao.tk/login'
+          },
+          options: [
+            { id: 1, text: 'Uso excessivo de maiúsculas e urgência', isCorrect: true },
+            { id: 2, text: 'Link com domínio suspeito (.tk)', isCorrect: true },
+            { id: 3, text: 'Ameaça de bloqueio para criar pressão', isCorrect: true },
+            { id: 4, text: 'Todas as anteriores', isCorrect: true }
+          ],
+          explanation: 'Excelente! Você identificou todos os sinais: urgência excessiva, domínio falso e táticas de pressão psicológica.'
+        }
+      ]
+    },
+    {
+      id: 2,
+      title: 'Download de Aplicativo Falso',
+      description: 'Aprenda a identificar aplicativos maliciosos',
+      difficulty: 'Médio',
+      category: 'malware',
+      duration: '5-7 min',
+      steps: [
+        {
+          question: 'Você quer baixar o app do seu banco. Qual opção é mais segura?',
+          scenario: {
+            description: 'Você encontrou três opções para baixar o aplicativo do banco:'
+          },
+          options: [
+            { id: 1, text: 'Link enviado por WhatsApp', isCorrect: false },
+            { id: 2, text: 'Google Play Store ou App Store oficial', isCorrect: true },
+            { id: 3, text: 'Site de downloads gratuitos', isCorrect: false },
+            { id: 4, text: 'Link em banner de site', isCorrect: false }
+          ],
+          explanation: 'Sempre baixe aplicativos das lojas oficiais (Google Play Store, App Store). Elas verificam os apps antes de disponibilizar.'
+        }
+      ]
+    },
+    {
+      id: 3,
+      title: 'Golpe do Falso Suporte',
+      description: 'Reconheça táticas de engenharia social por telefone',
+      difficulty: 'Médio',
+      category: 'social',
+      duration: '4-6 min',
+      steps: [
+        {
+          question: 'Você recebe uma ligação: "Olá, sou do suporte técnico da Microsoft. Seu computador está infectado." Qual sua reação?',
+          scenario: {
+            description: 'Ligação inesperada de suposto suporte técnico'
+          },
+          options: [
+            { id: 1, text: 'Sigo as instruções imediatamente', isCorrect: false },
+            { id: 2, text: 'Pergunto o número e ligo de volta', isCorrect: true },
+            { id: 3, text: 'Desligo imediatamente', isCorrect: true },
+            { id: 4, text: 'Peço para aguardar e consulto alguém', isCorrect: true }
+          ],
+          explanation: 'Microsoft nunca liga diretamente para usuários sobre problemas. É sempre golpe. Desligue ou verifique pelos canais oficiais.'
+        }
+      ]
+    },
+    {
+      id: 4,
+      title: 'Criando Senha Segura',
+      description: 'Aprenda a criar senhas realmente seguras',
+      difficulty: 'Fácil',
+      category: 'passwords',
+      duration: '4-6 min',
+      steps: [
+        {
+          question: 'Qual dessas senhas é mais segura para sua conta bancária?',
+          scenario: {
+            description: 'Você precisa criar uma nova senha para seu internet banking. Analise as opções:'
+          },
+          options: [
+            { id: 1, text: '123456789', isCorrect: false },
+            { id: 2, text: 'MinhaDataDeNascimento', isCorrect: false },
+            { id: 3, text: 'MeuGato@Mimi2024!', isCorrect: true },
+            { id: 4, text: 'senha123', isCorrect: false }
+          ],
+          explanation: 'A terceira opção é segura porque combina maiúsculas, minúsculas, números, símbolos e não usa informações pessoais óbvias.'
+        },
+        {
+          question: 'Você criou uma senha forte. Onde é melhor guardá-la?',
+          scenario: {
+            description: 'Agora você precisa decidir como lembrar da sua nova senha segura.'
+          },
+          options: [
+            { id: 1, text: 'Em um papel grudado no monitor', isCorrect: false },
+            { id: 2, text: 'Em um gerenciador de senhas', isCorrect: true },
+            { id: 3, text: 'No bloco de notas do celular', isCorrect: false },
+            { id: 4, text: 'Não anoto, só confio na memória', isCorrect: false }
+          ],
+          explanation: 'Gerenciadores de senhas são seguros, criptografados e você só precisa lembrar de uma senha mestra.'
+        }
+      ]
+    },
+    {
+      id: 5,
+      title: 'Wi-Fi Público Seguro',
+      description: 'Aprenda os cuidados com redes Wi-Fi públicas',
+      difficulty: 'Médio',
+      category: 'protection',
+      duration: '5-7 min',
+      steps: [
+        {
+          question: 'Você está no shopping e precisa acessar seu banco. Qual a melhor opção?',
+          scenario: {
+            description: 'Você precisa fazer uma transferência urgente e está em um local público.'
+          },
+          options: [
+            { id: 1, text: 'Usar o Wi-Fi gratuito do shopping', isCorrect: false },
+            { id: 2, text: 'Usar os dados móveis do seu celular', isCorrect: true },
+            { id: 3, text: 'Pedir a senha Wi-Fi para alguém', isCorrect: false },
+            { id: 4, text: 'Usar qualquer rede aberta disponível', isCorrect: false }
+          ],
+          explanation: 'Os dados móveis são mais seguros que Wi-Fi público para operações bancárias. Redes públicas podem ser interceptadas.'
+        }
+      ]
+    },
+    {
+      id: 6,
+      title: 'Backup de Emergência',
+      description: 'Situação de ransomware - como o backup pode te salvar',
+      difficulty: 'Avançado',
+      category: 'backup',
+      duration: '6-8 min',
+      steps: [
+        {
+          question: 'Seu computador foi infectado por ransomware e todos os arquivos estão bloqueados. O que fazer primeiro?',
+          scenario: {
+            description: 'Na tela aparece: "Seus arquivos foram criptografados! Pague R$ 2.000 em Bitcoin para recuperá-los!"'
+          },
+          options: [
+            { id: 1, text: 'Pagar imediatamente o resgate', isCorrect: false },
+            { id: 2, text: 'Desconectar da internet e NÃO pagar', isCorrect: true },
+            { id: 3, text: 'Tentar acessar os arquivos normalmente', isCorrect: false },
+            { id: 4, text: 'Reiniciar o computador várias vezes', isCorrect: false }
+          ],
+          explanation: 'NUNCA pague resgate! Desconecte da internet para evitar mais danos e prepare-se para restaurar do backup.'
+        }
+      ]
+    },
+    {
+      id: 7,
+      title: 'Golpe do Falso Gerente (Caso Real)',
+      description: 'Baseado em casos documentados no Brasil - identifique as táticas usadas',
+      difficulty: 'Médio',
+      category: 'social',
+      duration: '4-6 min',
+      steps: [
+        {
+          question: 'Você recebe uma ligação: "Olá, sou seu gerente do banco. Detectamos movimentações suspeitas em sua conta e precisamos confirmar alguns dados para sua segurança." Como você reage?',
+          scenario: {
+            description: 'Ligação de suposto gerente bancário com tom urgente e profissional'
+          },
+          options: [
+            { id: 1, text: 'Forneço os dados solicitados imediatamente', isCorrect: false },
+            { id: 2, text: 'Peço o nome completo dele e desligo para ligar no banco', isCorrect: true },
+            { id: 3, text: 'Pergunto qual agência ele trabalha', isCorrect: false },
+            { id: 4, text: 'Peço para ele aguardar enquanto pego os documentos', isCorrect: false }
+          ],
+          explanation: 'Bancos NUNCA ligam pedindo dados. Sempre desligue e ligue de volta usando o número oficial do banco. Esta é uma tática real documentada em vários estados brasileiros.'
+        },
+        {
+          question: 'O "gerente" insiste: "Senhor(a), é urgente! Sua conta será bloqueada em 30 minutos se não confirmarmos. Preciso apenas do código que aparecerá no seu celular." O que fazer?',
+          scenario: {
+            description: 'Pressão psicológica com ameaça de bloqueio e pedido de código SMS'
+          },
+          options: [
+            { id: 1, text: 'Dou o código para resolver rapidamente', isCorrect: false },
+            { id: 2, text: 'Desligo imediatamente e vou à agência', isCorrect: true },
+            { id: 3, text: 'Peço mais detalhes sobre a movimentação suspeita', isCorrect: false },
+            { id: 4, text: 'Digo que vou pensar e ligo depois', isCorrect: false }
+          ],
+          explanation: 'NUNCA forneça códigos SMS! Eles dão acesso total à sua conta. A urgência é uma tática de pressão. Bancos resolvem problemas presencialmente, sem pressa.'
+        }
+      ]
+    },
+    {
+      id: 8,
+      title: 'Ransomware Doméstico (Caso Real)',
+      description: 'Aprenda como se proteger de ataques que criptografam seus arquivos',
+      difficulty: 'Avançado',
+      category: 'backup',
+      duration: '6-8 min',
+      steps: [
+        {
+          question: 'Você liga o computador e aparece esta mensagem: "Seus arquivos foram criptografados! Pague R$ 2.000 em Bitcoin em 48h ou perderá tudo para sempre!" O que fazer PRIMEIRO?',
+          scenario: {
+            description: 'Tela do computador tomada por mensagem de ransomware exigindo pagamento'
+          },
+          options: [
+            { id: 1, text: 'Pago imediatamente para recuperar as fotos da família', isCorrect: false },
+            { id: 2, text: 'Desconecto da internet e NÃO pago nada', isCorrect: true },
+            { id: 3, text: 'Reinicio o computador várias vezes', isCorrect: false },
+            { id: 4, text: 'Procuro um técnico para tentar recuperar', isCorrect: false }
+          ],
+          explanation: 'NUNCA pague resgate! Desconecte da internet imediatamente para evitar mais danos. Casos reais mostram que mesmo pagando, criminosos raramente devolvem os arquivos.'
+        },
+        {
+          question: 'Felizmente você fazia backup no Google Drive. Como proceder para recuperar tudo com segurança?',
+          scenario: {
+            description: 'Você tinha o hábito de fazer backup regular de fotos e documentos importantes'
+          },
+          options: [
+            { id: 1, text: 'Formato o computador e reinstalo tudo limpo', isCorrect: true },
+            { id: 2, text: 'Restauro o backup no computador ainda infectado', isCorrect: false },
+            { id: 3, text: 'Uso antivírus para limpar e depois restauro', isCorrect: false },
+            { id: 4, text: 'Espero alguns dias para ver se o problema passa', isCorrect: false }
+          ],
+          explanation: 'Correto! Com ransomware, formate tudo e instale sistema limpo. Depois restaure do backup. Essa prática salvou muitas vítimas reais de perder fotos de família insubstituíveis.'
+        }
+      ]
+    },
+    {
+      id: 9,
+      title: 'Aplicativo Malicioso (Caso Real)',
+      description: 'Identifique apps falsos que prometem monitoramento de saúde',
+      difficulty: 'Médio',
+      category: 'malware',
+      duration: '5-7 min',
+      steps: [
+        {
+          question: 'Você vê um anúncio: "Novo app gratuito monitora sua pressão pelo celular! Baixe agora!" Como proceder?',
+          scenario: {
+            description: 'Anúncio promete monitoramento de saúde impossível pela tecnologia atual'
+          },
+          options: [
+            { id: 1, text: 'Baixo imediatamente, parece muito útil', isCorrect: false },
+            { id: 2, text: 'Desconfio - celular não mede pressão sozinho', isCorrect: true },
+            { id: 3, text: 'Pesquiso no Google sobre o app', isCorrect: false },
+            { id: 4, text: 'Pergunto para um amigo se conhece', isCorrect: false }
+          ],
+          explanation: 'Correto! Celulares não medem pressão arterial sem equipamentos externos. Apps que prometem isso são fraudes documentadas que roubam dados pessoais.'
+        }
+      ]
+    }
+  ],
   tutorials: tutorials
 };
 
