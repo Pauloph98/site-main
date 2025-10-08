@@ -24,8 +24,8 @@ const Home = () => {
     switch(featureId) {
       case 1: navigate('/conteudo'); break;
       case 2: navigate('/simulacoes'); break;
-      case 3: navigate('/conteudo'); break; // Alterado para /conteudo
-      case 4: navigate('/quiz'); break;
+      case 3: navigate('/quiz'); break;
+      case 4: window.open('/cartilha', '_blank'); break;
       default: navigate('/conteudo');
     }
   };

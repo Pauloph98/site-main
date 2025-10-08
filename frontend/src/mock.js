@@ -295,7 +295,6 @@ export const mockData = {
     { id: 'conteudo', name: 'Conteúdo', path: '/conteudo' },
     { id: 'simulacoes', name: 'Simulações', path: '/simulacoes' },
     { id: 'quiz', name: 'Quiz', path: '/quiz' },
-    // A página de tutoriais foi removida da navegação
     { id: 'pesquisas', name: 'Pesquisas', path: '/pesquisas' },
     { id: 'contato', name: 'Contato', path: '/contato' }
   ],
@@ -331,9 +330,9 @@ export const mockData = {
     },
     {
       id: 4,
-      title: 'Certificação',
-      description: 'Receba certificados ao completar os módulos de aprendizagem',
-      icon: 'Award',
+      title: 'Cartilha Digital',
+      description: 'Guia completo de segurança digital com dicas práticas e contatos de emergência',
+      icon: 'BookOpen',
       color: 'bg-orange-50 border-orange-200',
       iconColor: 'text-orange-600'
     }
