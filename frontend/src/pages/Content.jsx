@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AlertTriangle, Shield, Users, BookOpen, ArrowRight, HardDrive, HelpCircle, GraduationCap, Play, X } from 'lucide-react';
+import { AlertTriangle, Shield, Users, BookOpen, ArrowRight, HardDrive, HelpCircle, GraduationCap, Play, X, AlertCircle } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
@@ -85,6 +85,7 @@ const Content = () => {
     { id: 'protection', title: 'Proteção', icon: Shield, color: 'text-green-600' },
     { id: 'passwords', title: 'Senhas', icon: BookOpen, color: 'text-blue-600' },
     { id: 'backup', title: 'Backup', icon: HardDrive, color: 'text-indigo-600' },
+    { id: 'incident', title: 'Incidentes', icon: AlertCircle, color: 'text-red-700' },
     { id: 'framework', title: 'Framework', icon: GraduationCap, color: 'text-teal-600' }
   ];
 
@@ -104,7 +105,7 @@ const Content = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12"><h1 className="text-4xl font-bold text-gray-900 mb-4">Conteúdo Educativo</h1><p className="text-xl text-gray-600 max-w-3xl mx-auto">Aprenda sobre os principais riscos da internet e como se proteger.</p></div>
         <Tabs value={selectedContent} onValueChange={setSelectedContent} className="mb-12">
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 md:grid-cols-7 mb-8">{contentTypes.map((type) => (<TabsTrigger key={type.id} value={type.id} className="flex items-center space-x-2 text-xs sm:text-sm"><type.icon className={`h-4 w-4 ${type.color}`} /><span>{type.title}</span></TabsTrigger>))}</TabsList>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 md:grid-cols-8 mb-8">{contentTypes.map((type) => (<TabsTrigger key={type.id} value={type.id} className="flex items-center space-x-2 text-xs sm:text-sm"><type.icon className={`h-4 w-4 ${type.color}`} /><span>{type.title}</span></TabsTrigger>))}</TabsList>
           
           <TabsContent value="phishing">
             <Card>
@@ -827,6 +828,360 @@ const Content = () => {
                   <TutorialSection tutorialId={4} />
                   <SimulationSection simulationId={6} />
                 </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Nova Aba: Protocolo de Resposta a Incidentes */}
+          <TabsContent value="incident" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <AlertCircle className="h-6 w-6 text-red-600" />
+                  Protocolo de Resposta a Incidentes para Idosos
+                </CardTitle>
+                <div className="text-sm text-gray-600 mt-2">
+                  Guia prático e acessível com os passos imediatos após identificar um golpe cibernético
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Objetivo */}
+                <div className="bg-red-50 border-l-4 border-red-500 p-6">
+                  <h3 className="text-xl font-semibold text-red-800 mb-3">🎯 Objetivo</h3>
+                  <p className="text-red-700">
+                    Orientar, de forma prática e acessível, os passos imediatos que devem ser tomados após a identificação de um golpe cibernético, visando minimizar prejuízos, preservar evidências e facilitar investigações.
+                  </p>
+                </div>
+
+                {/* Cenários Comuns */}
+                <div className="bg-orange-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold text-orange-800 mb-4">⚠️ Cenários Comuns de Golpes</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm text-orange-700">Golpes envolvendo Pix, boletos e cartões bancários</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm text-orange-700">Falsa central de atendimento bancário</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm text-orange-700">Clonagem de WhatsApp</span>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm text-orange-700">Suporte técnico fraudulento</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm text-orange-700">Instalação de aplicativos maliciosos</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm text-orange-700">Vazamento de dados pessoais</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Passo a Passo */}
+                <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-6 rounded-lg">
+                  <h3 className="text-2xl font-bold mb-2">⏰ Primeiras 24-48 Horas</h3>
+                  <p className="text-red-100">Aja rapidamente! Cada minuto conta para minimizar os danos.</p>
+                </div>
+
+                {/* Passo 1 */}
+                <div className="border-l-4 border-red-500 pl-6 space-y-4">
+                  <h3 className="text-xl font-semibold text-red-700">1️⃣ Interrupção e Preservação de Evidências</h3>
+                  <div className="bg-white border border-red-200 rounded-lg p-5">
+                    <h4 className="font-medium text-red-800 mb-3">📸 O que fazer IMEDIATAMENTE:</h4>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-red-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Encerre o contato:</strong> Pare imediatamente qualquer conversa com o golpista (telefone, WhatsApp, e-mail)
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-red-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Tire prints (capturas de tela):</strong> Fotografe conversas, e-mails, perfis, links/QR Codes, números de telefone e comprovantes de transações (com data e hora visíveis)
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-red-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Não reabra anexos suspeitos:</strong> Evite clicar novamente em links ou abrir arquivos enviados pelo golpista
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-red-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Anote tudo:</strong> Escreva quando ocorreu, como foi o contato, valores envolvidos e canais utilizados
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Passo 2 */}
+                <div className="border-l-4 border-orange-500 pl-6 space-y-4">
+                  <h3 className="text-xl font-semibold text-orange-700">2️⃣ Contenção Técnica e Proteção de Senhas</h3>
+                  <div className="bg-white border border-orange-200 rounded-lg p-5">
+                    <h4 className="font-medium text-orange-800 mb-3">🔒 Proteção Urgente:</h4>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-orange-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Altere TODAS as senhas:</strong> E-mail, redes sociais e especialmente contas bancárias
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-orange-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Ative a verificação em duas etapas (2FA):</strong> Em todos os serviços disponíveis
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-orange-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Encerre sessões ativas:</strong> Saia de todos os dispositivos e plataformas onde estava logado
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-orange-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Remova apps de acesso remoto:</strong> Desinstale programas como AnyDesk, TeamViewer se não autorizados
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-orange-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Execute antivírus:</strong> Faça uma varredura completa para eliminar possíveis ameaças
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-orange-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>WhatsApp clonado:</strong> Ative o 2FA e recupere a conta diretamente pelo aplicativo
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Passo 3 */}
+                <div className="border-l-4 border-yellow-500 pl-6 space-y-4">
+                  <h3 className="text-xl font-semibold text-yellow-700">3️⃣ Ação Bancária Imediata</h3>
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-5">
+                    <h4 className="font-medium text-yellow-800 mb-3">🏦 Contate seu Banco AGORA:</h4>
+                    <div className="space-y-4">
+                      <div className="bg-white p-4 rounded border-l-4 border-yellow-500">
+                        <p className="text-sm mb-2"><strong className="text-yellow-800">⚠️ IMPORTANTE:</strong> Use apenas canais oficiais (aplicativo ou telefone impresso no verso do cartão)</p>
+                      </div>
+                      <ul className="space-y-3 text-sm">
+                        <li className="flex items-start gap-3">
+                          <span className="font-bold text-yellow-600 flex-shrink-0">✓</span>
+                          <div>
+                            <strong>Bloqueio preventivo:</strong> Solicite o bloqueio da conta ou cartão, se necessário
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="font-bold text-yellow-600 flex-shrink-0">✓</span>
+                          <div>
+                            <strong>Golpe com PIX:</strong> Peça a abertura do <strong>Mecanismo Especial de Devolução (MED)</strong> - disponível até 80 dias após a transação
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="font-bold text-yellow-600 flex-shrink-0">✓</span>
+                          <div>
+                            <strong>Boletos fraudulentos:</strong> Solicite contestação ao banco emissor
+                          </div>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="font-bold text-yellow-600 flex-shrink-0">✓</span>
+                          <div>
+                            <strong>Cartões:</strong> Conteste compras indevidas, cancele o cartão e solicite um novo
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Passo 4 */}
+                <div className="border-l-4 border-blue-500 pl-6 space-y-4">
+                  <h3 className="text-xl font-semibold text-blue-700">4️⃣ Registro Policial</h3>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
+                    <h4 className="font-medium text-blue-800 mb-3">👮 Boletim de Ocorrência:</h4>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-blue-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Onde registrar:</strong> Delegacia Virtual do seu estado ou portal nacional
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-blue-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>O que levar:</strong> Anexe todas as evidências coletadas (prints, anotações, comprovantes)
+                        </div>
+                      </li>
+                    </ul>
+                    <div className="bg-white p-3 rounded mt-3 border-l-4 border-blue-500">
+                      <p className="text-xs text-blue-800"><strong>💡 Dica:</strong> O Boletim de Ocorrência é essencial para processos de ressarcimento junto ao banco e para investigações policiais.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Passo 5 */}
+                <div className="border-l-4 border-purple-500 pl-6 space-y-4">
+                  <h3 className="text-xl font-semibold text-purple-700">5️⃣ Comunicação com Órgãos Competentes</h3>
+                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-5">
+                    <h4 className="font-medium text-purple-800 mb-3">📋 Busque Apoio Especializado:</h4>
+                    <div className="space-y-3">
+                      <div className="bg-white p-4 rounded border-l-4 border-purple-500">
+                        <h5 className="font-medium text-purple-700 mb-2">🛡️ CERT.br (Vazamento de Dados)</h5>
+                        <p className="text-sm text-purple-600">Notifique a empresa responsável e solicite medidas corretivas (bloqueios, troca de credenciais)</p>
+                      </div>
+                      <div className="bg-white p-4 rounded border-l-4 border-purple-500">
+                        <h5 className="font-medium text-purple-700 mb-2">🔐 ANPD (Dados Pessoais)</h5>
+                        <p className="text-sm text-purple-600">Denuncie situações de tratamento indevido de dados pessoais</p>
+                      </div>
+                      <div className="bg-white p-4 rounded border-l-4 border-purple-500">
+                        <h5 className="font-medium text-purple-700 mb-2">🛒 Consumidor.gov.br</h5>
+                        <p className="text-sm text-purple-600">Para conflitos com empresas relacionados ao golpe</p>
+                      </div>
+                      <div className="bg-white p-4 rounded border-l-4 border-purple-500">
+                        <h5 className="font-medium text-purple-700 mb-2">📱 Anatel (Telecomunicações)</h5>
+                        <p className="text-sm text-purple-600">Fraudes envolvendo chip ou portabilidade indevida</p>
+                      </div>
+                      <div className="bg-white p-4 rounded border-l-4 border-purple-500">
+                        <h5 className="font-medium text-purple-700 mb-2">🤝 SaferNet</h5>
+                        <p className="text-sm text-purple-600">Canal de ajuda sigiloso para apoio e orientação</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Passo 6 */}
+                <div className="border-l-4 border-green-500 pl-6 space-y-4">
+                  <h3 className="text-xl font-semibold text-green-700">6️⃣ Prevenção Pós-Incidente</h3>
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-5">
+                    <h4 className="font-medium text-green-800 mb-3">🔄 Evite Novos Ataques:</h4>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-green-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Revogue acessos:</strong> Remova dispositivos desconhecidos de todas as contas
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-green-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Atualize tudo:</strong> Sistemas operacionais e aplicativos devem estar na última versão
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-green-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Avise seus contatos:</strong> Se houver risco de personificação (ex.: golpe do WhatsApp)
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-green-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Configure alertas:</strong> Ative notificações de transações no app do banco
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-green-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Defina limites:</strong> Estabeleça valores máximos para PIX e transferências
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="font-bold text-green-600 flex-shrink-0">✓</span>
+                        <div>
+                          <strong>Bloqueio temporário:</strong> Use recursos de bloqueio de cartão quando não estiver usando
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Resumo Visual */}
+                <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white p-6 rounded-lg">
+                  <h3 className="text-xl font-bold mb-4">📋 Checklist de Resposta Rápida</h3>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div className="bg-white/10 p-4 rounded">
+                      <h4 className="font-bold mb-2">⚡ Primeiras Horas</h4>
+                      <ul className="text-sm space-y-1">
+                        <li>☑️ Parar contato</li>
+                        <li>☑️ Tirar prints</li>
+                        <li>☑️ Alterar senhas</li>
+                        <li>☑️ Ligar para o banco</li>
+                      </ul>
+                    </div>
+                    <div className="bg-white/10 p-4 rounded">
+                      <h4 className="font-bold mb-2">📱 Primeiro Dia</h4>
+                      <ul className="text-sm space-y-1">
+                        <li>☑️ Fazer B.O.</li>
+                        <li>☑️ Solicitar MED (PIX)</li>
+                        <li>☑️ Contestar no banco</li>
+                        <li>☑️ Executar antivírus</li>
+                      </ul>
+                    </div>
+                    <div className="bg-white/10 p-4 rounded">
+                      <h4 className="font-bold mb-2">🛡️ Dias Seguintes</h4>
+                      <ul className="text-sm space-y-1">
+                        <li>☑️ Denunciar órgãos</li>
+                        <li>☑️ Avisar contatos</li>
+                        <li>☑️ Configurar alertas</li>
+                        <li>☑️ Atualizar sistemas</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Contatos Importantes */}
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold text-blue-800 mb-4">📞 Contatos Importantes (Salve Agora!)</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="bg-white p-4 rounded border border-blue-200">
+                      <h4 className="font-medium text-blue-700 mb-2">🏦 Bancos (Emergência)</h4>
+                      <p className="text-xs text-blue-600">Use o número no verso do seu cartão ou:</p>
+                      <ul className="text-sm text-blue-600 mt-2 space-y-1">
+                        <li>• Banco do Brasil: 4004-0001 / 0800 729 0001</li>
+                        <li>• Caixa: 4004-0104 / 0800 726 0104</li>
+                        <li>• Bradesco: 4002-5522 / 0800 704 8383</li>
+                        <li>• Itaú: 4004-4828 / 0800 728 0728</li>
+                        <li>• Santander: 4004-3535 / 0800 762 7777</li>
+                      </ul>
+                    </div>
+                    <div className="bg-white p-4 rounded border border-blue-200">
+                      <h4 className="font-medium text-blue-700 mb-2">👮 Órgãos de Ajuda</h4>
+                      <ul className="text-sm text-blue-600 space-y-2">
+                        <li><strong>Delegacia Virtual:</strong> Busque pelo seu estado</li>
+                        <li><strong>SaferNet:</strong> new.safernet.org.br/denuncie</li>
+                        <li><strong>Consumidor.gov.br:</strong> consumidor.gov.br</li>
+                        <li><strong>CERT.br:</strong> cert.br</li>
+                        <li><strong>ANPD:</strong> gov.br/anpd</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mensagem Final */}
+                <div className="bg-gradient-to-r from-green-500 to-teal-500 text-white p-6 rounded-lg text-center">
+                  <h3 className="text-2xl font-bold mb-3">🎯 Lembre-se!</h3>
+                  <p className="text-lg mb-2">Velocidade é essencial, mas não entre em pânico.</p>
+                  <p className="text-white/90">Siga os passos com calma, peça ajuda de familiares ou amigos, e documente tudo. Você não está sozinho!</p>
+                </div>
+              </CardContent>
             </Card>
           </TabsContent>
 

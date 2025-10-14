@@ -19,7 +19,8 @@ import {
   Home,
   Phone,
   Mail,
-  X
+  X,
+  AlertCircle
 } from 'lucide-react';
 
 const CartilhaCompleta = () => {
@@ -612,6 +613,311 @@ const CartilhaCompleta = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* 9. Protocolo de Resposta a Incidentes */}
+        <Card className="mb-8 print:mb-4 print:shadow-none print:border-gray-300">
+          <CardHeader className="bg-gradient-to-r from-red-600 to-red-700 text-white rounded-t-lg py-6 print:py-4 print:bg-white print:text-black">
+            <CardTitle className="flex items-center gap-4 text-3xl print:text-2xl font-bold">
+              <AlertCircle className="h-10 w-10 print:h-8 print:w-8" />
+              9. Protocolo de Resposta a Incidentes
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6 print:space-y-3 p-8 print:p-4">
+            {/* Objetivo */}
+            <div className="bg-red-50 border-l-8 border-red-500 p-6 rounded-xl print:p-4 print:bg-gray-100">
+              <h3 className="text-2xl font-bold text-red-800 mb-3 print:text-xl print:mb-2 print:text-black">🎯 Objetivo</h3>
+              <p className="text-lg text-red-700 print:text-base print:text-black leading-relaxed">
+                Orientar, de forma prática e acessível, os passos imediatos que devem ser tomados após a identificação 
+                de um golpe cibernético, visando minimizar prejuízos, preservar evidências e facilitar investigações.
+              </p>
+            </div>
+
+            {/* Cenários Comuns */}
+            <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-xl print:p-4 print:bg-gray-100">
+              <h3 className="text-2xl font-bold text-orange-800 mb-4 print:text-xl print:mb-2 print:text-black">⚠️ Cenários Comuns de Golpes</h3>
+              <div className="grid md:grid-cols-2 gap-4 print:gap-2 print:grid-cols-1">
+                <ul className="space-y-2 text-orange-700 print:text-black">
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Golpes envolvendo Pix, boletos e cartões bancários</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Falsa central de atendimento bancário</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Clonagem de WhatsApp</span>
+                  </li>
+                </ul>
+                <ul className="space-y-2 text-orange-700 print:text-black">
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Suporte técnico fraudulento</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Instalação de aplicativos maliciosos</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Vazamento de dados pessoais</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Prazo de Ação */}
+            <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-6 rounded-xl print:p-4 print:bg-gray-200 print:text-black">
+              <h3 className="text-2xl font-bold mb-2 print:text-xl">⏰ Primeiras 24-48 Horas</h3>
+              <p className="text-lg print:text-base">Aja rapidamente! Cada minuto conta para minimizar os danos.</p>
+            </div>
+
+            {/* Passo 1 */}
+            <div className="border-l-8 border-red-500 bg-red-50 p-6 rounded-xl print:p-4 print:bg-gray-100">
+              <h3 className="text-2xl font-bold text-red-700 mb-4 print:text-xl print:mb-2 print:text-black">
+                1️⃣ Interrupção e Preservação de Evidências
+              </h3>
+              <div className="space-y-3 print:space-y-2">
+                <h4 className="font-bold text-red-800 text-lg print:text-base print:text-black">📸 O que fazer IMEDIATAMENTE:</h4>
+                <div className="bg-white p-4 rounded-lg print:p-2">
+                  <ul className="space-y-3 text-red-800 print:text-black print:space-y-1">
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Encerre o contato:</strong> Pare imediatamente qualquer conversa com o golpista
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Tire prints:</strong> Fotografe conversas, e-mails, perfis, links e comprovantes
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Não reabra anexos:</strong> Evite clicar novamente em links ou arquivos suspeitos
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Anote tudo:</strong> Data, hora, valores e canais utilizados
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Passo 2 */}
+            <div className="border-l-8 border-orange-500 bg-orange-50 p-6 rounded-xl print:p-4 print:bg-gray-100">
+              <h3 className="text-2xl font-bold text-orange-700 mb-4 print:text-xl print:mb-2 print:text-black">
+                2️⃣ Contenção Técnica e Proteção de Senhas
+              </h3>
+              <div className="space-y-3 print:space-y-2">
+                <h4 className="font-bold text-orange-800 text-lg print:text-base print:text-black">🔒 Proteção Urgente:</h4>
+                <div className="bg-white p-4 rounded-lg print:p-2">
+                  <ul className="space-y-3 text-orange-800 print:text-black print:space-y-1">
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Altere TODAS as senhas:</strong> E-mail, redes sociais e contas bancárias
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Ative a verificação em duas etapas (2FA)</strong>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Remova apps de acesso remoto:</strong> AnyDesk, TeamViewer não autorizados
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Execute antivírus completo</strong>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Passo 3 */}
+            <div className="border-l-8 border-yellow-500 bg-yellow-50 p-6 rounded-xl print:p-4 print:bg-gray-100">
+              <h3 className="text-2xl font-bold text-yellow-700 mb-4 print:text-xl print:mb-2 print:text-black">
+                3️⃣ Ação Bancária Imediata
+              </h3>
+              <div className="space-y-3 print:space-y-2">
+                <div className="bg-red-100 p-3 rounded border-l-4 border-red-500 print:p-2">
+                  <p className="text-sm font-bold text-red-800 print:text-black">
+                    ⚠️ Use apenas canais oficiais (aplicativo ou telefone do verso do cartão)
+                  </p>
+                </div>
+                <div className="bg-white p-4 rounded-lg print:p-2">
+                  <ul className="space-y-3 text-yellow-800 print:text-black print:space-y-1">
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Bloqueio preventivo:</strong> Solicite bloqueio da conta ou cartão
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Golpe com PIX:</strong> Peça o <strong>Mecanismo Especial de Devolução (MED)</strong> - até 80 dias
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Boletos fraudulentos:</strong> Solicite contestação
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-lg">✓</span>
+                      <div className="text-base print:text-sm">
+                        <strong>Cartões:</strong> Conteste compras, cancele e solicite novo
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Passo 4 */}
+            <div className="border-l-8 border-blue-500 bg-blue-50 p-6 rounded-xl print:p-4 print:bg-gray-100">
+              <h3 className="text-2xl font-bold text-blue-700 mb-4 print:text-xl print:mb-2 print:text-black">
+                4️⃣ Registro Policial
+              </h3>
+              <div className="bg-white p-4 rounded-lg print:p-2">
+                <ul className="space-y-3 text-blue-800 print:text-black print:space-y-1">
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold text-lg">✓</span>
+                    <div className="text-base print:text-sm">
+                      <strong>Onde:</strong> Delegacia Virtual do seu estado ou portal nacional
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold text-lg">✓</span>
+                    <div className="text-base print:text-sm">
+                      <strong>O que levar:</strong> Todas as evidências (prints, anotações, comprovantes)
+                    </div>
+                  </li>
+                </ul>
+                <div className="bg-blue-100 p-3 rounded mt-3 print:p-2">
+                  <p className="text-sm text-blue-800 print:text-black">
+                    <strong>💡 Dica:</strong> O B.O. é essencial para ressarcimento e investigações
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Passo 5 */}
+            <div className="border-l-8 border-purple-500 bg-purple-50 p-6 rounded-xl print:p-4 print:bg-gray-100">
+              <h3 className="text-2xl font-bold text-purple-700 mb-4 print:text-xl print:mb-2 print:text-black">
+                5️⃣ Comunicação com Órgãos Competentes
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4 print:gap-2 print:grid-cols-1">
+                <div className="bg-white p-3 rounded border print:p-2">
+                  <h5 className="font-bold text-purple-700 mb-1 print:text-black">🛡️ CERT.br</h5>
+                  <p className="text-sm text-purple-600 print:text-black">Vazamento de dados</p>
+                </div>
+                <div className="bg-white p-3 rounded border print:p-2">
+                  <h5 className="font-bold text-purple-700 mb-1 print:text-black">🔐 ANPD</h5>
+                  <p className="text-sm text-purple-600 print:text-black">Tratamento indevido de dados</p>
+                </div>
+                <div className="bg-white p-3 rounded border print:p-2">
+                  <h5 className="font-bold text-purple-700 mb-1 print:text-black">🛒 Consumidor.gov.br</h5>
+                  <p className="text-sm text-purple-600 print:text-black">Conflitos com empresas</p>
+                </div>
+                <div className="bg-white p-3 rounded border print:p-2">
+                  <h5 className="font-bold text-purple-700 mb-1 print:text-black">📱 Anatel</h5>
+                  <p className="text-sm text-purple-600 print:text-black">Fraudes com chip/portabilidade</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Passo 6 */}
+            <div className="border-l-8 border-green-500 bg-green-50 p-6 rounded-xl print:p-4 print:bg-gray-100">
+              <h3 className="text-2xl font-bold text-green-700 mb-4 print:text-xl print:mb-2 print:text-black">
+                6️⃣ Prevenção Pós-Incidente
+              </h3>
+              <div className="bg-white p-4 rounded-lg print:p-2">
+                <h4 className="font-bold text-green-800 text-lg mb-3 print:text-base print:mb-2 print:text-black">🔄 Evite Novos Ataques:</h4>
+                <ul className="space-y-2 text-green-800 print:text-black print:space-y-1">
+                  <li className="flex items-start gap-2 text-base print:text-sm">
+                    <span className="font-bold">✓</span>
+                    <span>Revogue acessos de dispositivos desconhecidos</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-base print:text-sm">
+                    <span className="font-bold">✓</span>
+                    <span>Atualize sistemas e aplicativos</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-base print:text-sm">
+                    <span className="font-bold">✓</span>
+                    <span>Avise seus contatos (risco de personificação)</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-base print:text-sm">
+                    <span className="font-bold">✓</span>
+                    <span>Configure alertas de transações no banco</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-base print:text-sm">
+                    <span className="font-bold">✓</span>
+                    <span>Defina limites para PIX e transferências</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Checklist de Resposta Rápida */}
+            <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white p-6 rounded-xl print:p-4 print:bg-gray-200 print:text-black">
+              <h3 className="text-2xl font-bold mb-4 print:text-xl print:mb-2">📋 Checklist de Resposta Rápida</h3>
+              <div className="grid md:grid-cols-3 gap-4 print:gap-2 print:grid-cols-1">
+                <div className="bg-white/10 p-4 rounded print:p-2 print:bg-white print:border print:border-gray-400">
+                  <h4 className="font-bold mb-2 text-lg print:text-base print:text-black">⚡ Primeiras Horas</h4>
+                  <ul className="text-sm space-y-1 print:text-xs print:space-y-0">
+                    <li>☑️ Parar contato</li>
+                    <li>☑️ Tirar prints</li>
+                    <li>☑️ Alterar senhas</li>
+                    <li>☑️ Ligar para o banco</li>
+                  </ul>
+                </div>
+                <div className="bg-white/10 p-4 rounded print:p-2 print:bg-white print:border print:border-gray-400">
+                  <h4 className="font-bold mb-2 text-lg print:text-base print:text-black">📱 Primeiro Dia</h4>
+                  <ul className="text-sm space-y-1 print:text-xs print:space-y-0">
+                    <li>☑️ Fazer B.O.</li>
+                    <li>☑️ Solicitar MED (PIX)</li>
+                    <li>☑️ Contestar no banco</li>
+                    <li>☑️ Executar antivírus</li>
+                  </ul>
+                </div>
+                <div className="bg-white/10 p-4 rounded print:p-2 print:bg-white print:border print:border-gray-400">
+                  <h4 className="font-bold mb-2 text-lg print:text-base print:text-black">🛡️ Dias Seguintes</h4>
+                  <ul className="text-sm space-y-1 print:text-xs print:space-y-0">
+                    <li>☑️ Denunciar órgãos</li>
+                    <li>☑️ Avisar contatos</li>
+                    <li>☑️ Configurar alertas</li>
+                    <li>☑️ Atualizar sistemas</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Mensagem Final */}
+            <div className="bg-gradient-to-r from-green-500 to-teal-500 text-white p-6 rounded-xl text-center print:p-4 print:bg-gray-200 print:text-black">
+              <h3 className="text-2xl font-bold mb-3 print:text-xl print:mb-2">🎯 Lembre-se!</h3>
+              <p className="text-lg mb-2 print:text-base">Velocidade é essencial, mas não entre em pânico.</p>
+              <p className="text-base print:text-sm">Siga os passos com calma, peça ajuda e documente tudo. Você não está sozinho!</p>
             </div>
           </CardContent>
         </Card>

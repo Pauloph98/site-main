@@ -295,8 +295,7 @@ export const mockData = {
     { id: 'conteudo', name: 'Conteúdo', path: '/conteudo' },
     { id: 'simulacoes', name: 'Simulações', path: '/simulacoes' },
     { id: 'quiz', name: 'Quiz', path: '/quiz' },
-    { id: 'pesquisas', name: 'Pesquisas', path: '/pesquisas' },
-    { id: 'contato', name: 'Contato', path: '/contato' }
+    { id: 'pesquisas', name: 'Pesquisas', path: '/pesquisas' }
   ],
   hero: {
     title: 'Segurança Digital para Idosos',
@@ -392,16 +391,211 @@ export const mockData = {
     },
     {
       id: 5,
-      category: 'Aplicativos',
-      question: 'Onde é seguro baixar aplicativos para o celular?',
+      category: 'Phishing',
+      question: 'Você recebe um SMS do "seu banco" dizendo: "Detectamos compra suspeita de R$ 3.500. Se não foi você, clique aqui: banco.com.br.verificar.tk". O que fazer?',
       options: [
-        { id: 'a', text: 'De qualquer site que aparecer no Google', isCorrect: false },
-        { id: 'b', text: 'Apenas da Google Play Store (Android) ou App Store (iPhone)', isCorrect: true },
-        { id: 'c', text: 'De links recebidos por WhatsApp', isCorrect: false },
-        { id: 'd', text: 'De sites que oferecem apps "grátis"', isCorrect: false }
+        { id: 'a', text: 'Clicar imediatamente para cancelar a compra', isCorrect: false },
+        { id: 'b', text: 'Desconfiar do link suspeito (.tk) e ligar para o banco pelo número oficial', isCorrect: true },
+        { id: 'c', text: 'Responder o SMS perguntando mais detalhes', isCorrect: false },
+        { id: 'd', text: 'Encaminhar para amigos para eles verificarem', isCorrect: false }
       ],
-      explanation: 'As lojas oficiais (Google Play e App Store) verificam os aplicativos antes de disponibilizá-los, oferecendo mais segurança.',
-      wrongExplanation: 'Sites não oficiais podem conter aplicativos maliciosos que roubam dados ou infectam seu celular.'
+      explanation: 'O domínio ".tk" é suspeito e bancos não enviam SMS com links. Sempre ligue para o número oficial do banco impresso no seu cartão ou acesse o aplicativo oficial.',
+      wrongExplanation: 'Clicar em links de SMS suspeitos pode levar a sites falsos que roubam suas senhas. O domínio correto seria "santander.com.br", não "banco.com.br.verificar.tk".'
+    },
+    {
+      id: 6,
+      category: 'Phishing',
+      question: 'Qual destes e-mails é MAIS PROVAVELMENTE um golpe de phishing?',
+      options: [
+        { id: 'a', text: 'Extrato mensal enviado pelo domínio oficial do banco', isCorrect: false },
+        { id: 'b', text: 'E-mail com tom urgente "ÚLTIMA CHANCE! Confirme seus dados em 2 horas!"', isCorrect: true },
+        { id: 'c', text: 'Newsletter de uma loja onde você compra regularmente', isCorrect: false },
+        { id: 'd', text: 'Confirmação de pedido de site conhecido onde você comprou', isCorrect: false }
+      ],
+      explanation: 'Golpistas usam urgência e ameaças para que você tome decisões rápidas sem pensar. Bancos e empresas sérias nunca pressionam com prazos curtíssimos.',
+      wrongExplanation: 'Urgência excessiva ("2 horas", "ÚLTIMA CHANCE") é uma tática clássica de phishing para que você não tenha tempo de verificar se é verdadeiro.'
+    },
+    {
+      id: 7,
+      category: 'Malware',
+      question: 'Seu computador está muito lento e aparecem muitas propagandas. Qual a primeira ação recomendada?',
+      options: [
+        { id: 'a', text: 'Ignorar, é normal computadores ficarem lentos', isCorrect: false },
+        { id: 'b', text: 'Fazer uma verificação completa com antivírus atualizado', isCorrect: true },
+        { id: 'c', text: 'Baixar um "otimizador" de site desconhecido', isCorrect: false },
+        { id: 'd', text: 'Continuar usando normalmente', isCorrect: false }
+      ],
+      explanation: 'Lentidão e propagandas excessivas são sinais de infecção por malware (adware/spyware). Um antivírus atualizado pode detectar e remover a ameaça.',
+      wrongExplanation: 'Muitos "otimizadores" gratuitos são na verdade malware disfarçado. Nunca baixe programas de sites desconhecidos quando o computador já está com problemas.'
+    },
+    {
+      id: 8,
+      category: 'Malware',
+      question: 'O que é ransomware e como se proteger?',
+      options: [
+        { id: 'a', text: 'É um antivírus gratuito que protege o computador', isCorrect: false },
+        { id: 'b', text: 'É um vírus que bloqueia arquivos e pede resgate; proteja-se fazendo backup regular', isCorrect: true },
+        { id: 'c', text: 'É um aplicativo seguro para guardar senhas', isCorrect: false },
+        { id: 'd', text: 'É um programa que acelera o computador', isCorrect: false }
+      ],
+      explanation: 'Ransomware criptografa seus arquivos e exige pagamento. A melhor proteção é fazer backup regular, pois mesmo pagando, criminosos raramente devolvem os arquivos.',
+      wrongExplanation: 'Ransomware é um dos malwares mais perigosos. Fazer backup regular (semanal) no Google Drive ou pen drive é sua melhor defesa contra esse tipo de ataque.'
+    },
+    {
+      id: 9,
+      category: 'Engenharia Social',
+      question: 'Você recebe mensagem no WhatsApp: "Oi vó, mudei de número, estou com um problema urgente e preciso de R$ 500". Como reagir?',
+      options: [
+        { id: 'a', text: 'Enviar o dinheiro imediatamente para ajudar', isCorrect: false },
+        { id: 'b', text: 'Ligar para o número ANTIGO do seu neto para confirmar', isCorrect: true },
+        { id: 'c', text: 'Perguntar qual é o problema antes de enviar', isCorrect: false },
+        { id: 'd', text: 'Pedir para ele provar que é ele mesmo', isCorrect: false }
+      ],
+      explanation: 'Este é o "golpe do parente em apuros", muito comum no Brasil. Sempre ligue para o número original da pessoa antes de enviar qualquer dinheiro.',
+      wrongExplanation: 'Golpistas clonam fotos de perfil e se passam por parentes. A única forma segura de confirmar é ligando para o número antigo que você já conhece.'
+    },
+    {
+      id: 10,
+      category: 'Engenharia Social',
+      question: 'Um "técnico da Microsoft" liga dizendo que seu computador tem vírus e pede acesso remoto. O que fazer?',
+      options: [
+        { id: 'a', text: 'Permitir o acesso para ele resolver o problema', isCorrect: false },
+        { id: 'b', text: 'Desligar imediatamente - Microsoft nunca liga para usuários', isCorrect: true },
+        { id: 'c', text: 'Pedir o número dele para ligar de volta', isCorrect: false },
+        { id: 'd', text: 'Perguntar qual é o vírus detectado', isCorrect: false }
+      ],
+      explanation: 'Microsoft, Google e outras empresas NUNCA ligam diretamente para usuários. Este é um golpe clássico onde instalam malware com sua permissão.',
+      wrongExplanation: 'Dar acesso remoto a desconhecidos é extremamente perigoso. Eles podem roubar senhas, instalar vírus e até acessar suas contas bancárias.'
+    },
+    {
+      id: 11,
+      category: 'Proteção',
+      question: 'Qual destas práticas é ESSENCIAL para manter seu dispositivo seguro?',
+      options: [
+        { id: 'a', text: 'Desligar o computador todo dia às 18h', isCorrect: false },
+        { id: 'b', text: 'Manter sistema operacional e aplicativos sempre atualizados', isCorrect: true },
+        { id: 'c', text: 'Usar apenas Wi-Fi, nunca dados móveis', isCorrect: false },
+        { id: 'd', text: 'Reiniciar o celular uma vez por semana', isCorrect: false }
+      ],
+      explanation: 'Atualizações corrigem falhas de segurança que criminosos exploram. Um sistema desatualizado é muito mais vulnerável a ataques.',
+      wrongExplanation: 'Criminosos descobrem falhas em programas constantemente. As atualizações corrigem essas falhas antes que sejam exploradas. Nunca adiar atualizações de segurança!'
+    },
+    {
+      id: 12,
+      category: 'Proteção',
+      question: 'O que é autenticação em duas etapas (2FA) e por que é importante?',
+      options: [
+        { id: 'a', text: 'É fazer login duas vezes seguidas', isCorrect: false },
+        { id: 'b', text: 'É uma camada extra de segurança que exige senha + código do celular', isCorrect: true },
+        { id: 'c', text: 'É criar duas senhas diferentes', isCorrect: false },
+        { id: 'd', text: 'É fazer backup duas vezes por mês', isCorrect: false }
+      ],
+      explanation: 'Com 2FA, mesmo que descubram sua senha, o criminoso não consegue entrar sem o código que chega no SEU celular. É muito mais seguro!',
+      wrongExplanation: 'A autenticação em duas etapas adiciona uma segunda verificação além da senha, geralmente um código SMS ou de app, tornando muito mais difícil invadir sua conta.'
+    },
+    {
+      id: 13,
+      category: 'Senhas',
+      question: 'Por que NÃO se deve usar a mesma senha em várias contas?',
+      options: [
+        { id: 'a', text: 'Porque é difícil de lembrar', isCorrect: false },
+        { id: 'b', text: 'Porque se uma conta for invadida, todas ficam vulneráveis', isCorrect: true },
+        { id: 'c', text: 'Porque os sites não permitem', isCorrect: false },
+        { id: 'd', text: 'Não há problema em usar a mesma senha', isCorrect: false }
+      ],
+      explanation: 'Se um site for hackeado e sua senha vazar, criminosos tentarão a mesma senha em bancos, e-mails e redes sociais. Use senhas diferentes sempre!',
+      wrongExplanation: 'Vazamentos de dados são comuns. Se você usa "MinhaSenh@123" em tudo, um vazamento em um site de compras pode comprometer sua conta bancária.'
+    },
+    {
+      id: 14,
+      category: 'Senhas',
+      question: 'Qual é o local MAIS SEGURO para anotar suas senhas?',
+      options: [
+        { id: 'a', text: 'Papel colado no monitor', isCorrect: false },
+        { id: 'b', text: 'Gerenciador de senhas (Google Password Manager, Bitwarden)', isCorrect: true },
+        { id: 'c', text: 'Arquivo no desktop chamado "minhas_senhas.txt"', isCorrect: false },
+        { id: 'd', text: 'Mensagem salva no WhatsApp', isCorrect: false }
+      ],
+      explanation: 'Gerenciadores de senhas são criptografados e protegidos. Você só precisa lembrar de UMA senha mestra, e eles guardam todas as outras com segurança.',
+      wrongExplanation: 'Papéis visíveis e arquivos não protegidos são facilmente acessados. Gerenciadores de senhas usam criptografia militar e são a forma mais segura de guardar senhas.'
+    },
+    {
+      id: 15,
+      category: 'Backup',
+      question: 'Com que frequência você deve fazer backup de fotos e documentos importantes?',
+      options: [
+        { id: 'a', text: 'Uma vez por ano', isCorrect: false },
+        { id: 'b', text: 'Apenas quando lembrar', isCorrect: false },
+        { id: 'c', text: 'Semanalmente ou configurar backup automático', isCorrect: true },
+        { id: 'd', text: 'Não precisa fazer backup', isCorrect: false }
+      ],
+      explanation: 'Backup semanal ou automático garante que você nunca perca mais de 7 dias de fotos e documentos. Configurar automático é ainda melhor - você não precisa lembrar!',
+      wrongExplanation: 'HDs quebram, celulares são roubados, ransomware ataca. Sem backup regular, você pode perder anos de fotos de família em um segundo.'
+    },
+    {
+      id: 16,
+      category: 'Backup',
+      question: 'Qual é a regra "3-2-1" de backup recomendada por especialistas?',
+      options: [
+        { id: 'a', text: '3 backups, 2 tipos de mídia, 1 cópia fora de casa', isCorrect: true },
+        { id: 'b', text: 'Fazer backup 3 vezes ao dia, 2 vezes por semana, 1 vez por mês', isCorrect: false },
+        { id: 'c', text: 'Ter 3 pen drives, 2 HDs externos, 1 computador', isCorrect: false },
+        { id: 'd', text: 'Backup em 3 pastas, 2 nuvens, 1 celular', isCorrect: false }
+      ],
+      explanation: 'Ter 3 cópias (original + 2 backups), em 2 tipos de mídia diferentes (nuvem + pen drive), com 1 cópia fora de casa (nuvem) protege contra qualquer desastre.',
+      wrongExplanation: 'A regra 3-2-1 protege contra todos os cenários: se o computador quebrar, você tem o pen drive; se a casa pegar fogo, você tem a nuvem. É a proteção completa!'
+    },
+    {
+      id: 17,
+      category: 'Resposta a Incidentes',
+      question: 'Você caiu em um golpe de PIX e transferiu dinheiro por engano. Qual o PRIMEIRO passo nas primeiras horas?',
+      options: [
+        { id: 'a', text: 'Esperar alguns dias para ver se o dinheiro volta', isCorrect: false },
+        { id: 'b', text: 'Ligar IMEDIATAMENTE para o banco e solicitar o MED (Mecanismo Especial de Devolução)', isCorrect: true },
+        { id: 'c', text: 'Tentar contatar quem recebeu o dinheiro', isCorrect: false },
+        { id: 'd', text: 'Postar nas redes sociais pedindo ajuda', isCorrect: false }
+      ],
+      explanation: 'O MED permite bloquear o dinheiro antes que o golpista retire. Você tem até 80 dias para solicitar, mas quanto mais rápido ligar, maiores as chances de recuperar!',
+      wrongExplanation: 'Cada minuto conta! Ligar para o banco nas primeiras horas aumenta muito as chances de bloquear o dinheiro. O MED é um direito seu e pode salvar seu dinheiro.'
+    },
+    {
+      id: 18,
+      category: 'Resposta a Incidentes',
+      question: 'Após ser vítima de golpe, por que é importante fazer Boletim de Ocorrência mesmo que não recupere o dinheiro?',
+      options: [
+        { id: 'a', text: 'Só serve para estatísticas, não ajuda em nada', isCorrect: false },
+        { id: 'b', text: 'É necessário para processos de ressarcimento e investigações policiais', isCorrect: true },
+        { id: 'c', text: 'Não precisa fazer B.O., só ligar para o banco', isCorrect: false },
+        { id: 'd', text: 'Apenas para casos acima de R$ 10.000', isCorrect: false }
+      ],
+      explanation: 'O B.O. é fundamental para: contestar no banco, processos judiciais, investigações policiais e até para provar em seguro. Sempre faça, mesmo em valores pequenos!',
+      wrongExplanation: 'Sem B.O., o banco pode negar ressarcimento e a polícia não pode investigar. É seu documento oficial provando que foi vítima de crime, essencial para qualquer processo.'
+    },
+    {
+      id: 19,
+      category: 'Framework',
+      question: 'Segundo o Framework de Segurança Digital, qual é o primeiro pilar essencial para se proteger online?',
+      options: [
+        { id: 'a', text: 'Comprar um antivírus caro', isCorrect: false },
+        { id: 'b', text: 'Conhecimento Técnico - entender como funcionam os golpes e ameaças', isCorrect: true },
+        { id: 'c', text: 'Nunca usar internet', isCorrect: false },
+        { id: 'd', text: 'Confiar apenas em bancos físicos', isCorrect: false }
+      ],
+      explanation: 'O Conhecimento Técnico é o primeiro pilar porque você só pode se defender de ameaças que conhece. Entender como funcionam phishing, malware e golpes é a base da segurança digital.',
+      wrongExplanation: 'Sem conhecer as ameaças, nem o melhor antivírus te protege completamente. O conhecimento técnico te capacita a identificar golpes antes que causem danos.'
+    },
+    {
+      id: 20,
+      category: 'Framework',
+      question: 'O pilar de "Controlabilidade" do Framework ensina que:',
+      options: [
+        { id: 'a', text: 'Você não tem controle sobre sua segurança online', isCorrect: false },
+        { id: 'b', text: 'Apenas especialistas em TI podem se proteger', isCorrect: false },
+        { id: 'c', text: 'Você TEM o poder de se proteger com ações simples e práticas', isCorrect: true },
+        { id: 'd', text: 'Segurança digital é muito complicada para idosos', isCorrect: false }
+      ],
+      explanation: 'O pilar de Controlabilidade mostra que VOCÊ tem poder! Ações simples como ativar 2FA, usar senhas fortes e fazer backup já te protegem muito. Não precisa ser especialista!',
+      wrongExplanation: 'Este pilar é empoderador: mostra que com conhecimento básico e ações práticas (que você aprendeu aqui), você pode sim se proteger efetivamente. A segurança está em suas mãos!'
     }
   ],
   simulations: [
