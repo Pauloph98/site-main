@@ -1,6 +1,6 @@
 [build]
   base = "frontend"
-  command = "npm install --legacy-peer-deps && npm run build"
+  command = "rm -rf node_modules .cache build && npm install --legacy-peer-deps && npm run build"
   publish = "build"
 
 [[redirects]]
@@ -10,3 +10,4 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  CI = "false"
