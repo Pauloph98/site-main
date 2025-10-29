@@ -1,6 +1,6 @@
 [build]
   base = "frontend"
-  command = "yarn install && yarn build"
+  command = "npm install && npm run build"
   publish = "build"
 
 [[redirects]]
@@ -10,3 +10,4 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  NPM_FLAGS = "--legacy-peer-deps"
