@@ -8,53 +8,13 @@ from pydantic import BaseModel, Field
 from typing import List, Dict, Any
 import uuid
 from datetime import datetime
-import sqlite3
 import json
+from database import get_connection, init_db
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# Configuração do SQLite
-DB_PATH = ROOT_DIR / 'quiz_results.db'
-
-def init_db():
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS quiz_results (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_name TEXT NOT NULL,
-            user_age_range TEXT NOT NULL,
-            score INTEGER NOT NULL,
-            total_questions INTEGER NOT NULL,
-            test_type TEXT NOT NULL,
-            answers TEXT NOT NULL,
-            timestamp TEXT NOT NULL
-        )
-    ''')
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS survey_responses (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome_completo TEXT NOT NULL,
-            faixa_etaria TEXT NOT NULL,
-            frequencia_internet TEXT NOT NULL,
-            seguranca_navegacao TEXT NOT NULL,
-            vitima_golpe_virtual TEXT NOT NULL,
-            ligacao_golpe TEXT NOT NULL,
-            conhece_vitima TEXT NOT NULL,
-            mensagem_suspeita TEXT NOT NULL,
-            seguranca_banco TEXT NOT NULL,
-            compartilha_senhas TEXT NOT NULL,
-            criacao_senhas TEXT NOT NULL,
-            atualiza_apps TEXT NOT NULL,
-            conhece_phishing TEXT NOT NULL,
-            importancia_site TEXT NOT NULL,
-            timestamp TEXT NOT NULL
-        )
-    ''')
-    conn.commit()
-    conn.close()
-
+# Inicializar banco de dados MySQL
 init_db()
 
 app = FastAPI(title="Segurança Digital API", version="2.0.0")
@@ -93,12 +53,12 @@ class SurveyResponse(BaseModel):
 
 @api_router.post("/quiz-results", status_code=201)
 async def save_quiz_result(result: QuizResultCreate):
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_connection()
     cursor = conn.cursor()
     
     cursor.execute('''
         INSERT INTO quiz_results (user_name, user_age_range, score, total_questions, test_type, answers, timestamp)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
     ''', (
         result.user_name,
         result.user_age_range,
@@ -106,17 +66,18 @@ async def save_quiz_result(result: QuizResultCreate):
         result.total_questions,
         result.test_type,
         json.dumps([a.dict() for a in result.answers]),
-        result.timestamp.isoformat()
+        result.timestamp
     ))
     
     conn.commit()
+    cursor.close()
     conn.close()
     
     return {"message": "Resultado do quiz guardado com sucesso!"}
 
 @api_router.get("/quiz-results/stats")
 async def get_quiz_stats():
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_connection()
     cursor = conn.cursor()
     
     # Estatísticas do pré-teste
@@ -159,8 +120,11 @@ async def get_quiz_stats():
     all_answers = cursor.fetchall()
     
     question_stats = {}
-    for answers_json, test_type in all_answers:
-        answers = json.loads(answers_json)
+    for row in all_answers:
+        answers_json = row['answers'] if isinstance(row, dict) else row[0]
+        test_type = row['test_type'] if isinstance(row, dict) else row[1]
+        
+        answers = json.loads(answers_json) if isinstance(answers_json, str) else answers_json
         for answer in answers:
             q_id = answer['questionId']
             if q_id not in question_stats:
@@ -172,25 +136,26 @@ async def get_quiz_stats():
             if answer['isCorrect']:
                 question_stats[q_id][test_type]['correct'] += 1
     
+    cursor.close()
     conn.close()
     
     return {
         "pre_test": {
-            "total_users": pre_test_stats[0] or 0,
-            "avg_score": round(pre_test_stats[1] or 0, 2),
-            "avg_percentage": round(pre_test_stats[2] or 0, 2)
+            "total_users": pre_test_stats['total_users'] if pre_test_stats else 0,
+            "avg_score": round(pre_test_stats['avg_score'] or 0, 2) if pre_test_stats else 0,
+            "avg_percentage": round(pre_test_stats['avg_percentage'] or 0, 2) if pre_test_stats else 0
         },
         "post_test": {
-            "total_users": post_test_stats[0] or 0,
-            "avg_score": round(post_test_stats[1] or 0, 2),
-            "avg_percentage": round(post_test_stats[2] or 0, 2)
+            "total_users": post_test_stats['total_users'] if post_test_stats else 0,
+            "avg_score": round(post_test_stats['avg_score'] or 0, 2) if post_test_stats else 0,
+            "avg_percentage": round(post_test_stats['avg_percentage'] or 0, 2) if post_test_stats else 0
         },
         "age_range_stats": [
             {
-                "age_range": row[0],
-                "test_type": row[1],
-                "count": row[2],
-                "avg_percentage": round(row[3], 2)
+                "age_range": row['user_age_range'],
+                "test_type": row['test_type'],
+                "count": row['count'],
+                "avg_percentage": round(row['avg_percentage'], 2)
             }
             for row in age_range_stats
         ],
@@ -214,7 +179,7 @@ async def save_survey_response(response: SurveyResponse):
     try:
         print(f"Recebendo resposta da pesquisa: {response.dict()}")
         
-        conn = sqlite3.connect(DB_PATH)
+        conn = get_connection()
         cursor = conn.cursor()
         
         cursor.execute('''
@@ -223,7 +188,7 @@ async def save_survey_response(response: SurveyResponse):
                 vitima_golpe_virtual, ligacao_golpe, conhece_vitima, mensagem_suspeita,
                 seguranca_banco, compartilha_senhas, criacao_senhas, atualiza_apps,
                 conhece_phishing, importancia_site, timestamp
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         ''', (
             response.nome_completo,
             response.faixa_etaria,
@@ -239,10 +204,11 @@ async def save_survey_response(response: SurveyResponse):
             response.atualiza_apps,
             response.conhece_phishing,
             response.importancia_site,
-            response.timestamp.isoformat()
+            response.timestamp
         ))
         
         conn.commit()
+        cursor.close()
         conn.close()
         
         print("Pesquisa salva com sucesso!")
@@ -255,17 +221,18 @@ async def save_survey_response(response: SurveyResponse):
 
 @api_router.get("/survey-responses/stats")
 async def get_survey_stats():
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_connection()
     cursor = conn.cursor()
     
     # Total de respostas
-    cursor.execute('SELECT COUNT(*) FROM survey_responses')
-    total_responses = cursor.fetchone()[0]
+    cursor.execute('SELECT COUNT(*) as total FROM survey_responses')
+    total_result = cursor.fetchone()
+    total_responses = total_result['total'] if total_result else 0
     
     # Função auxiliar para contar respostas
     def count_responses(field):
-        cursor.execute(f'SELECT {field}, COUNT(*) as count FROM survey_responses GROUP BY {field}')
-        return [{"label": row[0], "count": row[1]} for row in cursor.fetchall()]
+        cursor.execute(f'SELECT {field} as label, COUNT(*) as count FROM survey_responses GROUP BY {field}')
+        return [{"label": row['label'], "count": row['count']} for row in cursor.fetchall()]
     
     stats = {
         "total_responses": total_responses,
@@ -284,6 +251,7 @@ async def get_survey_stats():
         "importancia_site": count_responses("importancia_site")
     }
     
+    cursor.close()
     conn.close()
     return stats
 
