@@ -1,0 +1,25 @@
+services:
+  # Backend Service
+  - type: web
+    name: seguranca-digital-backend
+    runtime: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/backend
+      sizeGB: 1
+
+  # Frontend Service
+  - type: web
+    name: seguranca-digital-frontend
+    runtime: static
+    buildCommand: cd frontend && yarn install && yarn build
+    staticPublishPath: frontend/build
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

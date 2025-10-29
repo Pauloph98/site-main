@@ -369,21 +369,24 @@ export const Simulations = () => {
           {simulations.map((simulation) => {
             const IconComponent = simulation.icon;
             return (
-              <Card key={simulation.id} className={`${simulation.bgColor} hover:shadow-lg transition-all duration-200 hover:scale-105 border-2`}>
-                <CardHeader>
-                  <div className="flex items-start justify-between">
+              <Card key={simulation.id} className={`${simulation.bgColor} hover:shadow-lg transition-all duration-200 hover:scale-105 border-2 flex flex-col h-full`}>
+                <CardHeader className="flex-shrink-0">
+                  <div className="flex items-start justify-between mb-4">
                     <IconComponent className={`h-8 w-8 ${simulation.color}`} />
                     <Badge variant="secondary">{simulation.difficulty}</Badge>
                   </div>
-                  <CardTitle className="text-xl">{simulation.title}</CardTitle>
+                  <CardTitle className="text-xl min-h-[3.5rem] flex items-center">{simulation.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-gray-600">{simulation.description}</p>
-                  <div className="flex items-center justify-between text-sm text-gray-500">
+                <CardContent className="space-y-4 flex-grow flex flex-col">
+                  <p className="text-gray-600 flex-grow min-h-[4rem]">{simulation.description}</p>
+                  <div className="flex items-center justify-between text-sm text-gray-500 pt-2 border-t">
                     <span>Duração: {simulation.duration}</span>
                     <span>{simulation.steps.length} passos</span>
                   </div>
-                  <Button onClick={() => handleStartSimulation(simulation)} className="w-full"><Play className="mr-2 h-4 w-4" />Iniciar Simulação</Button>
+                  <Button onClick={() => handleStartSimulation(simulation)} className="w-full mt-auto">
+                    <Play className="mr-2 h-4 w-4" />
+                    Iniciar Simulação
+                  </Button>
                 </CardContent>
               </Card>
             );

@@ -72,15 +72,19 @@ const Home = () => {
             {mockData.features.map((feature) => {
               const IconComponent = iconMap[feature.icon];
               return (
-                <Card key={feature.id} className={`${feature.color} cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105 border-2`} onClick={() => handleFeatureClick(feature.id)}>
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className={`p-3 rounded-lg ${feature.iconColor} bg-white`}>
+                <Card 
+                  key={feature.id} 
+                  className={`${feature.color} cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105 border-2 flex flex-col h-full`} 
+                  onClick={() => handleFeatureClick(feature.id)}
+                >
+                  <CardContent className="p-6 flex-grow flex">
+                    <div className="flex items-start space-x-4 w-full">
+                      <div className={`p-3 rounded-lg ${feature.iconColor} bg-white flex-shrink-0`}>
                         <IconComponent className="h-8 w-8" />
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 flex flex-col">
                         <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                        <p className="text-gray-600">{feature.description}</p>
+                        <p className="text-gray-600 flex-grow">{feature.description}</p>
                       </div>
                     </div>
                   </CardContent>

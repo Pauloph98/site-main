@@ -32,6 +32,26 @@ def init_db():
             timestamp TEXT NOT NULL
         )
     ''')
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS survey_responses (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome_completo TEXT NOT NULL,
+            faixa_etaria TEXT NOT NULL,
+            frequencia_internet TEXT NOT NULL,
+            seguranca_navegacao TEXT NOT NULL,
+            vitima_golpe_virtual TEXT NOT NULL,
+            ligacao_golpe TEXT NOT NULL,
+            conhece_vitima TEXT NOT NULL,
+            mensagem_suspeita TEXT NOT NULL,
+            seguranca_banco TEXT NOT NULL,
+            compartilha_senhas TEXT NOT NULL,
+            criacao_senhas TEXT NOT NULL,
+            atualiza_apps TEXT NOT NULL,
+            conhece_phishing TEXT NOT NULL,
+            importancia_site TEXT NOT NULL,
+            timestamp TEXT NOT NULL
+        )
+    ''')
     conn.commit()
     conn.close()
 
@@ -52,6 +72,23 @@ class QuizResultCreate(BaseModel):
     total_questions: int
     answers: List[QuizResultAnswer]
     test_type: str
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+
+class SurveyResponse(BaseModel):
+    nome_completo: str
+    faixa_etaria: str
+    frequencia_internet: str
+    seguranca_navegacao: str
+    vitima_golpe_virtual: str
+    ligacao_golpe: str
+    conhece_vitima: str
+    mensagem_suspeita: str
+    seguranca_banco: str
+    compartilha_senhas: str
+    criacao_senhas: str
+    atualiza_apps: str
+    conhece_phishing: str
+    importancia_site: str
     timestamp: datetime = Field(default_factory=datetime.utcnow)
 
 @api_router.post("/quiz-results", status_code=201)
@@ -172,12 +209,96 @@ async def get_quiz_stats():
         }
     }
 
+@api_router.post("/survey-responses", status_code=201)
+async def save_survey_response(response: SurveyResponse):
+    try:
+        print(f"Recebendo resposta da pesquisa: {response.dict()}")
+        
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            INSERT INTO survey_responses (
+                nome_completo, faixa_etaria, frequencia_internet, seguranca_navegacao,
+                vitima_golpe_virtual, ligacao_golpe, conhece_vitima, mensagem_suspeita,
+                seguranca_banco, compartilha_senhas, criacao_senhas, atualiza_apps,
+                conhece_phishing, importancia_site, timestamp
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            response.nome_completo,
+            response.faixa_etaria,
+            response.frequencia_internet,
+            response.seguranca_navegacao,
+            response.vitima_golpe_virtual,
+            response.ligacao_golpe,
+            response.conhece_vitima,
+            response.mensagem_suspeita,
+            response.seguranca_banco,
+            response.compartilha_senhas,
+            response.criacao_senhas,
+            response.atualiza_apps,
+            response.conhece_phishing,
+            response.importancia_site,
+            response.timestamp.isoformat()
+        ))
+        
+        conn.commit()
+        conn.close()
+        
+        print("Pesquisa salva com sucesso!")
+        return {"message": "Pesquisa salva com sucesso!"}
+    except Exception as e:
+        print(f"Erro ao salvar pesquisa: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        raise
+
+@api_router.get("/survey-responses/stats")
+async def get_survey_stats():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    
+    # Total de respostas
+    cursor.execute('SELECT COUNT(*) FROM survey_responses')
+    total_responses = cursor.fetchone()[0]
+    
+    # Função auxiliar para contar respostas
+    def count_responses(field):
+        cursor.execute(f'SELECT {field}, COUNT(*) as count FROM survey_responses GROUP BY {field}')
+        return [{"label": row[0], "count": row[1]} for row in cursor.fetchall()]
+    
+    stats = {
+        "total_responses": total_responses,
+        "faixa_etaria": count_responses("faixa_etaria"),
+        "frequencia_internet": count_responses("frequencia_internet"),
+        "seguranca_navegacao": count_responses("seguranca_navegacao"),
+        "vitima_golpe_virtual": count_responses("vitima_golpe_virtual"),
+        "ligacao_golpe": count_responses("ligacao_golpe"),
+        "conhece_vitima": count_responses("conhece_vitima"),
+        "mensagem_suspeita": count_responses("mensagem_suspeita"),
+        "seguranca_banco": count_responses("seguranca_banco"),
+        "compartilha_senhas": count_responses("compartilha_senhas"),
+        "criacao_senhas": count_responses("criacao_senhas"),
+        "atualiza_apps": count_responses("atualiza_apps"),
+        "conhece_phishing": count_responses("conhece_phishing"),
+        "importancia_site": count_responses("importancia_site")
+    }
+    
+    conn.close()
+    return stats
+
 app.include_router(api_router)
+
+# Configuração de CORS para desenvolvimento e produção
+ALLOWED_ORIGINS = os.getenv(
+    "ALLOWED_ORIGINS", 
+    "http://localhost:3000,http://127.0.0.1:3000"
+).split(",")
 
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_methods=["*"],
     allow_headers=["*"],
 )

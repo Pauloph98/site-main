@@ -101,7 +101,30 @@ const Content = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <AlertDialog open={showTopPopup} onOpenChange={setShowTopPopup}><AlertDialogContent><AlertDialogHeader><AlertDialogTitle className="flex items-center"><HelpCircle className="mr-2 h-6 w-6 text-blue-500" />Que tal medir seu conhecimento?</AlertDialogTitle><AlertDialogDescription>Vimos que ainda não fez a nossa avaliação inicial. Recomendamos fazê-la agora para que, no final, possa comparar e ver o quanto aprendeu!</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogCancel>Continuar a estudar</AlertDialogCancel><AlertDialogAction onClick={() => navigate('/quiz')}>Fazer Avaliação Inicial</AlertDialogAction></AlertDialogFooter></AlertDialogContent></AlertDialog>
+      <AlertDialog open={showTopPopup} onOpenChange={setShowTopPopup}>
+        <AlertDialogContent className="max-w-lg">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center text-2xl">
+              <HelpCircle className="mr-2 h-8 w-8 text-blue-500" />
+              Que tal medir seu conhecimento?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-black text-lg leading-relaxed pt-2">
+              Vimos que ainda não fez a nossa avaliação inicial. Recomendamos fazê-la agora para que, no final, possa comparar e ver o quanto aprendeu!
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="text-base px-6 py-3">
+              Continuar a estudar
+            </AlertDialogCancel>
+            <AlertDialogAction 
+              onClick={() => navigate('/quiz')}
+              className="text-base px-6 py-3"
+            >
+              Fazer Avaliação Inicial
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12"><h1 className="text-4xl font-bold text-gray-900 mb-4">Conteúdo Educativo</h1><p className="text-xl text-gray-600 max-w-3xl mx-auto">Aprenda sobre os principais riscos da internet e como se proteger.</p></div>
         <Tabs value={selectedContent} onValueChange={setSelectedContent} className="mb-12">
