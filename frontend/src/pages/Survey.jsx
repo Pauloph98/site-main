@@ -106,11 +106,11 @@ export const Survey = () => {
             <p className="text-gray-600">
               Sua pesquisa foi enviada com sucesso! Suas respostas ajudarão a melhorar a segurança digital para todos.
             </p>
-            <p className="text-sm text-gray-500">
-              Os resultados podem ser visualizados no Dashboard.
+            <p className="text-lg font-medium text-blue-600 mt-4">
+              Agradecemos sua participação! 🎉
             </p>
-            <Button onClick={() => window.location.href = '/dashboard'} className="w-full">
-              Ver Dashboard
+            <Button onClick={() => window.location.href = '/'} className="w-full">
+              Voltar ao Início
             </Button>
           </CardContent>
         </Card>
@@ -338,7 +338,7 @@ export const Survey = () => {
             </CardContent>
           </Card>
 
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center">
             <Button 
               type="submit" 
               size="lg" 
@@ -353,21 +353,6 @@ export const Survey = () => {
                   Enviar Pesquisa
                 </>
               )}
-            </Button>
-            
-            {/* Botão de Debug - REMOVER EM PRODUÇÃO */}
-            <Button 
-              type="button"
-              size="lg" 
-              variant="outline"
-              onClick={() => {
-                console.log('Estado atual do formulário:', formData);
-                const emptyFields = Object.entries(formData).filter(([key, value]) => !value || value.trim() === '');
-                console.log('Campos vazios:', emptyFields);
-                alert(`Campos preenchidos: ${14 - emptyFields.length}/14\nCampos vazios: ${emptyFields.map(([k]) => k).join(', ')}`);
-              }}
-            >
-              Debug
             </Button>
           </div>
         </form>

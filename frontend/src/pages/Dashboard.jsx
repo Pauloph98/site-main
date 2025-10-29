@@ -5,7 +5,7 @@ import { Badge } from '../components/ui/badge';
 import { TrendingUp, Users, Award, AlertCircle } from 'lucide-react';
 import axios from 'axios';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://seguranca-digital-backend.onrender.com';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
