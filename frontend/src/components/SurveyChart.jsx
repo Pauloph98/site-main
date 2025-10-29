@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { BarChart3, Users, AlertCircle, RefreshCw } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
@@ -94,11 +94,11 @@ export const SurveyChart = () => {
         </div>
 
         {/* Gráficos */}
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Faixa Etária */}
           <Card>
             <CardContent className="pt-6">
-              <h4 className="text-lg font-semibold text-gray-800 mb-4">Faixa Etária dos Participantes</h4>
+              <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Faixa Etária</h4>
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie
@@ -107,10 +107,10 @@ export const SurveyChart = () => {
                     nameKey="label"
                     cx="50%"
                     cy="50%"
-                    outerRadius={100}
-                    label={({label, count}) => {
-                      const percentage = ((count / surveyStats.total_responses) * 100).toFixed(1);
-                      return `${label}: ${percentage}%`;
+                    outerRadius={80}
+                    label={({count}) => {
+                      const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
+                      return `${percentage}%`;
                     }}
                   >
                     {surveyStats.faixa_etaria.map((entry, index) => (
@@ -132,20 +132,67 @@ export const SurveyChart = () => {
           {/* Frequência de Uso da Internet */}
           <Card>
             <CardContent className="pt-6">
-              <h4 className="text-lg font-semibold text-gray-800 mb-4">Frequência de Uso da Internet</h4>
+              <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Frequência Internet</h4>
               <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={surveyStats.frequencia_internet}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="label" angle={-15} textAnchor="end" height={80} />
-                  <YAxis />
+                <PieChart>
+                  <Pie
+                    data={surveyStats.frequencia_internet}
+                    dataKey="count"
+                    nameKey="label"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    label={({count}) => {
+                      const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
+                      return `${percentage}%`;
+                    }}
+                  >
+                    {surveyStats.frequencia_internet.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
                   <Tooltip 
                     formatter={(value) => {
                       const percentage = ((value / surveyStats.total_responses) * 100).toFixed(1);
                       return [`${value} (${percentage}%)`, 'Respostas'];
                     }}
                   />
-                  <Bar dataKey="count" fill="#3B82F6" label={{ position: 'top', formatter: (value) => `${((value / surveyStats.total_responses) * 100).toFixed(1)}%` }} />
-                </BarChart>
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+
+          {/* Segurança na Navegação */}
+          <Card>
+            <CardContent className="pt-6">
+              <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Segurança na Web</h4>
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie
+                    data={surveyStats.seguranca_navegacao}
+                    dataKey="count"
+                    nameKey="label"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    label={({count}) => {
+                      const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
+                      return `${percentage}%`;
+                    }}
+                  >
+                    {surveyStats.seguranca_navegacao.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip 
+                    formatter={(value) => {
+                      const percentage = ((value / surveyStats.total_responses) * 100).toFixed(1);
+                      return [`${value} (${percentage}%)`, 'Respostas'];
+                    }}
+                  />
+                  <Legend />
+                </PieChart>
               </ResponsiveContainer>
             </CardContent>
           </Card>
@@ -153,20 +200,33 @@ export const SurveyChart = () => {
           {/* Vítimas de Golpe Virtual */}
           <Card>
             <CardContent className="pt-6">
-              <h4 className="text-lg font-semibold text-gray-800 mb-4">Já foi vítima de golpe virtual?</h4>
+              <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Vítima de Golpe</h4>
               <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={surveyStats.vitima_golpe_virtual}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="label" />
-                  <YAxis />
+                <PieChart>
+                  <Pie
+                    data={surveyStats.vitima_golpe_virtual}
+                    dataKey="count"
+                    nameKey="label"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    label={({count}) => {
+                      const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
+                      return `${percentage}%`;
+                    }}
+                  >
+                    {surveyStats.vitima_golpe_virtual.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
                   <Tooltip 
                     formatter={(value) => {
                       const percentage = ((value / surveyStats.total_responses) * 100).toFixed(1);
                       return [`${value} (${percentage}%)`, 'Respostas'];
                     }}
                   />
-                  <Bar dataKey="count" fill="#FF8042" label={{ position: 'top', formatter: (value) => `${((value / surveyStats.total_responses) * 100).toFixed(1)}%` }} />
-                </BarChart>
+                  <Legend />
+                </PieChart>
               </ResponsiveContainer>
             </CardContent>
           </Card>
@@ -174,20 +234,33 @@ export const SurveyChart = () => {
           {/* Conhecimento sobre Phishing */}
           <Card>
             <CardContent className="pt-6">
-              <h4 className="text-lg font-semibold text-gray-800 mb-4">Conhecimento sobre Phishing</h4>
+              <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Conhece Phishing?</h4>
               <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={surveyStats.conhece_phishing}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="label" angle={-15} textAnchor="end" height={100} />
-                  <YAxis />
+                <PieChart>
+                  <Pie
+                    data={surveyStats.conhece_phishing}
+                    dataKey="count"
+                    nameKey="label"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    label={({count}) => {
+                      const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
+                      return `${percentage}%`;
+                    }}
+                  >
+                    {surveyStats.conhece_phishing.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
                   <Tooltip 
                     formatter={(value) => {
                       const percentage = ((value / surveyStats.total_responses) * 100).toFixed(1);
                       return [`${value} (${percentage}%)`, 'Respostas'];
                     }}
                   />
-                  <Bar dataKey="count" fill="#00C49F" label={{ position: 'top', formatter: (value) => `${((value / surveyStats.total_responses) * 100).toFixed(1)}%` }} />
-                </BarChart>
+                  <Legend />
+                </PieChart>
               </ResponsiveContainer>
             </CardContent>
           </Card>
@@ -195,20 +268,33 @@ export const SurveyChart = () => {
           {/* Importância do Site */}
           <Card>
             <CardContent className="pt-6">
-              <h4 className="text-lg font-semibold text-gray-800 mb-4">Importância deste Site Educativo</h4>
+              <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Importância do Site</h4>
               <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={surveyStats.importancia_site}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="label" angle={-15} textAnchor="end" height={100} />
-                  <YAxis />
+                <PieChart>
+                  <Pie
+                    data={surveyStats.importancia_site}
+                    dataKey="count"
+                    nameKey="label"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    label={({count}) => {
+                      const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
+                      return `${percentage}%`;
+                    }}
+                  >
+                    {surveyStats.importancia_site.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
                   <Tooltip 
                     formatter={(value) => {
                       const percentage = ((value / surveyStats.total_responses) * 100).toFixed(1);
                       return [`${value} (${percentage}%)`, 'Respostas'];
                     }}
                   />
-                  <Bar dataKey="count" fill="#8884D8" label={{ position: 'top', formatter: (value) => `${((value / surveyStats.total_responses) * 100).toFixed(1)}%` }} />
-                </BarChart>
+                  <Legend />
+                </PieChart>
               </ResponsiveContainer>
             </CardContent>
           </Card>
