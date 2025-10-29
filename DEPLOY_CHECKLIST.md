@@ -38,7 +38,7 @@ ALLOWED_ORIGINS=http://localhost:3000
 - [ ] Testar no navegador: `SUA-URL/api/survey-responses/stats`
 - [ ] ✅ Se aparecer `{"total_responses": 0, ...}` está OK!
 
-📝 **ANOTE A URL AQUI:** ______________________________________
+📝 **ANOTE A URL AQUI:** [______________________________________](https://seguranca-digital-backend.onrender.com)
 
 ---
 
