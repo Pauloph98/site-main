@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BookOpen, Play, CheckSquare, Award, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import GoogleFormsChart from '../components/GoogleFormsChart';
+import SurveyChart from '../components/SurveyChart';
 import mockData from '../mock';
 
 const iconMap = {
@@ -122,7 +122,7 @@ const Home = () => {
             </div>
           </div>
           
-          <GoogleFormsChart />
+          <SurveyChart />
         </div>
       </section>
 
