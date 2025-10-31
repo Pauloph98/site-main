@@ -1420,8 +1420,49 @@ const Content = () => {
           </TabsContent>
 
         </Tabs>
-        <div className="text-center bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-8 text-white">
-          <AlertDialog><AlertDialogTrigger asChild><Button size="lg" className="bg-white text-blue-600 hover:bg-gray-50 text-lg">Pronto para Testar seu Conhecimento?<ArrowRight className="ml-2 h-5 w-5" /></Button></AlertDialogTrigger><AlertDialogContent>{hasDonePreTest ? (<><AlertDialogHeader><AlertDialogTitle>Ótimo trabalho!</AlertDialogTitle><AlertDialogDescription>Já completou a avaliação inicial. Agora é a hora de fazer o quiz final para testar o que aprendeu!</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogCancel>Voltar</AlertDialogCancel><AlertDialogAction onClick={() => navigate('/quiz')}>Fazer Quiz Final</AlertDialogAction></AlertDialogFooter></>) : (<><AlertDialogHeader><AlertDialogTitle>Vamos começar?</AlertDialogTitle><AlertDialogDescription>Para medir o seu progresso, o primeiro passo é fazer a nossa avaliação inicial.</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogCancel>Voltar</AlertDialogCancel><AlertDialogAction onClick={() => navigate('/quiz')}>Fazer Avaliação Inicial</AlertDialogAction></AlertDialogFooter></>)}</AlertDialogContent></AlertDialog>
+        <div className="text-center bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-4 sm:p-8 text-white">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">Pronto para Testar seu Conhecimento?</h2>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-50 text-base sm:text-lg w-full sm:w-auto">
+                Fazer Quiz
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              {hasDonePreTest ? (
+                <>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Ótimo trabalho!</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Já completou a avaliação inicial. Agora é a hora de fazer o quiz final para testar o que aprendeu!
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Voltar</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => navigate('/quiz')}>
+                      Fazer Quiz Final
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </>
+              ) : (
+                <>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Vamos começar?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Para medir o seu progresso, o primeiro passo é fazer a nossa avaliação inicial.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Voltar</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => navigate('/quiz')}>
+                      Fazer Avaliação Inicial
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </>
+              )}
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </div>
     </div>
