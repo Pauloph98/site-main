@@ -94,12 +94,12 @@ export const SurveyChart = () => {
         </div>
 
         {/* Gráficos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-col gap-6 md:grid md:grid-cols-2 lg:grid-cols-3">
           {/* Faixa Etária */}
           <Card>
             <CardContent className="pt-6">
               <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Faixa Etária</h4>
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
                   <Pie
                     data={surveyStats.faixa_etaria}
@@ -107,7 +107,7 @@ export const SurveyChart = () => {
                     nameKey="label"
                     cx="50%"
                     cy="50%"
-                    outerRadius={80}
+                    outerRadius={70}
                     label={({count}) => {
                       const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
                       return `${percentage}%`;
@@ -133,7 +133,7 @@ export const SurveyChart = () => {
           <Card>
             <CardContent className="pt-6">
               <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Frequência Internet</h4>
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
                   <Pie
                     data={surveyStats.frequencia_internet}
@@ -141,7 +141,7 @@ export const SurveyChart = () => {
                     nameKey="label"
                     cx="50%"
                     cy="50%"
-                    outerRadius={80}
+                    outerRadius={70}
                     label={({count}) => {
                       const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
                       return `${percentage}%`;
@@ -167,7 +167,7 @@ export const SurveyChart = () => {
           <Card>
             <CardContent className="pt-6">
               <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Segurança na Web</h4>
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
                   <Pie
                     data={surveyStats.seguranca_navegacao}
@@ -175,7 +175,7 @@ export const SurveyChart = () => {
                     nameKey="label"
                     cx="50%"
                     cy="50%"
-                    outerRadius={80}
+                    outerRadius={70}
                     label={({count}) => {
                       const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
                       return `${percentage}%`;
@@ -201,7 +201,7 @@ export const SurveyChart = () => {
           <Card>
             <CardContent className="pt-6">
               <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Vítima de Golpe</h4>
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
                   <Pie
                     data={surveyStats.vitima_golpe_virtual}
@@ -209,7 +209,7 @@ export const SurveyChart = () => {
                     nameKey="label"
                     cx="50%"
                     cy="50%"
-                    outerRadius={80}
+                    outerRadius={70}
                     label={({count}) => {
                       const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
                       return `${percentage}%`;
@@ -235,7 +235,7 @@ export const SurveyChart = () => {
           <Card>
             <CardContent className="pt-6">
               <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Conhece Phishing?</h4>
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
                   <Pie
                     data={surveyStats.conhece_phishing}
@@ -243,7 +243,7 @@ export const SurveyChart = () => {
                     nameKey="label"
                     cx="50%"
                     cy="50%"
-                    outerRadius={80}
+                    outerRadius={70}
                     label={({count}) => {
                       const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
                       return `${percentage}%`;
@@ -269,7 +269,7 @@ export const SurveyChart = () => {
           <Card>
             <CardContent className="pt-6">
               <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Importância do Site</h4>
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
                   <Pie
                     data={surveyStats.importancia_site}
@@ -277,7 +277,7 @@ export const SurveyChart = () => {
                     nameKey="label"
                     cx="50%"
                     cy="50%"
-                    outerRadius={80}
+                    outerRadius={70}
                     label={({count}) => {
                       const percentage = ((count / surveyStats.total_responses) * 100).toFixed(0);
                       return `${percentage}%`;
