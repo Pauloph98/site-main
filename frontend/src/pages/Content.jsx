@@ -102,23 +102,23 @@ const Content = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <AlertDialog open={showTopPopup} onOpenChange={setShowTopPopup}>
-        <AlertDialogContent className="max-w-lg">
+        <AlertDialogContent className="max-w-[90vw] sm:max-w-lg mx-4">
           <AlertDialogHeader>
-            <AlertDialogTitle className="flex items-center text-2xl">
-              <HelpCircle className="mr-2 h-8 w-8 text-blue-500" />
-              Que tal medir seu conhecimento?
+            <AlertDialogTitle className="flex items-center text-lg sm:text-2xl">
+              <HelpCircle className="mr-2 h-6 w-6 sm:h-8 sm:w-8 text-blue-500 flex-shrink-0" />
+              <span>Que tal medir seu conhecimento?</span>
             </AlertDialogTitle>
-            <AlertDialogDescription className="text-black text-lg leading-relaxed pt-2">
+            <AlertDialogDescription className="text-black text-sm sm:text-lg leading-relaxed pt-2">
               Vimos que ainda não fez a nossa avaliação inicial. Recomendamos fazê-la agora para que, no final, possa comparar e ver o quanto aprendeu!
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel className="text-base px-6 py-3">
+          <AlertDialogFooter className="flex-col sm:flex-row gap-2">
+            <AlertDialogCancel className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-auto">
               Continuar a estudar
             </AlertDialogCancel>
             <AlertDialogAction 
               onClick={() => navigate('/quiz')}
-              className="text-base px-6 py-3"
+              className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-auto"
             >
               Fazer Avaliação Inicial
             </AlertDialogAction>

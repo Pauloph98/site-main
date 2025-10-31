@@ -12,16 +12,32 @@ export const SurveyChart = () => {
   const [surveyStats, setSurveyStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loadingTime, setLoadingTime] = useState(0);
 
   const fetchSurveyStats = async () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get(`${BACKEND_URL}/api/survey-responses/stats`);
+      setLoadingTime(0);
+      
+      // Timeout para mostrar mensagem de espera
+      const timeoutId = setTimeout(() => {
+        setLoadingTime(10);
+      }, 10000);
+      
+      const response = await axios.get(`${BACKEND_URL}/api/survey-responses/stats`, {
+        timeout: 30000 // 30 segundos de timeout
+      });
+      
+      clearTimeout(timeoutId);
       setSurveyStats(response.data);
     } catch (err) {
       console.error('Erro ao buscar estatísticas da pesquisa:', err);
-      setError('Erro ao carregar dados da pesquisa.');
+      if (err.code === 'ECONNABORTED') {
+        setError('O servidor está demorando para responder. O Render pode estar "acordando" (leva até 30 segundos). Tente novamente.');
+      } else {
+        setError('Erro ao carregar dados da pesquisa.');
+      }
     } finally {
       setLoading(false);
     }
@@ -36,7 +52,12 @@ export const SurveyChart = () => {
       <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
         <div className="flex flex-col items-center justify-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
-          <p className="text-gray-600">Carregando estatísticas da pesquisa...</p>
+          <p className="text-gray-600 font-semibold">Carregando estatísticas da pesquisa...</p>
+          {loadingTime > 0 && (
+            <p className="text-sm text-gray-500 mt-2">
+              ⏳ O servidor pode estar "acordando" (Render Free). Aguarde mais alguns segundos...
+            </p>
+          )}
         </div>
       </div>
     );
