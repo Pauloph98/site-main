@@ -128,7 +128,7 @@ const Content = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12"><h1 className="text-4xl font-bold text-gray-900 mb-4">Conteúdo Educativo</h1><p className="text-xl text-gray-600 max-w-3xl mx-auto">Aprenda sobre os principais riscos da internet e como se proteger.</p></div>
         <Tabs value={selectedContent} onValueChange={setSelectedContent} className="mb-12">
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 md:grid-cols-8 mb-8">{contentTypes.map((type) => (<TabsTrigger key={type.id} value={type.id} className="flex items-center space-x-2 text-xs sm:text-sm"><type.icon className={`h-4 w-4 ${type.color}`} /><span>{type.title}</span></TabsTrigger>))}</TabsList>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-2 mb-8 h-auto">{contentTypes.map((type) => (<TabsTrigger key={type.id} value={type.id} className="flex items-center justify-center space-x-2 text-xs sm:text-sm py-3"><type.icon className={`h-4 w-4 ${type.color}`} /><span>{type.title}</span></TabsTrigger>))}</TabsList>
           
           <TabsContent value="phishing">
             <Card>
