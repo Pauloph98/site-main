@@ -7,25 +7,35 @@ import { useNavigate } from 'react-router-dom';
 export const Termos = () => {
   const navigate = useNavigate();
 
+  const handleBack = () => {
+    // Verifica se há histórico de navegação
+    if (window.history.length > 1) {
+      navigate(-1); // Volta para a página anterior
+    } else {
+      navigate('/'); // Fallback para home se não houver histórico
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Button 
           variant="ghost" 
-          onClick={() => navigate(-1)}
-          className="mb-6"
+          onClick={handleBack}
+          className="mb-6 min-h-touch min-w-touch text-base"
+          aria-label="Voltar para página anterior"
         >
-          <ArrowLeft className="mr-2 h-4 w-4" />
+          <ArrowLeft className="mr-2 h-5 w-5" aria-hidden="true" />
           Voltar
         </Button>
 
         <Card className="mb-8">
           <CardHeader className="text-center border-b">
-            <Shield className="h-16 w-16 text-blue-600 mx-auto mb-4" />
+            <Shield className="h-16 w-16 text-blue-600 mx-auto mb-4" aria-hidden="true" />
             <CardTitle className="text-3xl font-bold text-gray-900">
               Termo de Consentimento Livre e Esclarecido
             </CardTitle>
-            <p className="text-sm text-gray-600 mt-2">
+            <p className="text-base text-gray-600 mt-2">
               Projeto de Pesquisa: Segurança Cibernética para Idosos
             </p>
           </CardHeader>
