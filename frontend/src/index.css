@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* WCAG 2.1 AA - Acessibilidade */
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -9,11 +10,47 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-size: 16px; /* WCAG: Tamanho mínimo de fonte */
+    line-height: 1.5; /* WCAG: Espaçamento entre linhas */
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
+}
+
+/* WCAG 2.1 AA - Botões e áreas clicáveis ≥44x44px */
+button, 
+a[role="button"],
+input[type="submit"],
+input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* WCAG 2.1 AA - Foco visível para navegação por teclado */
+*:focus-visible {
+    outline: 3px solid #2563eb; /* Azul com alto contraste */
+    outline-offset: 2px;
+}
+
+/* WCAG 2.1 AA - Links com contraste adequado */
+a {
+    color: #1d4ed8; /* Azul escuro - contraste 4.5:1 */
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #1e40af; /* Azul mais escuro */
+}
+
+/* WCAG 2.1 AA - Texto de erro com contraste adequado */
+.text-red-600 {
+    color: #dc2626 !important; /* Vermelho com contraste 4.5:1 */
+}
+
+.text-red-800 {
+    color: #991b1b !important; /* Vermelho escuro */
 }
 
 

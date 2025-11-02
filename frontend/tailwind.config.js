@@ -7,6 +7,17 @@ module.exports = {
   ],
   theme: {
   	extend: {
+  		fontSize: {
+  			base: '16px', // WCAG 2.1 AA: Tamanho mínimo de fonte
+  			lg: '18px',
+  			xl: '20px',
+  		},
+  		minHeight: {
+  			'touch': '44px', // WCAG 2.1 AA: Área clicável mínima
+  		},
+  		minWidth: {
+  			'touch': '44px', // WCAG 2.1 AA: Área clicável mínima
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
