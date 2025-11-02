@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { BookOpen, Play, CheckSquare, Award, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import SurveyChart from '../components/SurveyChart';
 import mockData from '../mock';
 
 const iconMap = {
@@ -102,7 +101,7 @@ const Home = () => {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">Baseado em pesquisas do IBGE e estudos acadêmicos</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6 bg-blue-50 rounded-lg border-2 border-blue-200">
               <div className="text-4xl font-bold text-blue-600 mb-2">66%</div>
               <div className="text-sm text-gray-600 mb-2">dos idosos conectados</div>
@@ -121,8 +120,6 @@ const Home = () => {
               <div className="text-xs text-gray-500">Agência Brasil (2024)</div>
             </div>
           </div>
-          
-          <SurveyChart />
         </div>
       </section>
 
