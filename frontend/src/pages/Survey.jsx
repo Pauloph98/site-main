@@ -6,6 +6,7 @@ import { Label } from '../components/ui/label';
 import { Input } from '../components/ui/input';
 import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
 import { Textarea } from '../components/ui/textarea';
+import { Checkbox } from '../components/ui/checkbox';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
@@ -31,6 +32,7 @@ export const Survey = () => {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [consentAccepted, setConsentAccepted] = useState(false);
 
   const handleInputChange = (name, value) => {
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -40,6 +42,14 @@ export const Survey = () => {
     e.preventDefault();
     setSubmitting(true);
     setError('');
+
+    // Validar consentimento
+    if (!consentAccepted) {
+      setError('Por favor, aceite o Termo de Consentimento e a Política de Privacidade antes de enviar.');
+      setSubmitting(false);
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      return;
+    }
 
     // Validar se todos os campos foram preenchidos
     const emptyFields = Object.entries(formData).filter(([key, value]) => !value || value.trim() === '');
@@ -338,12 +348,36 @@ export const Survey = () => {
             </CardContent>
           </Card>
 
+          {/* Consentimento LGPD */}
+          <Card className="border-2 border-blue-300">
+            <CardContent className="pt-6">
+              <div className="space-y-4 p-4 bg-blue-50 rounded-lg">
+                <div className="flex items-start space-x-3">
+                  <Checkbox 
+                    id="survey-consent" 
+                    checked={consentAccepted}
+                    onCheckedChange={setConsentAccepted}
+                    className="mt-1"
+                  />
+                  <Label htmlFor="survey-consent" className="text-base leading-relaxed cursor-pointer">
+                    Li e aceito o <a href="/termos" target="_blank" className="text-blue-600 hover:underline font-semibold">Termo de Consentimento</a> e a <a href="/privacidade" target="_blank" className="text-blue-600 hover:underline font-semibold">Política de Privacidade</a>. Concordo que meus dados sejam coletados e utilizados para fins de pesquisa acadêmica (TCC), conforme descrito nos documentos. *
+                  </Label>
+                </div>
+                {!consentAccepted && (
+                  <p className="text-sm text-red-600 font-medium">
+                    ⚠️ É necessário aceitar os termos para enviar a pesquisa.
+                  </p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="flex justify-center">
             <Button 
               type="submit" 
               size="lg" 
               className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-6 text-lg"
-              disabled={submitting}
+              disabled={submitting || !consentAccepted}
             >
               {submitting ? (
                 <>Enviando...</>

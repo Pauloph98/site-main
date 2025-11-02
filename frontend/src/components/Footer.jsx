@@ -27,7 +27,16 @@ export const Footer = () => {
               <li><a href="/quiz" className="text-gray-300 hover:text-blue-400 transition-colors">Quiz Interativo</a></li>
               <li><a href="/pesquisas" className="text-gray-300 hover:text-blue-400 transition-colors">Pesquisas</a></li>
             </ul>
+            <h3 className="text-lg font-semibold mt-6 mb-4">Informações Legais</h3>
+            <ul className="space-y-2">
+              <li><a href="/termos" className="text-gray-300 hover:text-blue-400 transition-colors">Termo de Consentimento</a></li>
+              <li><a href="/privacidade" className="text-gray-300 hover:text-blue-400 transition-colors">Política de Privacidade</a></li>
+            </ul>
           </div>
+        </div>
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+          <p>&copy; 2025 Paulo Henrique Pereira Silva Barros - TCC UNIALFA. Todos os direitos reservados.</p>
+          <p className="mt-2">Este projeto está em conformidade com a LGPD (Lei 13.709/2018)</p>
         </div>
       </div>
     </footer>

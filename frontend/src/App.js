@@ -12,6 +12,8 @@ import QuizGate from "./pages/QuizGate";
 import PreQuiz from "./pages/PreQuiz";
 import Quiz from "./pages/Quiz";
 import Dashboard from "./pages/Dashboard";
+import Termos from "./pages/Termos";
+import Privacidade from "./pages/Privacidade";
 import { Toaster } from "./components/ui/sonner";
 
 function AppContent() {
@@ -32,6 +34,8 @@ function AppContent() {
           <Route path="/pos-teste" element={<Quiz />} />
           <Route path="/pesquisas" element={<Survey />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/termos" element={<Termos />} />
+          <Route path="/privacidade" element={<Privacidade />} />
         </Routes>
       </main>
       {!isCartilhaPage && <Footer />}
