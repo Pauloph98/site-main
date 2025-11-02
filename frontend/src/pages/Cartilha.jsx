@@ -63,34 +63,41 @@ const CartilhaCompleta = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 print:px-4">
         
         {/* Barra de Ações Superior */}
-        <div className="sticky top-0 bg-white/95 backdrop-blur-sm z-10 py-4 mb-8 border-b border-gray-200 print:hidden">
+        <div 
+          className="sticky top-0 bg-white/95 backdrop-blur-sm z-10 py-4 mb-8 border-b border-gray-200 print:hidden"
+          role="navigation"
+          aria-label="Ações da cartilha"
+        >
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3 text-center lg:text-left">
-              <BookOpen className="h-8 sm:h-10 w-8 sm:w-10 text-blue-600 flex-shrink-0" />
+              <BookOpen className="h-8 sm:h-10 w-8 sm:w-10 text-blue-600 flex-shrink-0" aria-hidden="true" />
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">Cartilha de Segurança Digital</h1>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full lg:w-auto">
               <Button 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 text-lg sm:text-xl font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 w-full sm:w-auto min-h-[60px]" 
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 text-lg sm:text-xl font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 w-full sm:w-auto min-h-[60px] min-w-touch" 
                 onClick={handleDownloadPDF}
+                aria-label="Baixar cartilha em PDF para impressão"
               >
-                <Download className="mr-3 h-6 w-6" />
+                <Download className="mr-3 h-6 w-6" aria-hidden="true" />
                 Baixar PDF
               </Button>
               <Button 
                 variant="outline" 
-                className="border-2 border-gray-300 hover:border-gray-400 px-6 py-4 text-lg sm:text-xl font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-200 w-full sm:w-auto min-h-[60px]" 
+                className="border-2 border-gray-300 hover:border-gray-400 px-6 py-4 text-lg sm:text-xl font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-200 w-full sm:w-auto min-h-[60px] min-w-touch" 
                 onClick={handlePrint}
+                aria-label="Imprimir cartilha"
               >
-                <Printer className="mr-3 h-6 w-6" />
+                <Printer className="mr-3 h-6 w-6" aria-hidden="true" />
                 Imprimir
               </Button>
               <Button 
                 variant="outline" 
-                className="border-2 border-red-300 hover:border-red-400 text-red-600 hover:text-red-700 px-4 py-4 rounded-xl font-bold min-h-[60px]" 
+                className="border-2 border-red-300 hover:border-red-400 text-red-600 hover:text-red-700 px-4 py-4 rounded-xl font-bold min-h-[60px] min-w-[60px]" 
                 onClick={handleClose}
+                aria-label="Fechar cartilha"
               >
-                <X className="h-6 w-6" />
+                <X className="h-6 w-6" aria-hidden="true" />
                 <span className="sr-only">Fechar</span>
               </Button>
             </div>
@@ -98,9 +105,9 @@ const CartilhaCompleta = () => {
         </div>
 
         {/* Header Principal */}
-        <div className="text-center mb-16 print:mb-8">
+        <header className="text-center mb-16 print:mb-8">
           <div className="inline-flex items-center gap-4 mb-6 print:mb-4">
-            <BookOpen className="h-16 w-16 text-blue-600 print:h-10 print:w-10" />
+            <BookOpen className="h-16 w-16 text-blue-600 print:h-10 print:w-10" aria-hidden="true" />
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 print:text-3xl leading-tight">
                 Cartilha de Segurança Digital
@@ -111,21 +118,31 @@ const CartilhaCompleta = () => {
           <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed print:text-xl print:mb-4">
             Um guia completo e simplificado para navegar com segurança no mundo digital
           </p>
-        </div>
+        </header>
 
         {/* Player de Áudio Acessível */}
-        <div className="mb-12 print:hidden">
+        <section 
+          className="mb-12 print:hidden"
+          aria-label="Áudio narrado da cartilha"
+        >
           <AudioPlayer 
             audioSrc="/audio/cartilha_audio.mp3"
             title="🎧 Ouça a Cartilha Completa"
           />
-        </div>
+        </section>
 
         {/* 1. Introdução */}
-        <Card className="mb-12 print:mb-6 shadow-xl border-2 border-blue-200 print:shadow-none print:border-gray-400">
+        <Card 
+          className="mb-12 print:mb-6 shadow-xl border-2 border-blue-200 print:shadow-none print:border-gray-400"
+          role="article"
+          aria-labelledby="intro-heading"
+        >
           <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg py-6 print:py-4 print:bg-white print:text-black">
-            <CardTitle className="flex items-center gap-4 text-3xl print:text-2xl font-bold">
-              <Home className="h-10 w-10 print:h-8 print:w-8" />
+            <CardTitle 
+              id="intro-heading"
+              className="flex items-center gap-4 text-3xl print:text-2xl font-bold"
+            >
+              <Home className="h-10 w-10 print:h-8 print:w-8" aria-hidden="true" />
               1. Introdução à Segurança Digital
             </CardTitle>
           </CardHeader>
@@ -966,20 +983,35 @@ const CartilhaCompleta = () => {
         </Card>
 
         {/* Call to action final */}
-        <div className="text-center mt-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-8 text-white print:hidden">
+        <section 
+          className="text-center mt-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-8 text-white print:hidden"
+          role="complementary"
+          aria-label="Próximas ações"
+        >
           <h3 className="text-2xl font-semibold mb-4">🎯 Parabéns por chegar até aqui!</h3>
           <p className="text-lg mb-6">Você agora tem o conhecimento necessário para navegar com segurança no mundo digital.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button className="bg-white text-blue-600 hover:bg-gray-100" size="lg" onClick={handleDownloadPDF}>
-              <Download className="mr-2 h-5 w-5" />
+            <Button 
+              className="bg-white text-blue-600 hover:bg-gray-100 min-h-touch min-w-touch text-base" 
+              size="lg" 
+              onClick={handleDownloadPDF}
+              aria-label="Baixar cartilha completa em PDF"
+            >
+              <Download className="mr-2 h-5 w-5" aria-hidden="true" />
               Baixar Cartilha Completa
             </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600" size="lg" onClick={handleQuizClick}>
-              <ArrowRight className="mr-2 h-5 w-5" />
+            <Button 
+              variant="outline" 
+              className="border-white text-white hover:bg-white hover:text-blue-600 min-h-touch min-w-touch text-base" 
+              size="lg" 
+              onClick={handleQuizClick}
+              aria-label="Iniciar quiz de conhecimento sobre segurança digital"
+            >
+              <ArrowRight className="mr-2 h-5 w-5" aria-hidden="true" />
               Fazer Quiz de Conhecimento
             </Button>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );
