@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
+import AudioPlayer from '../components/AudioPlayer';
 import { 
   BookOpen, 
   Shield, 
@@ -110,6 +111,14 @@ const CartilhaCompleta = () => {
           <p className="text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed print:text-xl print:mb-4">
             Um guia completo e simplificado para navegar com segurança no mundo digital
           </p>
+        </div>
+
+        {/* Player de Áudio Acessível */}
+        <div className="mb-12 print:hidden">
+          <AudioPlayer 
+            audioSrc="/audio/cartilha_audio.mp3"
+            title="🎧 Ouça a Cartilha Completa"
+          />
         </div>
 
         {/* 1. Introdução */}
