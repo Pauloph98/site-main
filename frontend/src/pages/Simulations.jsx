@@ -287,7 +287,7 @@ export const Simulations = () => {
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">{currentSimulation.title}</h1>
             <Progress value={((currentStep + 1) / currentSimulation.steps.length) * 100} className="w-full" />
-            <p className="text-sm text-gray-600 mt-2">Passo {currentStep + 1} de {currentSimulation.steps.length}</p>
+            <p className="text-sm text-gray-700 mt-2">Passo {currentStep + 1} de {currentSimulation.steps.length}</p>
           </div>
           <Card className="mb-6">
             <CardHeader><CardTitle>{step.question}</CardTitle></CardHeader>
@@ -338,7 +338,7 @@ export const Simulations = () => {
               <div className="text-6xl font-bold text-blue-600">{score}%</div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">{score >= 80 ? 'Excelente!' : score >= 60 ? 'Bom trabalho!' : 'Continue praticando!'}</h3>
-                <p className="text-gray-600">{score >= 80 ? 'Você demonstrou excelente conhecimento!' : score >= 60 ? 'Você está no caminho certo. Continue a praticar.' : 'Não desanime! A prática leva à perfeição.'}</p>
+                <p className="text-gray-700">{score >= 80 ? 'Você demonstrou excelente conhecimento!' : score >= 60 ? 'Você está no caminho certo. Continue a praticar.' : 'Não desanime! A prática leva à perfeição.'}</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button onClick={() => navigate('/conteudo')} size="lg" className="bg-blue-600 hover:bg-blue-700">
@@ -361,7 +361,7 @@ export const Simulations = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Simulações Interativas</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             Aprender fazendo é a melhor forma de se proteger. Aqui, você pode praticar em cenários de golpes comuns, como e-mails falsos e mensagens suspeitas, num ambiente <strong>totalmente seguro e educativo</strong>. Nada aqui é real, é apenas um treino!
           </p>
         </div>
@@ -378,7 +378,7 @@ export const Simulations = () => {
                   <CardTitle className="text-xl min-h-[3.5rem] flex items-center">{simulation.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 flex-grow flex flex-col">
-                  <p className="text-gray-600 flex-grow min-h-[4rem]">{simulation.description}</p>
+                  <p className="text-gray-700 flex-grow min-h-[4rem]">{simulation.description}</p>
                   <div className="flex items-center justify-between text-sm text-gray-500 pt-2 border-t">
                     <span>Duração: {simulation.duration}</span>
                     <span>{simulation.steps.length} passos</span>

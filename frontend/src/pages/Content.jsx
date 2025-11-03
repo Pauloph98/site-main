@@ -26,7 +26,7 @@ const TutorialSection = ({ tutorialId }) => {
             <GraduationCap className="h-8 w-8 text-blue-600 mr-4 flex-shrink-0" />
             <div>
               <p className="font-semibold text-blue-800">Aprenda o passo a passo: {tutorial.title}</p>
-              <p className="text-sm text-gray-600 hidden sm:block">{tutorial.description}</p>
+              <p className="text-sm text-gray-700 hidden sm:block">{tutorial.description}</p>
             </div>
           </div>
           <Button onClick={() => setIsOpen(true)} className="w-full sm:w-auto flex-shrink-0">Ver Tutorial</Button>
@@ -52,7 +52,7 @@ const SimulationSection = ({ simulationId }) => {
             <Play className="h-8 w-8 text-green-600 mr-4 flex-shrink-0" />
             <div>
               <p className="font-semibold text-green-800">Pratique com simulação: {simulation.title}</p>
-              <p className="text-sm text-gray-600 hidden sm:block">{simulation.description}</p>
+              <p className="text-sm text-gray-700 hidden sm:block">{simulation.description}</p>
             </div>
           </div>
           <Button onClick={() => setIsOpen(true)} className="w-full sm:w-auto flex-shrink-0 bg-green-600 hover:bg-green-700">Fazer Simulação</Button>
@@ -93,7 +93,7 @@ const Content = () => {
     <div className={`mt-6 bg-gradient-to-r ${colorClass} p-6 rounded-lg`}>
       <div className="flex items-center space-x-4">
         <div className="p-3 bg-white rounded-full shadow-md"><Icon className={`h-8 w-8 ${iconColorClass}`} /></div>
-        <div><h3 className="text-lg font-semibold text-gray-800">{title}</h3><p className="text-sm text-gray-600">{description}</p></div>
+        <div><h3 className="text-lg font-semibold text-gray-800">{title}</h3><p className="text-sm text-gray-700">{description}</p></div>
         <Button className="ml-auto" onClick={() => navigate(link)}>{buttonText} <ArrowRight className="ml-2 h-4 w-4" /></Button>
       </div>
     </div>
@@ -126,7 +126,7 @@ const Content = () => {
         </AlertDialogContent>
       </AlertDialog>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12"><h1 className="text-4xl font-bold text-gray-900 mb-4">Conteúdo Educativo</h1><p className="text-xl text-gray-600 max-w-3xl mx-auto">Aprenda sobre os principais riscos da internet e como se proteger.</p></div>
+        <div className="text-center mb-12"><h1 className="text-4xl font-bold text-gray-900 mb-4">Conteúdo Educativo</h1><p className="text-xl text-gray-700 max-w-3xl mx-auto">Aprenda sobre os principais riscos da internet e como se proteger.</p></div>
         <Tabs value={selectedContent} onValueChange={setSelectedContent} className="mb-12">
           <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-2 mb-8 h-auto">{contentTypes.map((type) => (<TabsTrigger key={type.id} value={type.id} className="flex items-center justify-center space-x-2 text-xs sm:text-sm py-3"><type.icon className={`h-4 w-4 ${type.color}`} /><span>{type.title}</span></TabsTrigger>))}</TabsList>
           
@@ -143,7 +143,7 @@ const Content = () => {
                   </div>
                   
                   <h4 className="font-semibold text-gray-800">Como Identificar:</h4>
-                  <ul className="list-disc list-inside text-gray-600 space-y-1">
+                  <ul className="list-disc list-inside text-gray-700 space-y-1">
                     <li>Mensagens com tom de urgência excessiva</li>
                     <li>Remetentes com domínios suspeitos (ex: banco.verificacao@email.com)</li>
                     <li>Links que não correspondem ao site oficial</li>
@@ -199,35 +199,35 @@ const Content = () => {
                         <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
                           <span className="font-medium">Anexos de Email:</span>
-                          <span className="text-sm text-gray-600"> Documentos infectados enviados por criminosos</span>
+                          <span className="text-sm text-gray-700"> Documentos infectados enviados por criminosos</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
                           <span className="font-medium">Downloads Falsos:</span>
-                          <span className="text-sm text-gray-600"> Programas "grátis" de sites duvidosos</span>
+                          <span className="text-sm text-gray-700"> Programas "grátis" de sites duvidosos</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
                           <span className="font-medium">Pen Drives Infectados:</span>
-                          <span className="text-sm text-gray-600"> Dispositivos USB com arquivos maliciosos</span>
+                          <span className="text-sm text-gray-700"> Dispositivos USB com arquivos maliciosos</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
                           <span className="font-medium">Sites Maliciosos:</span>
-                          <span className="text-sm text-gray-600"> Páginas falsas que instalam malware automaticamente</span>
+                          <span className="text-sm text-gray-700"> Páginas falsas que instalam malware automaticamente</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
                           <span className="font-medium">Apps Falsos:</span>
-                          <span className="text-sm text-gray-600"> Aplicativos disfarçados em lojas não oficiais</span>
+                          <span className="text-sm text-gray-700"> Aplicativos disfarçados em lojas não oficiais</span>
                         </div>
                       </div>
                     </div>
@@ -332,19 +332,19 @@ const Content = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="p-3 bg-gray-50 rounded">
                       <strong className="text-purple-600">Falso Suporte Técnico</strong>
-                      <p className="text-sm text-gray-600">Ligações alegando problemas no computador</p>
+                      <p className="text-sm text-gray-700">Ligações alegando problemas no computador</p>
                     </div>
                     <div className="p-3 bg-gray-50 rounded">
                       <strong className="text-purple-600">Falso Gerente Bancário</strong>
-                      <p className="text-sm text-gray-600">Se passam por funcionários do banco</p>
+                      <p className="text-sm text-gray-700">Se passam por funcionários do banco</p>
                     </div>
                     <div className="p-3 bg-gray-50 rounded">
                       <strong className="text-purple-600">Pressão Temporal</strong>
-                      <p className="text-sm text-gray-600">"Resolve agora ou perde a oportunidade"</p>
+                      <p className="text-sm text-gray-700">"Resolve agora ou perde a oportunidade"</p>
                     </div>
                     <div className="p-3 bg-gray-50 rounded">
                       <strong className="text-purple-600">Apelo Emocional</strong>
-                      <p className="text-sm text-gray-600">Exploram sentimentos de medo, urgência ou ganância</p>
+                      <p className="text-sm text-gray-700">Exploram sentimentos de medo, urgência ou ganância</p>
                     </div>
                   </div>
                   
@@ -862,7 +862,7 @@ const Content = () => {
                   <AlertCircle className="h-6 w-6 text-red-600" />
                   Protocolo de Resposta a Incidentes para Idosos
                 </CardTitle>
-                <div className="text-sm text-gray-600 mt-2">
+                <div className="text-sm text-gray-700 mt-2">
                   Guia prático e acessível com os passos imediatos após identificar um golpe cibernético
                 </div>
               </CardHeader>
@@ -1216,7 +1216,7 @@ const Content = () => {
                   <GraduationCap className="h-5 w-5" />
                   Framework de Conscientização em Segurança Digital
                 </CardTitle>
-                <div className="text-sm text-gray-600 mt-2">
+                <div className="text-sm text-gray-700 mt-2">
                   Baseado na pesquisa de Zulkipli et al. (2018) publicada no Journal of Cybersecurity Education - Framework dos 7 pilares para conscientização em segurança digital
                 </div>
               </CardHeader>
