@@ -36,7 +36,7 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">{mockData.hero.title}</h1>
-              <p className="text-xl text-gray-600 mb-8">{mockData.hero.subtitle}</p>
+              <p className="text-xl text-gray-700 mb-8">{mockData.hero.subtitle}</p>
               <Button 
                 onClick={handleGetStarted} 
                 size="lg" 
@@ -89,16 +89,14 @@ const Home = () => {
                     }
                   }}
                 >
-                  <CardContent className="p-6 flex-grow flex">
-                    <div className="flex items-start space-x-4 w-full">
-                      <div className={`p-3 rounded-lg ${feature.iconColor} bg-white flex-shrink-0`} aria-hidden="true">
-                        <IconComponent className="h-8 w-8" />
+                                    <CardContent className="p-6 flex flex-col h-full">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`p-3 rounded-lg ${feature.color}`}>
+                        <Icon className={`h-7 w-7 ${feature.iconColor}`} aria-hidden="true" />
                       </div>
-                      <div className="flex-1 flex flex-col">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                        <p className="text-gray-600 flex-grow text-base">{feature.description}</p>
-                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900">{feature.title}</h3>
                     </div>
+                    <p className="text-gray-700 flex-grow text-base">{feature.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -111,25 +109,25 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Dados da Inclusão Digital</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Baseado em pesquisas do IBGE e estudos acadêmicos</p>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">Baseado em pesquisas do IBGE e estudos acadêmicos</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6 bg-blue-50 rounded-lg border-2 border-blue-200" role="article" aria-label="66% dos idosos conectados">
               <div className="text-4xl font-bold text-blue-600 mb-2">66%</div>
-              <div className="text-base text-gray-600 mb-2">dos idosos conectados</div>
+              <div className="text-base text-gray-700 mb-2">dos idosos conectados</div>
               <div className="text-sm text-gray-500">IBGE 2023 (era 24,7% em 2016)</div>
             </div>
             
             <div className="text-center p-6 bg-red-50 rounded-lg border-2 border-red-200" role="article" aria-label="53% propensos a phishing">
               <div className="text-4xl font-bold text-red-600 mb-2">53%</div>
-              <div className="text-base text-gray-600 mb-2">propensos a phishing</div>
+              <div className="text-base text-gray-700 mb-2">propensos a phishing</div>
               <div className="text-sm text-gray-500">Zulkipli et al. (2021)</div>
             </div>
             
             <div className="text-center p-6 bg-orange-50 rounded-lg border-2 border-orange-200" role="article" aria-label="80% denúncias por terceiros">
               <div className="text-4xl font-bold text-orange-600 mb-2">80%</div>
-              <div className="text-base text-gray-600 mb-2">denúncias por terceiros</div>
+              <div className="text-base text-gray-700 mb-2">denúncias por terceiros</div>
               <div className="text-sm text-gray-500">Agência Brasil (2024)</div>
             </div>
           </div>
