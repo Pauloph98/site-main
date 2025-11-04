@@ -1,0 +1,142 @@
+# ============================================================================
+# Docker Compose - Segurança Cibernética para Idosos
+# TCC UNIALFA 2025 - Paulo Henrique Pereira Silva Barros
+# ============================================================================
+# Este arquivo configura os containers Docker para executar a aplicação
+# LOCALMENTE para desenvolvimento e testes.
+# 
+# Para PRODUÇÃO, a aplicação está hospedada em:
+# - Frontend: Vercel (https://vercel.com) - React
+# - Backend: Render/Railway (Python/FastAPI)
+# - Banco de Dados: Hostgator MySQL (sh00046.hostgator.com.br)
+# ============================================================================
+
+version: '3.8'
+
+services:
+  # ==========================================================================
+  # MySQL - Banco de Dados
+  # ==========================================================================
+  mysql:
+    image: mysql:8.0
+    container_name: seguranca-digital-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: paul1199_segurancadigital
+      MYSQL_USER: paul1199_pauloph10
+      MYSQL_PASSWORD: Paulo@99470578
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+    networks:
+      - seguranca-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot123"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ==========================================================================
+  # Backend - FastAPI
+  # ==========================================================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: seguranca-digital-backend
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      # Configuração MySQL (container local)
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: paul1199_pauloph10
+      DB_PASSWORD: Paulo@99470578
+      DB_NAME: paul1199_segurancadigital
+      
+      # CORS - Permite acesso do frontend
+      ALLOWED_ORIGINS: http://localhost:3000,http://frontend:3000
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - seguranca-network
+    volumes:
+      - ./backend:/app
+    command: uvicorn server:app --host 0.0.0.0 --port 8001 --reload
+
+  # ==========================================================================
+  # Frontend - React
+  # ==========================================================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: seguranca-digital-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_BACKEND_URL: http://localhost:8001
+    depends_on:
+      - backend
+    networks:
+      - seguranca-network
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+
+# ============================================================================
+# Volumes - Persistência de Dados
+# ============================================================================
+volumes:
+  mysql_data:
+    driver: local
+
+# ============================================================================
+# Networks - Rede Interna
+# ============================================================================
+networks:
+  seguranca-network:
+    driver: bridge
+
+# ============================================================================
+# INSTRUÇÕES DE USO
+# ============================================================================
+# 
+# 1. Subir todos os containers:
+#    docker-compose up -d
+# 
+# 2. Ver logs em tempo real:
+#    docker-compose logs -f
+# 
+# 3. Parar todos os containers:
+#    docker-compose down
+# 
+# 4. Rebuild dos containers:
+#    docker-compose up --build
+# 
+# 5. Remover volumes (apaga dados):
+#    docker-compose down -v
+# 
+# 6. Acessar o MySQL:
+#    docker exec -it seguranca-digital-mysql mysql -u paul1199_pauloph10 -p
+#    Senha: Paulo@99470578
+# 
+# ============================================================================
+# ACESSO À APLICAÇÃO
+# ============================================================================
+# 
+# Frontend:  http://localhost:3000
+# Backend:   http://localhost:8001
+# Dashboard: http://localhost:3000/dashboard
+#            Usuário: admin
+#            Senha: Ph@842972
+# 
+# ============================================================================

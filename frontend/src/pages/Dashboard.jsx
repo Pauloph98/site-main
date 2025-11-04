@@ -2,24 +2,48 @@ import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { TrendingUp, Users, Award, AlertCircle } from 'lucide-react';
+import { Button } from '../components/ui/button';
+import { TrendingUp, Users, Award, AlertCircle, LogOut } from 'lucide-react';
 import axios from 'axios';
+import LoginForm from '../components/LoginForm';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://seguranca-digital-backend.onrender.com';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
 const Dashboard = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [stats, setStats] = useState(null);
   const [surveyStats, setSurveyStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('quiz'); // 'quiz' ou 'survey'
 
+  // Verificar autenticação ao carregar
   useEffect(() => {
-    fetchStats();
-    fetchSurveyStats();
+    const authStatus = localStorage.getItem('dashboardAuth');
+    if (authStatus === 'true') {
+      setIsAuthenticated(true);
+    }
   }, []);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('dashboardAuth');
+    localStorage.removeItem('dashboardUser');
+    setIsAuthenticated(false);
+  };
+
+  // Buscar dados quando estiver autenticado
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchStats();
+      fetchSurveyStats();
+    }
+  }, [isAuthenticated]);
 
   const fetchStats = async () => {
     try {
@@ -43,6 +67,11 @@ const Dashboard = () => {
       console.error('Erro ao buscar estatísticas da pesquisa:', err);
     }
   };
+
+  // Se não estiver autenticado, mostrar formulário de login
+  if (!isAuthenticated) {
+    return <LoginForm onLogin={handleLogin} />;
+  }
 
   if (loading) {
     return (
@@ -124,9 +153,19 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">📊 Dashboard de Métricas</h1>
-          <p className="text-gray-600">Acompanhe a efetividade do conteúdo educativo e resultados das pesquisas</p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">📊 Dashboard de Métricas</h1>
+            <p className="text-gray-600">Acompanhe a efetividade do conteúdo educativo e resultados das pesquisas</p>
+          </div>
+          <Button
+            onClick={handleLogout}
+            variant="outline"
+            className="flex items-center gap-2 border-red-300 text-red-600 hover:bg-red-50 hover:text-red-700"
+          >
+            <LogOut className="w-4 h-4" />
+            Sair
+          </Button>
         </div>
 
         {/* Tabs */}

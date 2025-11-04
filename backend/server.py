@@ -260,7 +260,7 @@ app.include_router(api_router)
 # Configuração de CORS para desenvolvimento e produção
 ALLOWED_ORIGINS = os.getenv(
     "ALLOWED_ORIGINS", 
-    "http://localhost:3000,http://127.0.0.1:3000"
+    "http://localhost:3000,http://127.0.0.1:3000,https://*.vercel.app"
 ).split(",")
 
 app.add_middleware(
