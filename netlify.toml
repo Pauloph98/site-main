@@ -1,6 +1,6 @@
 [build]
   base = "frontend"
-  command = "rm -rf node_modules .cache build && npm install --legacy-peer-deps && GENERATE_SOURCEMAP=false npm run build"
+  command = "npm install --legacy-peer-deps && npm run build"
   publish = "build"
 
 # Cache agressivo para assets estáticos (melhora performance)
@@ -47,3 +47,4 @@
 [build.environment]
   NODE_VERSION = "20"
   CI = "false"
+  REACT_APP_BACKEND_URL = "https://seguranca-digital-backend.onrender.com"
