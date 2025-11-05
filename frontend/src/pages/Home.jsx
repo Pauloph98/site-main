@@ -118,19 +118,19 @@ const Home = () => {
             <div className="text-center p-6 bg-blue-50 rounded-lg border-2 border-blue-200" role="article" aria-label="66% dos idosos conectados">
               <div className="text-4xl font-bold text-blue-600 mb-2">66%</div>
               <div className="text-base text-gray-700 mb-2">dos idosos conectados</div>
-              <div className="text-sm text-gray-500">IBGE 2023 (era 24,7% em 2016)</div>
+              <div className="text-sm text-gray-700">IBGE 2023 (era 24,7% em 2016)</div>
             </div>
             
             <div className="text-center p-6 bg-red-50 rounded-lg border-2 border-red-200" role="article" aria-label="53% propensos a phishing">
               <div className="text-4xl font-bold text-red-600 mb-2">53%</div>
               <div className="text-base text-gray-700 mb-2">propensos a phishing</div>
-              <div className="text-sm text-gray-500">Zulkipli et al. (2021)</div>
+              <div className="text-sm text-gray-700">Zulkipli et al. (2021)</div>
             </div>
             
             <div className="text-center p-6 bg-orange-50 rounded-lg border-2 border-orange-200" role="article" aria-label="80% denúncias por terceiros">
               <div className="text-4xl font-bold text-orange-600 mb-2">80%</div>
               <div className="text-base text-gray-700 mb-2">denúncias por terceiros</div>
-              <div className="text-sm text-gray-500">Agência Brasil (2024)</div>
+              <div className="text-sm text-gray-700">Agência Brasil (2024)</div>
             </div>
           </div>
         </div>
