@@ -4,7 +4,7 @@ on:
   schedule:
     # Executa a cada 10 minutos (Render hiberna após 15 minutos de inatividade)
     - cron: '*/10 * * * *'
-  workflow_dispatch: # Permite execução manual
+  workflow_dispatch: # Permite execução manual via GitHub UI
 
 jobs:
   ping-backend:
