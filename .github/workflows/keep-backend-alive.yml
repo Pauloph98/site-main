@@ -1,0 +1,17 @@
+name: Keep Backend Alive
+
+on:
+  schedule:
+    # Executa a cada 10 minutos (Render hiberna após 15 minutos de inatividade)
+    - cron: '*/10 * * * *'
+  workflow_dispatch: # Permite execução manual
+
+jobs:
+  ping-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Backend
+        run: |
+          echo "🔄 Fazendo ping no backend do Render..."
+          curl -f https://seguranca-digital-backend.onrender.com/api/quiz-results/stats || echo "❌ Backend não respondeu"
+          echo "✅ Ping concluído!"
