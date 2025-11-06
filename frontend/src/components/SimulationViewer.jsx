@@ -131,19 +131,19 @@ const SimulationViewer = ({ simulation, onClose }) => {
             {step.scenario && (
               <div className="mb-6 p-4 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
                 {step.scenario.from && (
-                  <div className="mb-2"><strong>De:</strong> {step.scenario.from}</div>
+                  <div className="mb-2 break-words"><strong>De:</strong> {step.scenario.from}</div>
                 )}
                 {step.scenario.subject && (
-                  <div className="mb-2"><strong>Assunto:</strong> {step.scenario.subject}</div>
+                  <div className="mb-2 break-words"><strong>Assunto:</strong> {step.scenario.subject}</div>
                 )}
                 {step.scenario.body && (
                   <div className="mb-2">
                     <strong>Mensagem:</strong>
-                    <div className="mt-2 p-3 bg-white rounded border">{step.scenario.body}</div>
+                    <div className="mt-2 p-3 bg-white rounded border whitespace-pre-wrap break-words">{step.scenario.body}</div>
                   </div>
                 )}
                 {step.scenario.description && (
-                  <p className="text-gray-700">{step.scenario.description}</p>
+                  <p className="text-gray-700 break-words">{step.scenario.description}</p>
                 )}
               </div>
             )}
@@ -156,7 +156,7 @@ const SimulationViewer = ({ simulation, onClose }) => {
                   <Button
                     key={option.id}
                     variant={isSelected ? (option.isCorrect ? "default" : "destructive") : "outline"}
-                    className={`w-full justify-start p-4 h-auto text-left ${
+                    className={`w-full justify-start p-4 h-auto text-left whitespace-normal break-words ${
                       showFeedback 
                         ? (option.isCorrect 
                           ? "bg-green-50 border-green-500 text-green-800 hover:bg-green-50" 
@@ -166,13 +166,13 @@ const SimulationViewer = ({ simulation, onClose }) => {
                     onClick={() => !userChoices[currentStep] && handleChoiceSelect(option)}
                     disabled={!!userChoices[currentStep]}
                   >
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3 w-full">
                       {showFeedback && (
                         option.isCorrect 
-                          ? <CheckCircle className="h-5 w-5 text-green-600" /> 
-                          : <XCircle className="h-5 w-5 text-red-600" />
+                          ? <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" /> 
+                          : <XCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
                       )}
-                      <span>{option.text}</span>
+                      <span className="block flex-1">{option.text}</span>
                     </div>
                   </Button>
                 );
