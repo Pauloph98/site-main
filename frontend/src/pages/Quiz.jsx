@@ -139,7 +139,7 @@ const Quiz = () => {
                     <CardContent>
                         <div className="space-y-3">
                             {question.options.map((option) => (
-                                <Button key={option.id} variant={selectedAnswer?.id === option.id ? "default" : "outline"} className="w-full justify-start p-4 h-auto text-left" onClick={() => handleAnswerSelect(option)} disabled={showFeedback}>{option.text}</Button>
+                                <Button key={option.id} variant={selectedAnswer?.id === option.id ? "default" : "outline"} className="w-full justify-start p-4 h-auto text-left whitespace-normal break-words" onClick={() => handleAnswerSelect(option)} disabled={showFeedback}><span className="block w-full">{option.text}</span></Button>
                             ))}
                         </div>
                         {showFeedback && (

@@ -111,7 +111,7 @@ const PreQuiz = () => {
         <Card>
           <CardHeader><CardTitle className="text-xl text-left">{currentQuestion + 1}. {question.question}</CardTitle></CardHeader>
           <CardContent className="space-y-3">
-            {question.options.map((option) => (<Button key={option.id} variant="outline" className="w-full justify-start p-4 h-auto text-left" onClick={() => handleSelectAndNext(option)}>{option.text}</Button>))}
+            {question.options.map((option) => (<Button key={option.id} variant="outline" className="w-full justify-start p-4 h-auto text-left whitespace-normal break-words" onClick={() => handleSelectAndNext(option)}><span className="block w-full">{option.text}</span></Button>))}
           </CardContent>
         </Card>
       </div>
