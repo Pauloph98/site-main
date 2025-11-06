@@ -138,9 +138,24 @@ const Quiz = () => {
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-3">
-                            {question.options.map((option) => (
-                                <Button key={option.id} variant={selectedAnswer?.id === option.id ? "default" : "outline"} className="w-full justify-start p-4 h-auto text-left whitespace-normal break-words" onClick={() => handleAnswerSelect(option)} disabled={showFeedback}><span className="block w-full">{option.text}</span></Button>
-                            ))}
+                            {question.options.map((option) => {
+                                const isSelected = selectedAnswer?.id === option.id;
+                                return (
+                                    <Button 
+                                        key={option.id} 
+                                        variant={isSelected ? "default" : "outline"} 
+                                        className={`w-full justify-start p-4 h-auto text-left whitespace-normal break-words ${
+                                            isSelected 
+                                                ? 'bg-blue-600 hover:bg-blue-700 text-white border-2 border-blue-700 shadow-lg' 
+                                                : 'bg-white hover:bg-gray-50 border-2 border-gray-300'
+                                        }`}
+                                        onClick={() => handleAnswerSelect(option)} 
+                                        disabled={showFeedback}
+                                    >
+                                        <span className="block w-full">{option.text}</span>
+                                    </Button>
+                                );
+                            })}
                         </div>
                         {showFeedback && (
                             <div className={`mt-6 p-4 rounded-lg border ${selectedAnswer.isCorrect ? 'bg-green-100 border-green-300' : 'bg-red-100 border-red-300'}`}>
