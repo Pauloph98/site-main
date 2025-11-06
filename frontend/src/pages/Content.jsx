@@ -109,7 +109,7 @@ const Content = () => {
               <span>Que tal medir seu conhecimento?</span>
             </AlertDialogTitle>
             <AlertDialogDescription className="text-black text-sm sm:text-lg leading-relaxed pt-2">
-              Vimos que ainda não fez a nossa avaliação inicial. Recomendamos fazê-la agora para que, no final, possa comparar e ver o quanto aprendeu!
+              Vimos que ainda não fez a nossa avaliação inicial. Recomendamos fazê-la agora! Depois de estudar todo o conteúdo, volte à página <strong>Quiz</strong> para fazer a avaliação final e comparar o quanto aprendeu!
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="flex-col sm:flex-row gap-2">
